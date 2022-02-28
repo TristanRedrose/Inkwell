@@ -1,0 +1,32 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}Inkwell{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'main/styles.css' %}">
+    </head>
+    <body>
+        <div id="navbar">
+            <div id="logo">
+                <img src="..\static\main\images\Main-logo.png" alt="Logo">
+                <h3>Inkwell</h3>
+            </div>
+            <div id="nav-1">
+                <p class="nav-text">Posts</p>
+                <p class="nav-text">Blogs</p>
+                {% if user.is_authenticated %}
+                    <p class="nav-text">My blog</p>
+                    <p class="nav-text">Log out</p>
+                {% else %}
+                    <p class="nav-text">Sign in</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="body">
+            {% block body %}
+            {% endblock %}
+        </div>
+    </body>
+</html>
