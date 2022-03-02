@@ -19,7 +19,9 @@
                     <p class="nav-text">My blog</p>
                     <p class="nav-text">Log out</p>
                 {% else %}
-                    <p class="nav-text">Sign in</p>
+                    <a class="nav-link" href="{% url 'sign_in'%}">
+                        <p class="nav-text">Sign in</p>
+                    </a>
                 {% endif %}
             </div>
         </div>
