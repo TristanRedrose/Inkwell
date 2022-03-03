@@ -161,7 +161,7 @@ p {
     margin-right: 120px;
 }
 
-.nav-link {
+.nav-link, .login-link {
     align-self: center;
     text-decoration: none;
 }
@@ -229,11 +229,13 @@ p {
 .login-form {
     padding: 0px 16px;
     margin-top: 16px;
-    width: 362px;
+    width: 396px;
     height: 48px;
     border-radius: 4px;
+    box-sizing: border-box;
     border: 1px #D3D3D3 solid;
 }
+
 
 .login-button {
     margin-top: 16px;
@@ -254,4 +256,22 @@ p {
 
 .login-button:active {
     color: #e94d4d;
+}
+
+.link-box {
+    margin-top: 16px;
+    width: 396px;
+}
+
+.login-link-text, .login-box-text  {
+    text-align: center;
+    font-family: Roboto, "Helvetica Neue", Helvetica, sans-serif;
+    font-weight: 300;
+    color: blue;
+    padding: 0px;
+    margin: 0px;
+}
+
+.login-box-text {
+    color: #4F4F4F;
 }

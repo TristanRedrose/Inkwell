@@ -1,0 +1,26 @@
+{% extends "main/sign_in.html" %}
+{% load static %}
+
+{% block content %}
+    <div id="login-text">
+        <h3>Sign in</h3>
+    </div>
+    <form action="{% url 'sign_in' %}" method="post">
+        {% csrf_token %}
+        <div>
+            <input autofocus class="login-form" type="text" name="username" placeholder="Username">
+        </div>
+        <div>
+            <input class="login-form" type="password" name="password" placeholder="Password">
+        </div>
+        <input class="login-button" type="submit" value="Login">
+    </form>
+    <div class="link-box">
+        <p class="login-box-text">Dont have an account?</p>
+    </div>
+    <div class="link-box">
+        <a class="login-link" href="{% url 'register' %}">
+            <p class="login-link-text">Register</p>
+        </a>
+    </div>
+{% endblock %}

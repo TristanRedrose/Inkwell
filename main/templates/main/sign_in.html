@@ -12,19 +12,9 @@
                 <div id="box-top">
                 </div>
                 <div id="box-middle">
-                    <div id="login-text">
-                        <h3>Sign in</h3>
-                    </div>
-                    <form action="{% url 'sign_in' %}" method="post">
-                        {% csrf_token %}
-                        <div>
-                            <input autofocus class="login-form" type="text" name="username" placeholder="Username">
-                        </div>
-                        <div>
-                            <input class="login-form" type="password" name="password" placeholder="Password">
-                        </div>
-                        <input class="login-button" type="submit" value="Login">
-                    </form>
+                    {% block content %}
+                    
+                    {% endblock %}
                 </div>
                 <div id="box-bottom">
                 </div>
