@@ -17,7 +17,9 @@
                 <p class="nav-text">Blogs</p>
                 {% if user.is_authenticated %}
                     <p class="nav-text">My blog</p>
-                    <p class="nav-text">Log out</p>
+                    <a class="nav-link" href="{% url 'logout'%}">
+                        <p class="nav-text">Log out</p>
+                    </a>
                 {% else %}
                     <a class="nav-link" href="{% url 'sign_in'%}">
                         <p class="nav-text">Sign in</p>

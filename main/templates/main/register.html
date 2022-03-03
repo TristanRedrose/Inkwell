@@ -5,7 +5,7 @@
     <div id="login-text">
         <h3>Register</h3>
     </div>
-    <form action="{% url 'sign_in' %}" method="post">
+    <form action="{% url 'register' %}" method="POST">
         {% csrf_token %}
         <div>
             <input autofocus class="login-form" type="text" name="username" placeholder="Username">
@@ -14,7 +14,7 @@
             <input class="login-form" type="password" name="password" placeholder="Password">
         </div>
         <div>
-            <input class="login-form" type="password" name="password" placeholder="Confirm password">
+            <input class="login-form" type="password" name="confirm" placeholder="Confirm password">
         </div>
         <input class="login-button" type="submit" value="Register">
     </form>

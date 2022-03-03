@@ -64,7 +64,7 @@ p {
 }
 
 .nav-text {
-    font-size: 24px;
+    font-size: 16px;
     margin: 0px;
     color: white;
     align-self: center;
@@ -197,6 +197,9 @@ p {
     width: 460px;
     background-color: #666666;
     border-radius: 16px 16px 0px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #box-middle {
@@ -263,7 +266,7 @@ p {
     width: 396px;
 }
 
-.login-link-text, .login-box-text  {
+.login-link-text, .login-box-text, .login-message-text {
     text-align: center;
     font-family: Roboto, "Helvetica Neue", Helvetica, sans-serif;
     font-weight: 300;
@@ -274,4 +277,8 @@ p {
 
 .login-box-text {
     color: #4F4F4F;
+}
+
+.login-message-text {
+    color: white;
 }

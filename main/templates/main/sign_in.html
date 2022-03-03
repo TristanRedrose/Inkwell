@@ -10,6 +10,11 @@
         <div class="sign_in-body">
             <div id="login-box">
                 <div id="box-top">
+                    {% if message %}
+                        <div>
+                            <p class="login-message-text">{{ message }}</p>
+                        </div>
+                    {% endif %}
                 </div>
                 <div id="box-middle">
                     {% block content %}
