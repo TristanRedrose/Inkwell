@@ -10,18 +10,28 @@
         <div class="sign_in-body">
             <div id="login-box">
                 <div id="box-top">
+                    <a class="nav-link" href="{% url 'index'%}">
+                        <div id="signin-logo">
+                            <img src="..\static\main\images\Main-logo.png" alt="Logo">
+                            <h3 id="logo-text">Inkwell</h3>
+                        </div>
+                    </a>
+                </div>
+                <div id="box-middle">
+                    {% if user.is_authenticated%}
+                        <h2>You are already logged in</h2>
+                    {% else %}
+                        {% block content %}
+                        
+                        {% endblock %}
+                    {% endif%}
+                </div>
+                <div id="box-bottom">
                     {% if message %}
                         <div>
                             <p class="login-message-text">{{ message }}</p>
                         </div>
                     {% endif %}
-                </div>
-                <div id="box-middle">
-                    {% block content %}
-                    
-                    {% endblock %}
-                </div>
-                <div id="box-bottom">
                 </div>
             </div>
         </div>

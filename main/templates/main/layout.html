@@ -8,10 +8,12 @@
     </head>
     <body>
         <div id="navbar">
-            <div id="logo">
-                <img src="..\static\main\images\Main-logo.png" alt="Logo">
-                <h3>Inkwell</h3>
-            </div>
+            <a class="nav-link" href="{% url 'index'%}">
+                <div id="logo">
+                    <img src="..\static\main\images\Main-logo.png" alt="Logo">
+                    <h3 id="logo-text">Inkwell</h3>
+                </div>
+            </a>
             <div id="nav-1">
                 <p class="nav-text">Posts</p>
                 <p class="nav-text">Blogs</p>
