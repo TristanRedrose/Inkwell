@@ -1,0 +1,44 @@
+{% extends "main/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <div class="main-body">
+        <div class="blog-banner">
+            <div class="blog-banner-div" style="background-image: url({{ blog.image }});">
+                <h1>{{ blog.name}}</h1>
+                <p id="blog-tag">{{ blog.description }}</p>
+                <div id="blog-info">
+                    <img id="info-img1" src="..\static\main\images\calendar.png" alt="ad-img1">
+                    <p id="blog-time">{{ blog.created }}</p>
+                    <img id="info-img1" src="..\static\main\images\user.png" alt="ad-img1">
+                    <p id="blog-time"><span>{{ blog.author}}</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="title-div">
+            <h2>Recent posts</h2>
+        </div>
+        <div class="content-div">
+            <div class="post-div">
+                <div id="post-box">
+                    <div id="post-box-image">
+                        <img id="post-img" src={{ blog.image }} alt="post-img">
+                    </div>
+                    <div id="post-box-content">
+                        <div id="post-box-title-div">
+                            <h3 id="box-title-text">Post title of unending doom</h3>
+                        </div>
+                        <div id="post-box-body-div">
+                            <p id="box-body-text">Lorem ipsum dolor summit amit jamit dummy text for this page,Lorem ipsum dolor summit amit jamit dummy text for this page,Lorem ipsum dolor summit amit jamit dummy text for this page,Lorem ipsum dolor summit amit jamit dummy text for this page,Lorem ipsum dolor summit amit jamit dummy text for this page</p>
+                        </div>
+                        <div id="post-box-button">
+                            <p>Read more</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="side-div">
+            </div>
+        </div>    
+    </div>
+{% endblock %}

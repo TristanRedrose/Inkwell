@@ -19,6 +19,7 @@ h3 {
     color: #4F4F4F;
     font-size: 24px;
     font-family: Montserrat, "Helvetica Neue", Helvetica, sans-serif;
+
 }
 
 p {
@@ -246,7 +247,6 @@ p {
     border: 1px #D3D3D3 solid;
 }
 
-
 .login-button {
     margin-top: 16px;
     width: 396px;
@@ -288,4 +288,217 @@ p {
 
 .login-message-text {
     color: white;
+}
+
+.main-body {
+    min-height: 100vh;
+    background-color: #F0F0F0;
+    display: flex;
+    flex-direction: column;
+}
+
+.title-div {
+    margin-left: 64px;
+}
+
+.title-div > h1 {
+    margin: 24px 0px 0px 0px;
+}
+
+#create-blog-div {
+    margin-left: 64px;
+}
+
+.input-div {
+    display: flex;
+    align-items: center;
+    margin-top: 24px;
+    width: 474px;
+    justify-content: space-between;
+}
+
+.input-div > h3 {
+    margin: 0px;
+}
+
+.blog-form-input {
+    padding: 0px 16px;
+    width: 300px;
+    height: 32px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    border: 1px #D3D3D3 solid;
+    font-size: 16px;
+    font-family: Montserrat, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.blog-button {
+    width: 160px;
+    height: 32px;
+    color: white;
+    background-color: #7490F0;
+    border-radius: 32px;
+    border: none;
+    margin-top: 24px;
+    box-sizing: border-box;
+    margin-right: 140px;
+}
+
+.blog-button:hover {
+    background-color: #e94d4d;
+}
+
+.blog-banner {
+    height: 120px;
+    width: 100%;
+    background: linear-gradient(89.93deg, rgba(255, 121, 121, 0.8) 19.93%, rgba(116, 144, 240, 0.8) 70.71%);
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.25);
+}
+
+.blog-banner-div {
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.blog-banner-div > h1 {
+    margin: 0px;
+    align-self: center;
+    color: black;
+    font-family: Roboto, "Helvetica Neue", Helvetica, sans-serif;
+    text-shadow: 2px 2px 4px white;
+}
+
+#blog-tag {
+    margin: 0px;
+    align-self: center;
+    color: white;
+}
+
+#blog-time {
+    margin: 4px 16px 0px 0px;
+    align-self:flex-end;
+    color: black;
+    font-size: 12px;
+}
+#blog-time {
+    margin: 0px 8px 0px 0px;
+    color: #4F4F4F;
+    font-family: Roboto, "Helvetica Neue", Helvetica, sans-serif;
+    font-weight: 700;
+    align-self: center;
+}
+
+#blog-info {
+    margin-top: 4px;
+    padding: 4px 0px;
+    background-color: #7490F0;
+    min-width: 210px;
+    height: 30px;
+    border-radius: 32px;
+    display: flex;
+    align-self: center;
+    justify-content: space-between;
+}
+
+#info-img1 {
+    margin: 0px 8px;
+    width:24px;
+    height: 24px;
+    align-self: center;
+}
+
+.title-div > h2 {
+    margin: 24px 0px 0px 0px;
+}
+
+.content-div {
+    margin: 32px 64px;
+    display: flex;
+}
+
+.post-div {
+    width: 85%;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    grid-row-gap: 40px;
+}
+
+.side-div {
+    width: 15%;
+}
+
+#post-box {
+    width: 360px;
+    height: 400px;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 4px 8px 15px rgba(0, 0, 0, 0.25);
+}
+
+#post-box-image {
+    height: 140px;
+    border-radius: 8px 8px 0px 0px;
+    background-color: #4F4F4F;
+}
+
+#post-img {
+    width: 100%;
+    height: 100%;
+    border-radius:  8px 8px 0px 0px;
+    object-fit: cover;
+}
+
+#post-box-content {
+    height: 260px;
+    text-align: center;
+}
+
+#box-title-text {
+    margin: 0px;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+#post-box-title-div {
+    height: 50px;
+    width: 360px;
+    box-sizing: border-box;
+    padding: 8px;
+}
+
+#post-box-body-div {
+    height: 164px;
+    width: 360px;
+    overflow: hidden;
+}
+
+#post-box-button {
+    margin-top: 8px;
+    height: 38px;
+    border-radius: 0px 0px 8px 8px;
+    background-color: #e94d4d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#post-box-button > p {
+    color: white;
+    font-weight: 700;
+    font-family: Roboto, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+#post-box-button:hover {
+    background-color: #7490F0;
+}
+
+#box-body-text {
+    margin: 0px;
+    text-align: justify;
+    font-size: 16px;
+    padding: 8px 16px;
 }

@@ -3,6 +3,9 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+
+from .models import Category,Blog,Posts
 
 
 
@@ -26,7 +29,7 @@ def sign_in(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect("index")
+            return redirect("create_blog")
         else:
             return render (request, "main/login.html", {
                 "message": "Invalid username or password"
@@ -59,6 +62,39 @@ def register(request):
                 "message": "Username already taken."
             })
         login(request, user)
-        return redirect('index')
+        return redirect("create_blog")
     else:
         return render (request, "main/register.html")
+
+@login_required
+def create_blog_view(request):
+    
+    if request.method == "POST":
+        author = request.user
+        name = request.POST.get("blog-name")
+        description = request.POST.get("description")
+        category = request.POST.get("category")
+        image = request.POST.get("image")
+
+        blog=Blog(
+            author=author,
+            name=name,
+            description=description,
+            category=Category.objects.get(name=category),
+            image=image
+        )
+        blog.save()
+
+        return render (request, "main/my_blog.html")
+    else:
+        try:
+            blog = Blog.objects.get(author=request.user)
+        except:
+            ctg = Category.objects.all()   
+            return render (request, "main/create_blog.html", {
+                "categories": ctg
+            })
+        
+        return render (request, "main/my_blog.html", {
+            "blog": blog
+        })
