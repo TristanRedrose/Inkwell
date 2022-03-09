@@ -15,7 +15,7 @@ h2 {
     font-family: Montserrat, "Helvetica Neue", Helvetica, sans-serif;
 }
 
-h3 {
+h3, label {
     color: #4F4F4F;
     font-size: 24px;
     font-family: Montserrat, "Helvetica Neue", Helvetica, sans-serif;
@@ -265,7 +265,7 @@ p {
 }
 
 .login-button:active {
-    color: #e94d4d;
+    color: lightgreen;
 }
 
 .link-box {
@@ -309,7 +309,7 @@ p {
     margin-left: 64px;
 }
 
-.input-div {
+.input-div, .post-input-div {
     display: flex;
     align-items: center;
     margin-top: 24px;
@@ -501,4 +501,123 @@ p {
     text-align: justify;
     font-size: 16px;
     padding: 8px 16px;
+}
+
+.side-div {
+    border-left: 1px solid #666666;
+}
+
+.search-form {
+    width: 156px;
+    height: 32px;
+    margin-left: 32px;
+    border-radius: 16px;
+    border: 1px #D3D3D3 solid;
+    padding: 8px 16px;
+    box-sizing: border-box;
+    font-size: 16px;
+    font-family: Roboto, "Helvetica Neue", Helvetica, sans-serif;
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.25);
+}
+
+#make, #edit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #7490F0;
+    border-radius: 16px;
+    width: 156px;
+    height: 32px;
+    box-sizing: border-box;
+    margin-left: 32px;
+    margin-top: 16px;
+}
+
+#make:hover {
+    background-color: lightgreen;
+}
+
+#edit {
+    background-color: #e94d4d;
+}
+
+#edit:hover {
+    background-color: lightgreen;
+}
+
+#make > p, #edit > p  {
+    margin: 0px;
+    font-family: Roboto, "Helvetica Neue", Helvetica, sans-serif;
+    color: white;
+}
+
+.post-body-area {
+    width: 500px;
+    height: 500px;
+}
+
+.post-input-div {
+    width: 700px;
+}
+
+#create-post-div {
+    margin: 32px 0px;
+    width: 800px;
+    height: 834px;
+    background-color: white;
+    align-self: center;
+    border-radius: 8px;
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.25);
+}
+
+#post-form {
+    width: 100%;
+    height: 776px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 16px 0px;
+}
+
+.post-label {
+    margin: 16px 0px;
+}
+
+.post-input, .post-input-area {
+    width: 750px;
+    height: 32px;
+    border-radius: 8px;
+    border: 1px lightgrey solid;
+    font-family: Montserrat, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 16px;
+    box-sizing: border-box;
+    padding: 8px 16px;
+}
+
+.post-input-area {
+    height: 400px;
+}
+
+#post-button-div {
+    margin: 32px 0px;
+    display: flex;
+    justify-content: center;
+}
+
+#post-button {
+    width: 160px;
+    height: 32px;
+    color: white;
+    background-color: #7490F0;
+    border-radius: 32px;
+    border: none;
+    box-sizing: border-box;
+}
+
+#post-button:hover {
+    background-color:#e94d4d;
+}
+
+#post-button:active {
+    background-color:lightgreen;
 }

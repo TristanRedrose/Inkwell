@@ -98,3 +98,7 @@ def create_blog_view(request):
         return render (request, "main/my_blog.html", {
             "blog": blog
         })
+
+@login_required
+def create_post(request):
+    return render(request,"main/create_post.html")

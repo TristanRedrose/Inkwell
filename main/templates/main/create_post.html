@@ -1,0 +1,31 @@
+{% extends "main/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <div class="main-body">
+        <div id="create-post-div">
+            <div class="title-div">
+                <h1>Create post</h1>
+            </div>
+            <div id="post-form">
+                <form action="{% url 'create_post' %}">
+                    <div class="post-label">
+                        <label  for="title">Title:<label>
+                    </div>
+                    <input class="post-input" type="text" name="title">
+                    <div class="post-label">
+                        <label class="post-label" for="body">Body:<label>
+                    </div>
+                    <textarea class="post-input-area" type="text" name="body"></textarea>
+                    <div class="post-label">
+                    <label class="post-label" for="image">Image-url:<label>
+                    </div>
+                    <input class="post-input" type="url" name="image">
+                    <div id="post-button-div">
+                    <input id="post-button"  type="submit" value="Create blog">
+                    </div>
+                </form>
+            </div>        
+        </div>
+    </div>
+{% endblock %}
