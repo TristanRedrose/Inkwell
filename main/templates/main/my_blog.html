@@ -20,22 +20,26 @@
         </div>
         <div class="content-div">
             <div class="post-div">
-                <div id="post-box">
-                    <div id="post-box-image">
-                        <img id="post-img" src={{ blog.image }} alt="post-img">
-                    </div>
-                    <div id="post-box-content">
-                        <div id="post-box-title-div">
-                            <h3 id="box-title-text">Post title of unending doom</h3>
+                {% for post in posts %}
+                    <div class="wrapper">
+                    <div class="post-box">
+                        <div id="post-box-image">
+                            <img id="post-img" src={{ post.image }} alt="post-img">
                         </div>
-                        <div id="post-box-body-div">
-                            <p id="box-body-text">Lorem ipsum dolor summit amit jamit dummy text for this page,Lorem ipsum dolor summit amit jamit dummy text for this page,Lorem ipsum dolor summit amit jamit dummy text for this page,Lorem ipsum dolor summit amit jamit dummy text for this page,Lorem ipsum dolor summit amit jamit dummy text for this page</p>
-                        </div>
-                        <div id="post-box-button">
-                            <p>Read more</p>
+                        <div id="post-box-content">
+                            <div id="post-box-title-div">
+                                <h3 id="box-title-text">{{ post.title }}</h3>
+                            </div>
+                            <div id="post-box-body-div">
+                                <p id="box-body-text">{{ post.body }}</p>
+                            </div>
+                            <div id="post-box-button">
+                                <p>Read more</p>
+                            </div>
                         </div>
                     </div>
                 </div>
+                {% endfor %}
             </div>
             <div class="side-div">
                 <div class="search-div">

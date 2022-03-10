@@ -8,7 +8,8 @@
                 <h1>Create post</h1>
             </div>
             <div id="post-form">
-                <form action="{% url 'create_post' %}">
+                <form action="{% url 'create_post' %}" method="POST">
+                    {% csrf_token %}
                     <div class="post-label">
                         <label  for="title">Title:<label>
                     </div>
@@ -22,7 +23,7 @@
                     </div>
                     <input class="post-input" type="url" name="image">
                     <div id="post-button-div">
-                    <input id="post-button"  type="submit" value="Create blog">
+                    <input id="post-button"  type="submit" value="Create post">
                     </div>
                 </form>
             </div>        

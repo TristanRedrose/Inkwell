@@ -95,10 +95,35 @@ def create_blog_view(request):
                 "categories": ctg
             })
         
+        posts=Posts.objects.filter(blog=blog)
         return render (request, "main/my_blog.html", {
-            "blog": blog
+            "blog": blog,
+            "posts":posts
         })
 
 @login_required
 def create_post(request):
-    return render(request,"main/create_post.html")
+    if request.method == "POST":
+        author = request.user
+        blog = Blog.objects.get(author=request.user)
+        title = request.POST.get("title")
+        body = request.POST.get("body")
+        image = request.POST.get("image")
+
+        post=Posts(
+            author=author,
+            blog=blog,
+            title=title,
+            body=body,
+            image=image
+        )
+        post.save()
+
+        posts=Posts.objects.filter(blog=blog)
+        return render (request, "main/my_blog.html", {
+            "blog": blog,
+            "posts": posts
+        })
+
+    else:   
+        return render(request,"main/create_post.html")
