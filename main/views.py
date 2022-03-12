@@ -12,9 +12,11 @@ from .models import Category,Blog,Posts
 # Create your views here.
 
 def index(request):
+
     return render (request, "main/index.html")
 
 def sign_in(request):
+
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
@@ -38,12 +40,14 @@ def sign_in(request):
         return render (request, "main/login.html")
 
 def log_out(request):
+
     logout(request)
     return render (request, "main/login.html", {
                 "message": "Successfully logged out"
             })
 
 def register(request):
+
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
@@ -103,6 +107,7 @@ def create_blog_view(request):
 
 @login_required
 def create_post(request):
+
     if request.method == "POST":
         author = request.user
         blog = Blog.objects.get(author=request.user)
@@ -127,3 +132,10 @@ def create_post(request):
 
     else:   
         return render(request,"main/create_post.html")
+
+def view_blogs(request):
+
+    blogs = Blog.objects.all()
+    return render(request,"main/blogs.html", {
+        "blogs": blogs
+    })

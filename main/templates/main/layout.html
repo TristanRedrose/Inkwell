@@ -16,7 +16,9 @@
             </a>
             <div id="nav-1">
                 <p class="nav-text">Posts</p>
-                <p class="nav-text">Blogs</p>
+                <a class="nav-link" href="{% url 'blogs' %}">
+                    <p class="nav-text">Blogs</p>
+                </a>
                 {% if user.is_authenticated %}
                     <a class="nav-link" href="{% url 'create_blog' %}">
                         <p class="nav-text">My blog</p>
