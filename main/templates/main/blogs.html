@@ -37,9 +37,11 @@
                                 </div>
                             </div>
                             <div class="blog-box-bottom">
-                                <div id="post-box-button">
-                                    <p>Visit blog</p>
-                                </div>
+                                <a class="nav-link" href="{% url 'view_blog' blog.name %}">
+                                    <div id="post-box-button">
+                                        <p>Visit blog</p>
+                                    </div>
+                                </a>
                             </div>
                         </div>
                     </div>

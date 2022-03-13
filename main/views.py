@@ -139,3 +139,12 @@ def view_blogs(request):
     return render(request,"main/blogs.html", {
         "blogs": blogs
     })
+
+def view_blog(request,blog_name):
+
+    blog = Blog.objects.get(name=blog_name)
+    posts = Posts.objects.filter(blog=blog)
+    return render(request,"main/my_blog.html", {
+        "blog": blog,
+        "posts": posts
+    })

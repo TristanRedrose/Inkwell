@@ -10,4 +10,5 @@ urlpatterns = [
     path("create_blog", views.create_blog_view, name="create_blog"),
     path("create_post", views.create_post, name="create_post"),
     path("blogs", views.view_blogs, name="blogs"),
+    path("blogs/<str:blog_name>", views.view_blog, name="view_blog"),
 ]
