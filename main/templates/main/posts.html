@@ -3,36 +3,38 @@
 
 {% block body %}
     <div class="main-body">
-        <div class="blog-banner">
-            <div class="blog-banner-div" style="background-image: url({{ blog.image }});">
-                <h1>{{ blog.name}}</h1>
-                <p id="blog-tag">{{ blog.description }}</p>
-                <div id="blog-info">
-                    <img id="info-img1" src="..\static\main\images\calendar.png" alt="ad-img1">
-                    <p id="blog-time">{{ blog.created }}</p>
-                    <img id="info-img1" src="..\static\main\images\user.png" alt="ad-img1">
-                    <p id="blog-time"><span>{{ blog.author}}</span></p>
-                </div>
-            </div>
-        </div>
         <div class="title-div">
             <h2>Recent posts</h2>
         </div>
         <div class="content-div">
             <div class="post-div">
                 {% for post in posts %}
-                    <div class="wrapper">
-                    <div class="post-box">
+                <div class="wrapper">
+                    <div class="blog-box">
                         <div id="post-box-image">
                             <img id="post-img" src={{ post.image }} alt="post-img">
+                            <div class="info-wrapper">
+                                <div class="blog-info-2">
+                                    <img id="info-img1" src="..\static\main\images\user.png" alt="ad-img1">
+                                    <p id="blog-time"><span>{{ post.author}}</span></p>
+                                    <img id="info-img1" src="..\static\main\images\calendar.png" alt="ad-img1">
+                                    <p id="blog-time">{{ post.created }}</p>
+                                </div>
+                                <div class="blog-info-3">
+                                    <img id="info-img1" src="..\static\main\images\categories.png" alt="ad-img1">
+                                    <p id="blog-time">{{ post.blog.category.name }}</p>
+                                </div>
+                            </div>
                         </div>
                         <div id="post-box-content">
-                            <div id="post-box-title-div">
+                            <div class="blog-box-title-div">
                                 <h3 id="box-title-text">{{ post.title }}</h3>
                             </div>
-                            <div id="post-box-body-div">
+                            <div class="blog-box-desc-div">
                                 <p id="box-body-text">{{ post.body }}</p>
                             </div>
+                        </div>
+                        <div class="blog-box-bottom">
                             <a class="nav-link" href="{% url 'post' post.blog.name post.title %}">
                                 <div id="post-box-button">
                                     <p>Read more</p>

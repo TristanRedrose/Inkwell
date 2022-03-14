@@ -148,3 +148,18 @@ def view_blog(request,blog_name):
         "blog": blog,
         "posts": posts
     })
+
+def view_posts(request):
+
+    posts = Posts.objects.all()
+    return render(request,"main/posts.html", {
+        "posts": posts
+    })
+
+def view_post(request,blog_name,post_title):
+
+    posts = Posts.objects.filter(blog=Blog.objects.get(name=blog_name))
+    post = posts.get(title=post_title)
+    return render(request,"main/post.html", {
+        "post": post
+    })
