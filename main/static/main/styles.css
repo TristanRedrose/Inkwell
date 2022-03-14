@@ -443,7 +443,7 @@ p {
 }
 
 .content-div {
-    padding: 48px 64px;
+    padding: 48px 32px;
     display: flex;
 }
 
@@ -452,84 +452,6 @@ p {
     display: grid;
     grid-template-columns: 33% 33% 33%;
     grid-row-gap: 40px;
-}
-
-@media screen and (max-width: 1440px) {
-    .post-div {
-        grid-template-columns: 50% 50%;
-    }
-}
-
-@media screen and (max-width: 1100px) {
-    .post-div {
-        width: 75%;
-        grid-template-columns: 75%;
-        justify-content: center;
-    }
-
-    .ad-head {
-        font-size: 32px;
-    }
-
-    .ad-head-2 {
-        font-size: 24px;
-    }
-
-    #image-box1, #text-box2 {
-        margin-right: 60px;
-    }
-    
-    #text-box2 {
-        padding-left: 32px;
-    }
-
-    #image-box2, #text-box1 {
-        margin-left: 60px;
-    }
-
-    #ad-img1, #ad-img2 {
-        height: 200px;
-        width: 400px;
-    }
-
-    .middle-text > h1 {
-        font-size: 32px;
-    }
-}
-
-@media screen and (max-width: 800px) {
-    .ad-head {
-        font-size: 24px;
-    }
-
-    .info-div {
-        height: 400px;
-    }
-
-    .info-div2 {
-        height: 150px;
-    }
-
-    .ad-head-2 {
-        font-size: 16px;
-    }
-
-    #ad-img1, #ad-img2 {
-        height: 150px;
-        width: 250px;
-    }
-
-    .middle-text > h1 {
-        font-size: 24px;
-    }
-
-    #footer-bar > p {
-        font-size: 12px;
-    }
-
-    .post-body-view-text {
-        font-size: 12px;
-    }
 }
 
 .side-div {
@@ -738,20 +660,6 @@ p {
     box-sizing: border-box;
 }
 
-@media screen and (max-width: 600px) {
-    .title-div > h1 {
-        font-size: 32px;
-    }
-
-    label {
-        font-size: 16px;
-    }
-
-    .post-input, .post-input-area {
-        font-size: 12px;
-    }
-}
-
 #post-button:hover {
     background-color:#e94d4d;
 }
@@ -775,7 +683,6 @@ p {
 
 .blog-info-3 {
     padding: 4px 0px;
-    background-color: lightgreen;
     width: 30%;
     height: 20px;
     border-radius: 32px;
@@ -785,8 +692,6 @@ p {
     position: relative;
     bottom: 200px;
 }
-
-
 
 .space-div {
     height: 24px;
@@ -800,7 +705,7 @@ p {
     width: 900px;
     border-radius: 8px;
     background-color: white;
-    margin-right: 32px;
+    margin-right: 16px;
 }
 
 #post-view-img {
@@ -812,4 +717,130 @@ p {
 #post-view-body-div {
     padding: 0px 16px;
 }
+
+.side-wrapper{
+    position: sticky;
+    top: 80px;
+}
+
+.content-div {
+    justify-content: space-between;
+}
+
+@media screen and (max-width: 1440px) {
+    .post-div {
+        grid-template-columns: 50% 50%;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+
+    .ad-head {
+        font-size: 32px;
+    }
+
+    .ad-head-2 {
+        font-size: 24px;
+    }
+
+    #image-box1, #text-box2 {
+        margin-right: 60px;
+    }
+    
+    #text-box2 {
+        padding-left: 32px;
+    }
+
+    #image-box2, #text-box1 {
+        margin-left: 60px;
+    }
+
+    #ad-img1, #ad-img2 {
+        height: 200px;
+        width: 400px;
+    }
+
+    .middle-text > h1 {
+        font-size: 32px;
+    }
+}
+
+@media screen and (max-width: 980px) {   
+    .post-div {
+        width: 75%;
+        grid-template-columns: 75%;
+        justify-content: center;
+    }
+
+    .side-div {
+        width: 25%;  
+    }
+
+    #post-view-img {
+        height: 300px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .ad-head {
+        font-size: 24px;
+    }
+
+    .info-div {
+        height: 400px;
+    }
+
+    .info-div2 {
+        height: 150px;
+    }
+
+    .ad-head-2 {
+        font-size: 16px;
+    }
+
+    #ad-img1, #ad-img2 {
+        height: 150px;
+        width: 250px;
+    }
+
+    .middle-text > h1 {
+        font-size: 24px;
+    }
+
+    #footer-bar > p {
+        font-size: 12px;
+    }
+
+    .post-body-view-text {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .content-div {
+        padding: 48px 16px;
+    }
+
+    .side-div {
+        width: 35%;
+    }
+
+    #post-view-img {
+        height: 200px;
+    }
+
+    .title-div > h1 {
+        font-size: 32px;
+    }
+
+    label {
+        font-size: 16px;
+    }
+
+    .post-input, .post-input-area {
+        font-size: 12px;
+    }
+}
+
+
 

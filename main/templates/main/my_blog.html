@@ -44,21 +44,23 @@
                 {% endfor %}
             </div>
             <div class="side-div">
-                <div class="search-div">
-                    <form action="{% url 'sign_in' %}" method="POST">
-                        {% csrf_token %}
-                        <div>
-                            <input autofocus class="search-form" type="text" name="search" placeholder="Search posts">
-                        </div>
-                </div> 
-                <div id="edit">
-                    <p>Edit blog</p>
-                </div>
-                <a class="nav-link" href="{% url 'create_post' %}">
-                    <div id="make">
-                        <p>Make post</p>
+                <div class="side-wrapper">
+                    <div class="search-div">
+                        <form action="{% url 'sign_in' %}" method="POST">
+                            {% csrf_token %}
+                            <div>
+                                <input autofocus class="search-form" type="text" name="search" placeholder="Search posts">
+                            </div>
+                    </div> 
+                    <div id="edit">
+                        <p>Edit blog</p>
                     </div>
-                </a>
+                    <a class="nav-link" href="{% url 'create_post' %}">
+                        <div id="make">
+                            <p>Make post</p>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>    
     </div>

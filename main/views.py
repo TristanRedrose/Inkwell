@@ -31,7 +31,7 @@ def sign_in(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect("create_blog")
+            return redirect("posts")
         else:
             return render (request, "main/login.html", {
                 "message": "Invalid username or password"
@@ -66,7 +66,7 @@ def register(request):
                 "message": "Username already taken."
             })
         login(request, user)
-        return redirect("create_blog")
+        return redirect("posts")
     else:
         return render (request, "main/register.html")
 
@@ -89,7 +89,11 @@ def create_blog_view(request):
         )
         blog.save()
 
-        return render (request, "main/my_blog.html")
+        posts=Posts.objects.filter(blog=blog)
+        return render (request, "main/my_blog.html", {
+            "blog": blog,
+            "posts":posts
+        })
     else:
         try:
             blog = Blog.objects.get(author=request.user)

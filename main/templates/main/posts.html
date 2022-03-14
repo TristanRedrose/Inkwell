@@ -20,7 +20,7 @@
                                     <img id="info-img1" src="..\static\main\images\calendar.png" alt="ad-img1">
                                     <p id="blog-time">{{ post.created }}</p>
                                 </div>
-                                <div class="blog-info-3">
+                                <div class="blog-info-3" style="background-color:{{ post.blog.category.color }}">
                                     <img id="info-img1" src="..\static\main\images\categories.png" alt="ad-img1">
                                     <p id="blog-time">{{ post.blog.category.name }}</p>
                                 </div>
@@ -46,21 +46,23 @@
                 {% endfor %}
             </div>
             <div class="side-div">
-                <div class="search-div">
-                    <form action="{% url 'sign_in' %}" method="POST">
-                        {% csrf_token %}
-                        <div>
-                            <input autofocus class="search-form" type="text" name="search" placeholder="Search posts">
-                        </div>
-                </div> 
-                <div id="edit">
-                    <p>Edit blog</p>
-                </div>
-                <a class="nav-link" href="{% url 'create_post' %}">
-                    <div id="make">
-                        <p>Make post</p>
+                <div class="side-wrapper">
+                    <div class="search-div">
+                        <form action="{% url 'sign_in' %}" method="POST">
+                            {% csrf_token %}
+                            <div>
+                                <input autofocus class="search-form" type="text" name="search" placeholder="Search posts">
+                            </div>
+                    </div> 
+                    <div id="edit">
+                        <p>Edit blog</p>
                     </div>
-                </a>
+                    <a class="nav-link" href="{% url 'create_post' %}">
+                        <div id="make">
+                            <p>Make post</p>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>    
     </div>
