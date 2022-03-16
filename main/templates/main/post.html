@@ -3,18 +3,7 @@
 
 {% block body %}
     <div class="main-body">
-        <div class="blog-banner">
-            <div class="blog-banner-div" style="background-image: url({{ post.blog.image }});">
-                <h1>{{ post.blog.name }}</h1>
-                <p id="blog-tag">{{ post.blog.description }}</p>
-                <div id="blog-info">
-                    <img id="info-img1" src="..\static\main\images\calendar.png" alt="ad-img1">
-                    <p id="blog-time">{{ post.blog.created }}</p>
-                    <img id="info-img1" src="..\static\main\images\user.png" alt="ad-img1">
-                    <p id="blog-time"><span>{{ post.blog.author }}</span></p>
-                </div>
-            </div>
-        </div>
+        {% include "main/components/banner.html" %}
         <div class="content-div">
             <div class="post-view-div">
                 <img id="post-view-img" src={{ post.image }} alt="post-img">
@@ -25,19 +14,10 @@
             </div>
             <div class="side-div">
                 <div class="side-wrapper">
-                    <div class="search-div">
-                        <form action="{% url 'sign_in' %}" method="POST">
-                            {% csrf_token %}
-                            <div>
-                                <input autofocus class="search-form" type="text" name="search" placeholder="Search posts">
-                            </div>
-                    </div> 
-                    <div id="edit">
-                        <p>Edit blog</p>
-                    </div>
+                    {% include "main/components/side-bar.html" %}
                     <a class="nav-link" href="{% url 'create_post' %}">
-                        <div id="make">
-                            <p>Make post</p>
+                        <div id="edit">
+                            <p>Edit post</p>
                         </div>
                     </a>
                 </div>

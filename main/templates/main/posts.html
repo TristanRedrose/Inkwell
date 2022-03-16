@@ -15,10 +15,14 @@
                             <img id="post-img" src={{ post.image }} alt="post-img">
                             <div class="info-wrapper">
                                 <div class="blog-info-2">
-                                    <img id="info-img1" src="..\static\main\images\user.png" alt="ad-img1">
-                                    <p id="blog-time"><span>{{ post.author}}</span></p>
-                                    <img id="info-img1" src="..\static\main\images\calendar.png" alt="ad-img1">
-                                    <p id="blog-time">{{ post.created }}</p>
+                                    <div class="blog-info-box">
+                                        <img id="info-img1" src="..\static\main\images\user.png" alt="ad-img1">
+                                        <p id="blog-time"><span>{{ post.author}}</span></p>
+                                    </div>
+                                    <div class="blog-info-box">
+                                        <img id="info-img1" src="..\static\main\images\calendar.png" alt="ad-img1">
+                                        <p id="blog-time">{{ post.created|date:"Y-m-d" }}</p>
+                                    </div>
                                 </div>
                                 <div class="blog-info-3" style="background-color:{{ post.blog.category.color }}">
                                     <img id="info-img1" src="..\static\main\images\categories.png" alt="ad-img1">
@@ -47,21 +51,7 @@
             </div>
             <div class="side-div">
                 <div class="side-wrapper">
-                    <div class="search-div">
-                        <form action="{% url 'sign_in' %}" method="POST">
-                            {% csrf_token %}
-                            <div>
-                                <input autofocus class="search-form" type="text" name="search" placeholder="Search posts">
-                            </div>
-                    </div> 
-                    <div id="edit">
-                        <p>Edit blog</p>
-                    </div>
-                    <a class="nav-link" href="{% url 'create_post' %}">
-                        <div id="make">
-                            <p>Make post</p>
-                        </div>
-                    </a>
+                    {% include "main/components/side-bar.html" %}
                 </div>
             </div>
         </div>    

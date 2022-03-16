@@ -1,0 +1,26 @@
+<div class="search-div">
+    <form action="{% url 'sign_in' %}" method="POST">
+        {% csrf_token %}
+        <div>
+            <input class="search-form" type="text" name="search" placeholder="Search">
+            <div class="radial">
+                <input type="radio" id="All" name="filter" value="All" checked>
+                <label for="All">All</label>
+                <input type="radio" id="Blogs" name="filter" value="Blogs">
+                <label for="Blogs">Blogs</label>
+                <input type="radio" id="Posts" name="filter" value="Posts">
+                <label for="Posts">Posts</label>
+            </div>
+        </div>
+    </form>
+</div>
+{% if user.is_authenticated %}
+    <div id="edit">
+        <p>Edit blog</p>
+    </div>
+    <a class="nav-link" href="{% url 'create_post' %}">
+        <div id="make">
+            <p>Make post</p>
+        </div>
+    </a>
+{% endif%} 

@@ -676,9 +676,16 @@ p {
 }
 
 .blog-info-2 {
-    width: 75%;
+    min-width: 30%;
+    max-width: 75%;
     position: relative;
     bottom: 25px;
+    display: flex;
+    align-content:space-between;
+}
+
+.blog-info-box {
+    display: flex;
 }
 
 .blog-info-3 {
@@ -840,6 +847,23 @@ p {
     .post-input, .post-input-area {
         font-size: 12px;
     }
+}
+
+.radial {
+    display: flex;
+    margin-left: 32px;
+    margin-top: 8px;
+    align-items: center;
+}
+
+.radial > label {
+    font-family: Roboto, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 12px;
+    padding-top: 2px;
+}
+
+.search-div {
+    background: linear-gradient(89.93deg, rgba(255, 121, 121, 0.8) 19.93%, rgba(116, 144, 240, 0.8) 70.71%);
 }
 
 
