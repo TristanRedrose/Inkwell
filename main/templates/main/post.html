@@ -1,10 +1,11 @@
-{% extends "main/layout.html" %}
+{% extends "main/components/layout.html" %}
 {% load static %}
 
 {% block body %}
     <div class="main-body">
         {% include "main/components/banner.html" %}
         <div class="content-div">
+            <div class="post-div-2">
             <div class="post-view-div">
                 <img id="post-view-img" src={{ post.image }} alt="post-img">
                 <div id="post-view-body-div">
@@ -12,14 +13,17 @@
                     <p class="post-body-view-text">{{ post.body }}</p>
                 </div>
             </div>
+            </div>
             <div class="side-div">
                 <div class="side-wrapper">
                     {% include "main/components/side-bar.html" %}
-                    <a class="nav-link" href="{% url 'create_post' %}">
-                        <div id="edit">
-                            <p>Edit post</p>
-                        </div>
-                    </a>
+                    {% if request.user == post.author %}
+                        <a class="nav-link" href="{% url 'create_post' %}">
+                            <div id="edit">
+                                <p>Edit post</p>
+                            </div>
+                        </a>
+                    {% endif %}
                 </div>
             </div>
         </div>    

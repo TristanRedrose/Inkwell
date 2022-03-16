@@ -169,3 +169,5 @@ def view_post(request,blog_name,post_title):
         "blog":blog,
         "post": post
     })
+
+

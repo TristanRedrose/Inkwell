@@ -445,17 +445,20 @@ p {
 .content-div {
     padding: 48px 32px;
     display: flex;
+    justify-content: space-between;
 }
 
 .post-div {
     width: 85%;
     display: grid;
     grid-template-columns: 33% 33% 33%;
+    justify-items: center;
     grid-row-gap: 40px;
 }
 
 .side-div {
-    width: 15%;
+    min-width: 15%;
+    padding-right: 16px;
 }
 
 .post-box, .blog-box {
@@ -544,12 +547,11 @@ p {
 .search-form {
     width: 156px;
     height: 32px;
-    margin-left: 32px;
-    border-radius: 16px;
+    border-radius: 8px;
     border: 1px #D3D3D3 solid;
     padding: 8px 16px;
     box-sizing: border-box;
-    font-size: 16px;
+    font-size: 12px;
     font-family: Roboto, "Helvetica Neue", Helvetica, sans-serif;
     box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.25);
 }
@@ -709,7 +711,7 @@ p {
 }
 
 .post-view-div {
-    width: 900px;
+    max-width: 900px;
     border-radius: 8px;
     background-color: white;
     margin-right: 16px;
@@ -730,8 +732,25 @@ p {
     top: 80px;
 }
 
-.content-div {
-    justify-content: space-between;
+.radial {
+    display: flex;
+    margin-top: 8px;
+    align-items: center;
+}
+
+.radial-label {
+    font-family: Roboto, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 12px;
+    padding-top: 2px;
+}
+
+.search-div {
+    background: linear-gradient(89.93deg, rgba(255, 121, 121, 0.8) 19.93%, rgba(116, 144, 240, 0.8) 70.71%);
+    width: 200px;
+    padding: 8px;
+    border-radius: 16px;
+    margin-left: 24px;
+    width: max-content;
 }
 
 @media screen and (max-width: 1440px) {
@@ -773,14 +792,17 @@ p {
 }
 
 @media screen and (max-width: 980px) {   
-    .post-div {
-        width: 75%;
-        grid-template-columns: 75%;
-        justify-content: center;
+    .post-div, .post-div-2 {
+        display: flex;
+        flex-direction: column;
     }
 
-    .side-div {
-        width: 25%;  
+    .wrapper {
+        align-self: center;
+    }
+
+    .post-view-div{
+        max-width: 700px;
     }
 
     #post-view-img {
@@ -821,15 +843,37 @@ p {
     .post-body-view-text {
         font-size: 12px;
     }
+
+    .post-view-div{
+        max-width: 480px;
+    }
 }
 
 @media screen and (max-width: 600px) {
     .content-div {
-        padding: 48px 16px;
+        padding: 48px 8px;
     }
 
-    .side-div {
-        width: 35%;
+    .search-div {
+        margin-left: 8px;
+        width: 125px;
+    }
+
+    .search-form{
+        width: 125px;
+    }
+
+    .radial-label {
+        font-size: 10px;
+    }
+
+    #make, #edit {
+        margin-left: 16px;
+        width: 120px;
+    }
+
+    .post-view-div{
+        width: 360px;
     }
 
     #post-view-img {
@@ -848,23 +892,5 @@ p {
         font-size: 12px;
     }
 }
-
-.radial {
-    display: flex;
-    margin-left: 32px;
-    margin-top: 8px;
-    align-items: center;
-}
-
-.radial > label {
-    font-family: Roboto, "Helvetica Neue", Helvetica, sans-serif;
-    font-size: 12px;
-    padding-top: 2px;
-}
-
-.search-div {
-    background: linear-gradient(89.93deg, rgba(255, 121, 121, 0.8) 19.93%, rgba(116, 144, 240, 0.8) 70.71%);
-}
-
 
 
