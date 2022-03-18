@@ -131,6 +131,32 @@ def create_post(request):
     else:   
         return render(request,"main/create_post.html")
 
+@login_required
+def edit_post(request, post_title):
+
+    post = Posts.objects.get(title=post_title)
+
+    # Redirect user back to post if user does not have permission to edit post
+    if request.user != post.author:
+        return redirect("post", post.blog.name, post.title)
+
+    if request.method == "POST":
+        title = request.POST.get("title")
+        body = request.POST.get("body")
+        image = request.POST.get("image")
+        post.title = title
+        post.body = body
+        post.image = image 
+
+        post.save()
+
+        return redirect("post", post.blog.name, post.title)
+    
+    else:
+        return render(request,"main/edit_post.html", {
+            "post": post
+        })
+
 def view_blogs(request):
 
     blogs = Blog.objects.all()

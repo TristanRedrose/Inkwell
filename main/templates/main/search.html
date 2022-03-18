@@ -11,6 +11,9 @@
             {% if filtr == "All" or filtr == "Blogs" %}
                 <h3>Blogs</h3>
                 <div class="post-search-div">
+                    {% if blogs.count == 0 %}
+                        <h3>No results<h3>
+                    {% endif %}
                     {% for blog in blogs %}
                         <div class="wrapper">
                             <div class="blog-box">
@@ -56,6 +59,9 @@
             {% if filtr == "All" or filtr == "Posts" %}
                 <h3 id="search-text">Posts</h3>
                 <div class="post-search-div">
+                    {% if posts.count == 0 %}
+                        <h3>No results<h3>
+                    {% endif %}
                     {% for post in posts %}
                         <div class="wrapper">
                             <div class="blog-box">

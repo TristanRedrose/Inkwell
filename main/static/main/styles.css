@@ -540,10 +540,6 @@ p {
     padding: 8px 16px;
 }
 
-.side-div {
-    border-left: 1px solid #666666;
-}
-
 .search-form {
     width: 156px;
     height: 32px;
@@ -758,7 +754,7 @@ p {
 }
 
 .post-search-div {
-    width:100%
+    width:100%;
 }
 
 .search-wrapper > h3 {
@@ -912,5 +908,3 @@ p {
         font-size: 12px;
     }
 }
-
-

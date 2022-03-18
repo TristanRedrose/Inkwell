@@ -18,7 +18,7 @@
                 <div class="side-wrapper">
                     {% include "main/components/side-bar.html" %}
                     {% if request.user == post.author %}
-                        <a class="nav-link" href="{% url 'create_post' %}">
+                        <a class="nav-link" href="{% url 'edit_post' post.title %}">
                             <div id="edit">
                                 <p>Edit post</p>
                             </div>
