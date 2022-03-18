@@ -31,6 +31,7 @@ def sign_in(request):
         
         user = authenticate(request, username=username, password=password)
         if user is not None:
+            print(user)
             login(request, user)
             return redirect("posts")
         else:
@@ -60,7 +61,7 @@ def register(request):
             })
         
         try:
-            user = User.objects.create_user(username, password)
+            user = User.objects.create_user(username=username,password=password)
             user.save()
         except IntegrityError:
             return render(request, "main/register.html", {
@@ -102,6 +103,37 @@ def create_blog_view(request):
         
         blog = Blog.objects.get(author=request.user)
         return redirect("view_blog", blog.name)
+
+@login_required
+def edit_blog(request, blog_name):
+
+    ctg = Category.objects.all()
+    blog = Blog.objects.get(name=blog_name)
+
+    # Redirect user back to blog if user does not have permission to edit blog
+    if request.user != blog.author:
+        return redirect("view_blog", blog_name)
+
+    if request.method == "POST":
+        name = request.POST.get("blog-name")
+        description = request.POST.get("description")
+        category = request.POST.get("category")
+        image = request.POST.get("image")
+        blog.name = name
+        blog.description = description
+        blog.category = Category.objects.get(name=category)
+        blog.image = image
+
+        blog.save()
+
+        return redirect("view_blog", blog.name)
+    
+    else:
+        return render(request,"main/edit_blog.html", {
+            "blog": blog,
+            "categories": ctg
+        })
+    
 
 @login_required
 def create_post(request):

@@ -14,12 +14,23 @@
     </form>
 </div>
 {% if user.is_authenticated %}
-    <div id="edit">
-        <p>Edit blog</p>
-    </div>
     <a class="nav-link" href="{% url 'create_post' %}">
         <div id="make">
             <p>Make post</p>
         </div>
     </a>
+    {% if request.user == blog.author %}
+        <a class="nav-link" href="{% url 'edit_blog' blog.name %}">
+            <div id="edit">
+                <p>Edit blog</p>
+            </div>
+        </a>
+    {% endif %}
+    {% if request.user == post.author %}
+        <a class="nav-link" href="{% url 'edit_post' post.title %}">
+            <div id="make">
+                <p>Edit post</p>
+            </div>
+        </a>
+    {% endif %}
 {% endif%} 
