@@ -448,7 +448,7 @@ p {
     justify-content: space-between;
 }
 
-.post-div {
+.post-div, .post-search-div {
     width: 85%;
     display: grid;
     grid-template-columns: 33% 33% 33%;
@@ -753,8 +753,24 @@ p {
     width: max-content;
 }
 
+.search-wrapper {
+    width: 100%;
+}
+
+.post-search-div {
+    width:100%
+}
+
+.search-wrapper > h3 {
+    margin: 0px 0px 24px 16px;
+}
+
+#search-text {
+    margin-top: 24px;
+}
+
 @media screen and (max-width: 1440px) {
-    .post-div {
+    .post-div, .post-search-div {
         grid-template-columns: 50% 50%;
     }
 }
@@ -792,7 +808,7 @@ p {
 }
 
 @media screen and (max-width: 980px) {   
-    .post-div, .post-div-2 {
+    .post-div, .post-div-2, .post-search-div {
         display: flex;
         flex-direction: column;
     }
@@ -846,6 +862,10 @@ p {
 
     .post-view-div{
         max-width: 480px;
+    }
+
+    .search-wrapper {
+        width: 85%;
     }
 }
 

@@ -13,7 +13,7 @@ class Category(models.Model):
 
 class Blog(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="owner")
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, unique=True)
     description = models.TextField(null=False, blank=False)
     image = models.URLField(max_length=200)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="category")

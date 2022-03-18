@@ -13,4 +13,5 @@ urlpatterns = [
     path("blogs/<str:blog_name>", views.view_blog, name="view_blog"),
     path("posts", views.view_posts, name="posts"),
     path("<str:blog_name>/<str:post_title>", views.view_post, name="post"),
+    path("search", views.view_search, name="search"),
 ]

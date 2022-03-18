@@ -1,8 +1,7 @@
 <div class="search-div">
-    <form action="{% url 'sign_in' %}" method="POST">
-        {% csrf_token %}
+    <form action="{% url 'search' %}" method="GET">
         <div>
-            <input class="search-form" type="text" name="search" placeholder="Search">
+            <input class="search-form" type="text" name="q" placeholder="Search">
             <div class="radial">
                 <input type="radio" id="All" name="filter" value="All" checked>
                 <label class="radial-label" for="All">All</label>

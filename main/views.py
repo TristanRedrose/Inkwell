@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.db import IntegrityError
+from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
@@ -89,11 +90,7 @@ def create_blog_view(request):
         )
         blog.save()
 
-        posts=Posts.objects.filter(blog=blog)
-        return render (request, "main/my_blog.html", {
-            "blog": blog,
-            "posts":posts
-        })
+        return redirect("view_blog", name)
     else:
         try:
             blog = Blog.objects.get(author=request.user)
@@ -103,11 +100,8 @@ def create_blog_view(request):
                 "categories": ctg
             })
         
-        posts=Posts.objects.filter(blog=blog)
-        return render (request, "main/my_blog.html", {
-            "blog": blog,
-            "posts":posts
-        })
+        blog = Blog.objects.get(author=request.user)
+        return redirect("view_blog", blog.name)
 
 @login_required
 def create_post(request):
@@ -170,4 +164,45 @@ def view_post(request,blog_name,post_title):
         "post": post
     })
 
+def view_search(request):
 
+    q = request.GET.get("q") if request.GET.get != None else ""
+    filtr = request.GET.get("filter")
+
+    if filtr == "All":
+        posts = Posts.objects.filter(
+            Q(author__username__icontains=q) |
+            Q(title__icontains=q) |
+            Q(body__icontains=q)
+            )
+
+        blogs = Blog.objects.filter(
+            Q(author__username__icontains=q) |
+            Q(name__icontains=q) |
+            Q(description__icontains=q)
+            )
+
+    elif filtr == "Blogs" :
+        blogs = Blog.objects.filter(
+            Q(author__username__icontains=q) |
+            Q(name__icontains=q) |
+            Q(description__icontains=q)
+            )
+
+        posts = None
+
+    else:
+        posts = Posts.objects.filter(
+            Q(author__username__icontains=q) |
+            Q(title__icontains=q) |
+            Q(body__icontains=q)
+            )
+        
+        blogs = None
+
+    return render(request,"main/search.html", {
+        "search":q,
+        "filtr": filtr,
+        "blogs":blogs,
+        "posts": posts
+    })
