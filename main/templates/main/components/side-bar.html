@@ -15,21 +15,26 @@
 </div>
 {% if user.is_authenticated %}
     <a class="nav-link" href="{% url 'create_post' %}">
-        <div id="make">
+        <div class="make">
             <p>Make post</p>
         </div>
     </a>
     {% if request.user == blog.author %}
         <a class="nav-link" href="{% url 'edit_blog' blog.name %}">
-            <div id="edit">
+            <div class="edit">
                 <p>Edit blog</p>
             </div>
         </a>
     {% endif %}
     {% if request.user == post.author %}
         <a class="nav-link" href="{% url 'edit_post' post.title %}">
-            <div id="make">
+            <div class="make">
                 <p>Edit post</p>
+            </div>
+        </a>
+        <a class="nav-link" href="{% url 'delete_post_view' post.title %}">
+            <div class="edit">
+                <p>Delete post</p>
             </div>
         </a>
     {% endif %}

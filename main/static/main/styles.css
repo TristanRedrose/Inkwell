@@ -418,7 +418,7 @@ p {
     padding: 4px 0px;
     background-color: #7490F0;
     min-width: 210px;
-    height: 30px;
+    height: 24px;
     border-radius: 32px;
     display: flex;
     align-self: center;
@@ -552,7 +552,7 @@ p {
     box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.25);
 }
 
-#make, #edit {
+.make, .edit{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -565,19 +565,19 @@ p {
     margin-top: 16px;
 }
 
-#make:hover {
+.make:hover {
     background-color: lightgreen;
 }
 
-#edit {
+.edit {
     background-color: #e94d4d;
 }
 
-#edit:hover {
+.edit:hover {
     background-color: lightgreen;
 }
 
-#make > p, #edit > p  {
+.make > p, .edit > p  {
     margin: 0px;
     font-family: Roboto, "Helvetica Neue", Helvetica, sans-serif;
     color: white;
@@ -681,7 +681,7 @@ p {
     min-width: 30%;
     max-width: 75%;
     position: relative;
-    bottom: 25px;
+    bottom: 28px;
     display: flex;
     align-content:space-between;
 }
@@ -692,14 +692,14 @@ p {
 
 .blog-info-3 {
     padding: 4px 0px;
-    width: 30%;
+    min-width: 30%;
     height: 20px;
     border-radius: 32px;
     display: flex;
     align-self: center;
     justify-content: center;
     position: relative;
-    bottom: 200px;
+    bottom: 194px;
 }
 
 .space-div {
@@ -767,6 +767,29 @@ p {
 
 #search-text {
     margin-top: 24px;
+}
+
+.delete-div {
+    padding: 48px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.delete-text{
+    margin: 0px;
+}
+
+.del-button {
+    text-align: center;
+}
+
+.return-text {
+    display:inline;
+}
+
+.return-text:hover {
+    text-decoration: underline 1px solid black;
 }
 
 @media screen and (max-width: 1440px) {
@@ -887,7 +910,7 @@ p {
         font-size: 10px;
     }
 
-    #make, #edit {
+    .make, .edit {
         margin-left: 16px;
         width: 120px;
     }

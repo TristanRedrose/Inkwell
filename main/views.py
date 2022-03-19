@@ -207,6 +207,33 @@ def view_blogs(request):
         "blogs": blogs
     })
 
+@login_required
+def delete_post_view(request, post_title):
+
+    blog = Blog.objects.get(author=request.user)
+    post = Posts.objects.get(title=post_title)
+
+    return render(request,"main/delete_post.html", {
+            "post": post,
+            "blog":blog
+        })
+
+@login_required
+def delete_post(request, post_title):
+
+    blog = Blog.objects.get(author=request.user)
+    post = Posts.objects.get(title=post_title)
+
+    # Redirect user back to post if user does not have permission to edit post
+    if request.user != post.author:
+        return redirect("post", post.blog.name, post.title)
+
+    post.delete()
+
+    return redirect("view_blog", blog.name)
+    
+        
+
 def view_blog(request,blog_name):
 
     blog = Blog.objects.get(name=blog_name)
