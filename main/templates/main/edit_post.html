@@ -12,6 +12,20 @@
                     <form id="post-form" action="{% url 'edit_post' post.title %}" method="POST">
                         {% csrf_token %}
                         <div class="post-label">
+                            <label  for="Category">Category:<label>
+                        </div>
+                        <div class="input-div">
+                            <select class="post-form-input" name="category">
+                                {% for category in categories %}
+                                    {% if category.name == post.category.name %}
+                                        <option value={{ category.name }} selected="selected">{{ category.name }}</option>
+                                    {% else %}
+                                        <option value={{ category.name }}>{{ category.name }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="post-label">
                             <label  for="title">Title:<label>
                         </div>
                         <input class="post-input" type="text" value="{{ post.title }}" name="title">

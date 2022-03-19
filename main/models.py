@@ -23,6 +23,7 @@ class Blog(models.Model):
 class Posts(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="writer")
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name="blog")
+    category = models.ForeignKey(Category, on_delete=models.CASCADE,default="Other", related_name="post_category")
     title = models.CharField(max_length=200)
     body = models.TextField(blank=False)
     image = models.URLField(max_length=200)

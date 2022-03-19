@@ -141,6 +141,7 @@ def create_post(request):
     if request.method == "POST":
         author = request.user
         blog = Blog.objects.get(author=request.user)
+        category = request.POST.get("category")
         title = request.POST.get("title")
         body = request.POST.get("body")
         image = request.POST.get("image")
@@ -148,6 +149,7 @@ def create_post(request):
         post=Posts(
             author=author,
             blog=blog,
+            category=Category.objects.get(name=category),
             title=title,
             body=body,
             image=image
@@ -160,22 +162,30 @@ def create_post(request):
             "posts": posts
         })
 
-    else:   
-        return render(request,"main/create_post.html")
+    else:
+        categories = Category.objects.all()
+        blog = Blog.objects.get(author=request.user)   
+        return render(request,"main/create_post.html", {
+            "default": blog.category.name,
+            "categories": categories
+        })
 
 @login_required
 def edit_post(request, post_title):
 
     post = Posts.objects.get(title=post_title)
+    categories = Category.objects.all()
 
     # Redirect user back to post if user does not have permission to edit post
     if request.user != post.author:
         return redirect("post", post.blog.name, post.title)
 
     if request.method == "POST":
+        category = request.POST.get("category")
         title = request.POST.get("title")
         body = request.POST.get("body")
         image = request.POST.get("image")
+        post.category = Category.objects.get(name=category)
         post.title = title
         post.body = body
         post.image = image 
@@ -186,7 +196,8 @@ def edit_post(request, post_title):
     
     else:
         return render(request,"main/edit_post.html", {
-            "post": post
+            "post": post,
+            "categories": categories
         })
 
 def view_blogs(request):
