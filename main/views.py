@@ -1,3 +1,4 @@
+from django.forms import ValidationError
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
@@ -138,11 +139,27 @@ def edit_blog(request, blog_name):
 @login_required
 def create_post(request):
 
+    # See if user has any previous posts
+    try: 
+        posts = Posts.objects.filter(author=request.user)
+    except Posts.DoesNotExist:
+        posts = None
+
     if request.method == "POST":
         author = request.user
         blog = Blog.objects.get(author=request.user)
         category = request.POST.get("category")
         title = request.POST.get("title")
+
+        if title == "":
+            raise ValidationError("Title field cannot be empty", code="empty-title")
+
+        # If user has previous posts, see if he already has a post with the given title
+        if posts != None:
+            for post in posts:
+                if post.title == title:
+                    raise ValidationError("You already have a post with that title", code="same-title")
+
         body = request.POST.get("body")
         image = request.POST.get("image")
 
@@ -173,7 +190,8 @@ def create_post(request):
 @login_required
 def edit_post(request, post_title):
 
-    post = Posts.objects.get(title=post_title)
+    userposts = Posts.objects.filter(author=request.user)
+    post = Posts.objects.get(title=post_title, author=request.user)
     categories = Category.objects.all()
 
     # Redirect user back to post if user does not have permission to edit post
@@ -183,6 +201,12 @@ def edit_post(request, post_title):
     if request.method == "POST":
         category = request.POST.get("category")
         title = request.POST.get("title")
+
+        # See if user already has a post with the given title
+        for userpost in userposts:
+            if (userpost.title == title) & (title != post.title):
+                raise ValidationError("You already have a post with that title", code="same-title")
+
         body = request.POST.get("body")
         image = request.POST.get("image")
         post.category = Category.objects.get(name=category)
@@ -211,7 +235,7 @@ def view_blogs(request):
 def delete_post_view(request, post_title):
 
     blog = Blog.objects.get(author=request.user)
-    post = Posts.objects.get(title=post_title)
+    post = Posts.objects.get(title=post_title, blog=blog)
 
     return render(request,"main/delete_post.html", {
             "post": post,
@@ -222,7 +246,7 @@ def delete_post_view(request, post_title):
 def delete_post(request, post_title):
 
     blog = Blog.objects.get(author=request.user)
-    post = Posts.objects.get(title=post_title)
+    post = Posts.objects.get(title=post_title, blog=blog)
 
     # Redirect user back to post if user does not have permission to edit post
     if request.user != post.author:
