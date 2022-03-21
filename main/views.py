@@ -7,7 +7,7 @@ from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
-from .models import Category,Blog,Posts
+from .models import Category, Blog, Posts, Comments
 
 
 
@@ -133,8 +133,7 @@ def edit_blog(request, blog_name):
         return render(request,"main/edit_blog.html", {
             "blog": blog,
             "categories": ctg
-        })
-    
+        })  
 
 @login_required
 def create_post(request):
@@ -151,7 +150,7 @@ def create_post(request):
         category = request.POST.get("category")
         title = request.POST.get("title")
 
-        if title == "":
+        if title.strip() == "":
             raise ValidationError("Title field cannot be empty", code="empty-title")
 
         # If user has previous posts, see if he already has a post with the given title
@@ -201,6 +200,9 @@ def edit_post(request, post_title):
     if request.method == "POST":
         category = request.POST.get("category")
         title = request.POST.get("title")
+
+        if title.strip() == "":
+            raise ValidationError("Title field cannot be empty", code="empty-title")
 
         # See if user already has a post with the given title
         for userpost in userposts:
@@ -254,9 +256,7 @@ def delete_post(request, post_title):
 
     post.delete()
 
-    return redirect("view_blog", blog.name)
-    
-        
+    return redirect("view_blog", blog.name)       
 
 def view_blog(request,blog_name):
 
@@ -279,9 +279,11 @@ def view_post(request,blog_name,post_title):
     blog = Blog.objects.get(name=blog_name)
     posts = Posts.objects.filter(blog=blog)
     post = posts.get(title=post_title)
+    comments = Comments.objects.filter(post=post)
     return render(request,"main/post.html", {
         "blog":blog,
-        "post": post
+        "post": post,
+        "comments": comments
     })
 
 def view_search(request):
@@ -326,3 +328,20 @@ def view_search(request):
         "blogs":blogs,
         "posts": posts
     })
+
+@login_required
+def comment(request):
+
+    if request.method == "POST":
+        post = Posts.objects.get(pk=request.POST.get("post"))
+        body = request.POST.get("comment")
+    
+    comment = Comments(
+        author=request.user,
+        post=post,
+        body=body
+    )
+
+    comment.save()
+
+    return redirect("post",post.blog.name, post.title )

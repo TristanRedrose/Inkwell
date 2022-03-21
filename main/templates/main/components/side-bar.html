@@ -14,18 +14,18 @@
     </form>
 </div>
 {% if user.is_authenticated %}
-    <a class="nav-link" href="{% url 'create_post' %}">
-        <div class="make">
-            <p>Make post</p>
-        </div>
-    </a>
     {% if request.user == blog.author %}
         <a class="nav-link" href="{% url 'edit_blog' blog.name %}">
-            <div class="edit">
+            <div class="make">
                 <p>Edit blog</p>
             </div>
         </a>
     {% endif %}
+    <a class="nav-link" href="{% url 'create_post' %}">
+        <div class="edit">
+            <p>Make post</p>
+        </div>
+    </a>
     {% if request.user == post.author %}
         <a class="nav-link" href="{% url 'edit_post' post.title %}">
             <div class="make">

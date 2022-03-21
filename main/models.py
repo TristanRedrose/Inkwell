@@ -33,3 +33,10 @@ class Posts(models.Model):
     class Meta:
             verbose_name= "Post"
             verbose_name_plural= "Posts"
+
+class Comments(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="com_author")
+    post = models.ForeignKey(Posts, on_delete=models.CASCADE, related_name="post")
+    body = models.TextField(blank=False)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)

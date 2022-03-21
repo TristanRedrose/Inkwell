@@ -18,5 +18,6 @@ urlpatterns = [
     path("posts", views.view_posts, name="posts"),
     path("<str:blog_name>/<str:post_title>", views.view_post, name="post"),
     path("search", views.view_search, name="search"),
+    path("comment", views.comment, name="comment")
 
 ]

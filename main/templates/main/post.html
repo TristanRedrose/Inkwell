@@ -6,13 +6,44 @@
         {% include "main/components/banner.html" %}
         <div class="content-div">
             <div class="post-div-2">
-            <div class="post-view-div">
-                <img id="post-view-img" src={{ post.image }} alt="post-img">
-                <div id="post-view-body-div">
-                    <h2>{{ post.title }}</h2>
-                    <p class="post-body-view-text">{{ post.body }}</p>
+                <div class="post-view-div">
+                    <img id="post-view-img" src={{ post.image }} alt="post-img">
+                    <div id="post-view-body-div">
+                        <h2>{{ post.title }}</h2>
+                        <p class="post-body-view-text">{{ post.body }}</p>
+                    </div>
                 </div>
-            </div>
+                <div class="comment-view-div">
+                    <div id="post-view-body-div">
+                        <h3 id="comment-title">Comments</h3>
+                        {% if user.is_authenticated %}
+                            <form class="comment-form" method="post" action="{% url 'comment' %}">
+                                {% csrf_token %}
+                                <div>
+                                    <input type="hidden" name="post" value="{{ post.id }}">
+                                    <input class="comment-form-input" type="text" name="comment" placeholder="Comment">
+                                    <input class="comment-button" type="submit" type="button" value="Comment">
+                                </div>
+                            </form>
+                        {% endif %}
+                        {% for comment in comments %}
+                        <p class="post-body-view-text"><strong>{{ comment.author }}:</strong></p>
+                        <p class="post-body-view-text">{{ comment.body }}</p>
+                            {% if request.user == comment.author %}
+                                <div class="comment-edit-div">
+                                    <div class="comment-edit-button">
+                                        <p>Edit</p>
+                                    </div>
+                                    <div class="comment-edit-button">
+                                        <p>Delete</p>
+                                    </div>
+                                </div>
+                            {% endif %}
+                            <div class="bottom-bar">
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
             <div class="side-div">
                 <div class="side-wrapper">
