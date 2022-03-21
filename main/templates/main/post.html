@@ -17,11 +17,11 @@
                     <div id="post-view-body-div">
                         <h3 id="comment-title">Comments</h3>
                         {% if user.is_authenticated %}
-                            <form class="comment-form" method="post" action="{% url 'comment' %}">
+                            <form id="comment-form" onsubmit="event.preventDefault(); make_comment()">
                                 {% csrf_token %}
                                 <div>
-                                    <input type="hidden" name="post" value="{{ post.id }}">
-                                    <input class="comment-form-input" type="text" name="comment" placeholder="Comment">
+                                    <input type="hidden" id="comment-post-id" name="post" value="{{ post.id }}">
+                                    <input class="comment-form-input" type="text" id="comment" name="comment" placeholder="Comment">
                                     <input class="comment-button" type="submit" type="button" value="Comment">
                                 </div>
                             </form>
@@ -52,4 +52,8 @@
             </div>
         </div>    
     </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'main/index.js' %}"></script>
 {% endblock %}

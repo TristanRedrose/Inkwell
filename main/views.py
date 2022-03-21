@@ -1,6 +1,8 @@
 from django.forms import ValidationError
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+import json
+from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.db.models import Q
@@ -329,13 +331,23 @@ def view_search(request):
         "posts": posts
     })
 
+@csrf_exempt
 @login_required
 def comment(request):
 
-    if request.method == "POST":
-        post = Posts.objects.get(pk=request.POST.get("post"))
-        body = request.POST.get("comment")
+    # Composing a new post must be via POST
+    if request.method != "POST":
+        return JsonResponse({"error": "POST request required."}, status=400)
+
+    data = json.loads(request.body)
+    body = data.get("comment", "")
+    if body.strip() == "":
+        return JsonResponse({"error": "Comment cannot be empty."}, status=400)
+
+    postpk = data.get("post", "")
+    post = Posts.objects.get(pk=postpk)   
     
+
     comment = Comments(
         author=request.user,
         post=post,
@@ -344,4 +356,4 @@ def comment(request):
 
     comment.save()
 
-    return redirect("post",post.blog.name, post.title )
+    return JsonResponse({"message": "Comment submitted."}, status=201)

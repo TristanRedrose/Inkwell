@@ -5,6 +5,8 @@
     <head>
         <title>{% block title %}Inkwell{% endblock %}</title>
         <link rel="stylesheet" href="{% static 'main/styles.css' %}">
+        {% block script %}
+        {% endblock %}
     </head>
     <body>
         <div id="navbar">
