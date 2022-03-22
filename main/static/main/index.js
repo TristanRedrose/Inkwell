@@ -1,3 +1,15 @@
+document.addEventListener('DOMContentLoaded', function() {
+
+    // Clear eror when user starts to enter input
+    const FormBar = document.querySelector('#comment')
+    FormBar.onkeypress = function(e) {
+        if (FormBar.value != "" && e.keyCode != 32) {
+            e.target.style.border = "1px #D3D3D3 solid"
+            e.target.setAttribute('placeholder', 'Comment');  
+        }
+    }
+})
+
 function make_comment() {
     
     // Make comment
@@ -17,8 +29,9 @@ function make_comment() {
         if (result.error === 'Comment cannot be empty.') {
             
             const FormBar = document.querySelector('#comment');
-            FormBar.style.border = "1px solid red";
-            FormBar.setAttribute('placeholder', 'Comment cannot be empty')  
+            FormBar.style.border = "1px red solid";
+            FormBar.setAttribute('placeholder', 'Comment cannot be empty');
+            FormBar.value = "";
         }
         
         // Clear previous post list if it exists, and re-list posts
