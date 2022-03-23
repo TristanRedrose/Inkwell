@@ -282,6 +282,7 @@ def view_post(request,blog_name,post_title):
     posts = Posts.objects.filter(blog=blog)
     post = posts.get(title=post_title)
     comments = Comments.objects.filter(post=post)
+    comments = comments.order_by("-created").all()
     return render(request,"main/post.html", {
         "blog":blog,
         "post": post,
@@ -383,5 +384,25 @@ def get_comment(request, comment_id):
         return JsonResponse({"error": "Comment not found."}, status=400)
     
     text = comment.body
-    print(text)
     return JsonResponse(text, safe=False)
+
+@csrf_exempt
+@login_required
+def edit_comment(request, comment_id):
+
+    # Composing a new post must be via POST
+    if request.method != "POST":
+        return JsonResponse({"error": "POST request required."}, status=400)
+
+    data = json.loads(request.body)
+    body = data.get("comment", "")
+    if body.strip() == "":
+        return JsonResponse({"error": "Comment cannot be empty."}, status=400)
+
+    comment = Comments.objects.get(pk=comment_id)   
+    
+    comment.body = body
+
+    comment.save()
+
+    return JsonResponse({"message": "Comment edited."}, status=201)

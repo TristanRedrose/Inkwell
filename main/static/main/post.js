@@ -114,3 +114,72 @@ function delete_comment(comment_id) {
         }
     })   
 }
+
+function edit_modal(comment_id) {
+
+    fetch(`/comments/find/${comment_id}`)
+    .then(response => response.json())
+    .then(text => {
+        // Print text
+        const CommentText = text
+
+        const Modal = document.querySelector('#modal');
+        const ModalBox = document.querySelector('#modal-box');
+        const Container = ModalBox.querySelector("#modal-middle");
+        
+        // Remove any previous added elements
+        while (Container.firstChild) {
+        Container.removeChild(Container.firstChild)
+        }
+
+        // Create container div and add content
+        const ContentDiv = document.createElement('div');
+        ContentDiv.setAttribute('id', 'modal-content-div');
+
+        ContentDiv.innerHTML = `
+        <h3 id="modal-box-title">Edit comment:</h3>
+        <form id="comment-edit-form" onsubmit="event.preventDefault(); edit_comment(${ comment_id })">
+            <div>
+                <textarea class="comment-input-area" type="text" id="comment-edit-text" name="comment-edit">${ CommentText }</textarea>
+            </div>
+        </form>
+        <div class="comment-confirm-div">
+            <input form="comment-edit-form" type="submit" class="comment-edit-button" id="modal-edit-button" value="Edit">
+            <div class="comment-edit-button" onclick="clear_modal()">  
+                <p class="comment-text">Return</p>
+            </div>
+        </div>
+        `;
+
+        //Append content to container
+        Container.appendChild(ContentDiv);
+
+        // Show modal and add remove modal function
+        Modal.style.display = 'block';
+        ModalBox.style.display = 'block';
+        Modal.addEventListener('click', clear_modal);
+    }) 
+}
+
+
+function edit_comment(comment_id) {
+    
+    // Make comment
+    fetch(`/comments/edit/${ comment_id }`, {
+        method: 'POST',
+        body: JSON.stringify({
+            comment: document.querySelector('#comment-edit-text').value,
+        })
+    })
+    .then(response => response.json())
+    .then(result => {
+        // Print result
+        console.log(result);
+        
+        // Clear previous post list if it exists, and re-list posts
+        if (result.message === 'Comment edited.') {
+            
+            location.reload();
+        }
+    })
+}
