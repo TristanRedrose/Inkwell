@@ -357,3 +357,31 @@ def comment(request):
     comment.save()
 
     return JsonResponse({"message": "Comment submitted."}, status=201)
+
+@csrf_exempt
+@login_required
+def delete_comment(request, comment_id):
+
+    try:
+         comment = Comments.objects.get(pk=comment_id)
+    except:
+        return JsonResponse({"error": "Comment not found."}, status=400)
+
+    if request.user != comment.author:
+        return JsonResponse({"error": "Unauthorised delete"}, status=400)
+
+    comment.delete()
+
+    return JsonResponse({"message": "Comment removed."}, status=201)
+
+@login_required
+def get_comment(request, comment_id):
+
+    try:
+        comment = Comments.objects.get(pk=comment_id)
+    except:
+        return JsonResponse({"error": "Comment not found."}, status=400)
+    
+    text = comment.body
+    print(text)
+    return JsonResponse(text, safe=False)

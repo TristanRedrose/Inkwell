@@ -18,6 +18,11 @@ urlpatterns = [
     path("posts", views.view_posts, name="posts"),
     path("<str:blog_name>/<str:post_title>", views.view_post, name="post"),
     path("search", views.view_search, name="search"),
-    path("comment", views.comment, name="comment")
+
+
+    #API-s
+    path("comment", views.comment, name="comment"),
+    path("comments/delete/<int:comment_id>", views.delete_comment, name="delete_comment"),
+    path("comments/find/<int:comment_id>", views.get_comment, name="get_comment"),
 
 ]
