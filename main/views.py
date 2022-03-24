@@ -332,6 +332,8 @@ def view_search(request):
         "posts": posts
     })
 
+#API-s
+
 @csrf_exempt
 @login_required
 def comment(request):
@@ -348,7 +350,6 @@ def comment(request):
     postpk = data.get("post", "")
     post = Posts.objects.get(pk=postpk)   
     
-
     comment = Comments(
         author=request.user,
         post=post,
@@ -359,7 +360,6 @@ def comment(request):
 
     return JsonResponse({"message": "Comment submitted."}, status=201)
 
-@csrf_exempt
 @login_required
 def delete_comment(request, comment_id):
 
@@ -386,7 +386,6 @@ def get_comment(request, comment_id):
     text = comment.body
     return JsonResponse(text, safe=False)
 
-@csrf_exempt
 @login_required
 def edit_comment(request, comment_id):
 
@@ -399,7 +398,10 @@ def edit_comment(request, comment_id):
     if body.strip() == "":
         return JsonResponse({"error": "Comment cannot be empty."}, status=400)
 
-    comment = Comments.objects.get(pk=comment_id)   
+    comment = Comments.objects.get(pk=comment_id)
+
+    if request.user != comment.author:
+        return JsonResponse({"error": "Unauthorised edit."}, status=400)
     
     comment.body = body
 

@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    // Clear eror when user starts to enter input
+    // Clear error from comment bar when user starts to enter input
     const FormBar = document.querySelector('#comment');
     FormBar.onkeypress = function(e) {
         if (FormBar.value != "" && e.keyCode != 32) {
@@ -10,7 +10,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 })
 
-function make_comment() {
+// Insert csrf token and get request
+function getRequest(path) {
+    const csrf_token = document.querySelector('[name=csrfmiddlewaretoken]').value
+    const request = new Request(
+        path,
+        {headers: {"X-CSRFToken": csrf_token}}
+    )
+
+    return request
+}
+
+function create_comment() {
     
     // Make comment
     fetch('/comment', {
@@ -22,6 +33,7 @@ function make_comment() {
     })
     .then(response => response.json())
     .then(result => {
+        
         // Print result
         console.log(result);
 
@@ -42,7 +54,7 @@ function make_comment() {
     })
 }
 
-function delete_modal(comment_id) {
+function showDelete_modal(comment_id) {
 
     fetch(`/comments/find/${comment_id}`)
     .then(response => response.json())
@@ -115,7 +127,7 @@ function delete_comment(comment_id) {
     })   
 }
 
-function edit_modal(comment_id) {
+function showEdit_modal(comment_id) {
 
     fetch(`/comments/find/${comment_id}`)
     .then(response => response.json())
@@ -164,11 +176,12 @@ function edit_modal(comment_id) {
     }) 
 }
 
-
 function edit_comment(comment_id) {
     
+    request = getRequest(`/comments/edit/${ comment_id }`)
+
     // Make comment
-    fetch(`/comments/edit/${ comment_id }`, {
+    fetch( request, {
         method: 'POST',
         body: JSON.stringify({
             comment: document.querySelector('#comment-edit-text').value,
@@ -203,10 +216,11 @@ function edit_comment(comment_id) {
             }
         }
         
-        // If no errors occur, edit post and reload page
+        // If no errors occur, edit comment and reload page
         if (result.message === 'Comment edited.') {
             
             location.reload();
         }
     })
 }
+
