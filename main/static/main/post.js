@@ -25,7 +25,7 @@ function make_comment() {
         // Print result
         console.log(result);
 
-        // Clear previous post list if it exists, and re-list posts
+        // If comment is empty, signal error to the user
         if (result.error === 'Comment cannot be empty.') {
             
             const FormBar = document.querySelector('#comment');
@@ -34,7 +34,7 @@ function make_comment() {
             FormBar.value = "";
         }
         
-        // Clear previous post list if it exists, and re-list posts
+        // If no errors submit comment and reload page
         if (result.message === 'Comment submitted.') {
             
             location.reload();
@@ -47,7 +47,7 @@ function delete_modal(comment_id) {
     fetch(`/comments/find/${comment_id}`)
     .then(response => response.json())
     .then(text => {
-        // Print text
+        
         const CommentText = text
 
         const Modal = document.querySelector('#modal');
@@ -143,6 +143,9 @@ function edit_modal(comment_id) {
                 <textarea class="comment-input-area" type="text" id="comment-edit-text" name="comment-edit">${ CommentText }</textarea>
             </div>
         </form>
+        <ul id="error-message">
+            <li>Comment cannot be empty</li>
+        </ul>
         <div class="comment-confirm-div">
             <input form="comment-edit-form" type="submit" class="comment-edit-button" id="modal-edit-button" value="Edit">
             <div class="comment-edit-button" onclick="clear_modal()">  
@@ -175,8 +178,32 @@ function edit_comment(comment_id) {
     .then(result => {
         // Print result
         console.log(result);
+
+        // Signal error if it occurs
+        if (result.error === 'Comment cannot be empty.') {
+            
+            const TextArea = document.querySelector('#comment-edit-text');
+            const ErrorMessage = document.querySelector('#error-message');
+
+            // Clear textarea in case it contained only whitespace
+            TextArea.value= "";
+
+            // Signal error to the user
+            TextArea.className = ("comment-input-area-error");
+            ErrorMessage.className = ("error-message");
+
+            // Reset eror when the user starts to enter input
+            if (TextArea.className == "comment-input-area-error") {
+                TextArea.onkeypress = function(e) {
+                    if (TextArea.innerHTML != "" && e.keyCode != 32) {
+                        e.target.className = ("comment-input-area");
+                        ErrorMessage.className = (""); 
+                    }
+                }
+            }
+        }
         
-        // Clear previous post list if it exists, and re-list posts
+        // If no errors occur, edit post and reload page
         if (result.message === 'Comment edited.') {
             
             location.reload();
