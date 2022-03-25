@@ -5,16 +5,19 @@
     <div id="login-text">
         <h3>Sign in</h3>
     </div>
-    <form action="{% url 'sign_in' %}" method="POST">
+    <form action="#" onsubmit="event.preventDefault(), sign_in()">
         {% csrf_token %}
         <div>
-            <input autofocus class="login-form" type="text" name="username" placeholder="Username">
+            <input autofocus class="login-form" type="text" name="username" id="username" placeholder="Username">
         </div>
         <div>
-            <input class="login-form" type="password" name="password" placeholder="Password">
+            <input class="login-form" type="password" id="password" name="password" placeholder="Password">
         </div>
         <input class="login-button" type="submit" value="Sign in">
     </form>
+    <div>
+        <p class="error-text">Invalid username/password</p>
+    </div>
     <div class="link-box">
         <p class="login-box-text">Dont have an account?</p>
     </div>
@@ -23,4 +26,8 @@
             <p class="login-link-text">Register</p>
         </a>
     </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'main/sign_in.js' %}"></script>
 {% endblock %}

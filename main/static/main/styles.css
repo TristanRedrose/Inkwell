@@ -964,6 +964,15 @@ ul, .error-message {
     border: none;
 }
 
+.error-text {
+    display: none;
+}
+
+.error-text-active {
+    display: block;
+    color: red;
+}
+
 @media screen and (max-width: 1440px) {
     .post-div, .post-search-div {
         grid-template-columns: 50% 50%;

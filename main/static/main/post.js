@@ -22,9 +22,12 @@ function getRequest(path) {
 }
 
 function create_comment() {
+
+    // Insert csrf and get request
+    request = getRequest('/comment');
     
     // Make comment
-    fetch('/comment', {
+    fetch(request, {
         method: 'POST',
         body: JSON.stringify({
             comment: document.querySelector('#comment').value,
@@ -178,6 +181,7 @@ function showEdit_modal(comment_id) {
 
 function edit_comment(comment_id) {
     
+    // Insert csrf and get request
     request = getRequest(`/comments/edit/${ comment_id }`)
 
     // Make comment

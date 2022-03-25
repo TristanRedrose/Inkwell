@@ -19,30 +19,9 @@ def index(request):
 
     return render (request, "main/index.html")
 
-def sign_in(request):
+def sign_in_page(request):
 
-    if request.method == "POST":
-        username = request.POST.get("username")
-        password = request.POST.get("password")
-
-        try:
-            user = User.objects.get(username=username)
-        except:
-            return render (request, "main/login.html", {
-                "message": "Invalid username"
-            })
-        
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            print(user)
-            login(request, user)
-            return redirect("posts")
-        else:
-            return render (request, "main/login.html", {
-                "message": "Invalid username or password"
-            })
-    else:    
-        return render (request, "main/login.html")
+    return render (request, "main/login.html")
 
 def log_out(request):
 
@@ -334,11 +313,33 @@ def view_search(request):
 
 #API-s
 
-@csrf_exempt
+def sign_in(request):
+
+    # Signing in must be via POST
+    if request.method != "POST":
+        return JsonResponse({"error": "POST request required."}, status=400)
+
+    data = json.loads(request.body)
+    username = data.get("username", "")
+    password = data.get("password", "")
+
+    try:
+        user = User.objects.get(username=username)
+    except:
+        return JsonResponse({"error": "Invalid username or password."}, status=400)
+        
+    user = authenticate(request, username=username, password=password)
+    if user is not None:
+        print(user)
+        login(request, user)
+        return JsonResponse({"message": "User logged in."}, status=200)
+    else:
+        return JsonResponse({"error": "Invalid username or password."}, status=400)
+
 @login_required
 def comment(request):
 
-    # Composing a new post must be via POST
+    # Composing a new comment must be via POST
     if request.method != "POST":
         return JsonResponse({"error": "POST request required."}, status=400)
 
@@ -389,7 +390,7 @@ def get_comment(request, comment_id):
 @login_required
 def edit_comment(request, comment_id):
 
-    # Composing a new post must be via POST
+    # Editing a comment must be via POST
     if request.method != "POST":
         return JsonResponse({"error": "POST request required."}, status=400)
 

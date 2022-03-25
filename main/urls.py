@@ -4,7 +4,7 @@ from . import views
 
 urlpatterns = [
     path("", views.index, name="index"),
-    path("sign_in", views.sign_in, name="sign_in"),
+    path("sign_in", views.sign_in_page, name="sign_in_page"),
     path("register", views.register, name="register"),
     path("logout", views.log_out, name="logout"),
     path("create_blog", views.create_blog_view, name="create_blog"),
@@ -21,6 +21,7 @@ urlpatterns = [
 
 
     #API-s
+    path("sign_in_user", views.sign_in, name="sign_in"),
     path("comment", views.comment, name="comment"),
     path("comments/delete/<int:comment_id>", views.delete_comment, name="delete_comment"),
     path("comments/find/<int:comment_id>", views.get_comment, name="get_comment"),

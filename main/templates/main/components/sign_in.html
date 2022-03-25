@@ -5,6 +5,8 @@
     <head>
         <title>{% block title %}Inkwell{% endblock %}</title>
         <link rel="stylesheet" href="{% static 'main/styles.css' %}">
+        {% block script %}
+        {% endblock %}
     </head>
     <body>
         <div class="sign_in-body">
@@ -27,11 +29,6 @@
                     {% endif%}
                 </div>
                 <div id="box-bottom">
-                    {% if message %}
-                        <div>
-                            <p class="login-message-text">{{ message }}</p>
-                        </div>
-                    {% endif %}
                 </div>
             </div>
         </div>
