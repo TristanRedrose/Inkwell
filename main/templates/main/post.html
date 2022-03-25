@@ -20,7 +20,7 @@
                             <form id="comment-form" onsubmit="event.preventDefault(); create_comment()">
                                 <div>
                                     <input type="hidden" id="comment-post-id" name="post" value="{{ post.id }}">
-                                    <input class="comment-form-input" type="text" id="comment" name="comment" placeholder="Comment">
+                                    <input class="comment-form-input" type="text" id="comment" maxlength="600" name="comment" placeholder="Comment">
                                     <input class="comment-button" type="submit" type="button" value="Comment">
                                 </div>
                             </form>

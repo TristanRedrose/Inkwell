@@ -152,7 +152,7 @@ function showEdit_modal(comment_id) {
         <h3 id="modal-box-title">Edit comment:</h3>
         <form id="comment-edit-form" onsubmit="event.preventDefault(); edit_comment(${ comment_id })">
             <div>
-                <textarea class="comment-input-area" type="text" id="comment-edit-text" name="comment-edit">${ CommentText }</textarea>
+                <textarea class="comment-input-area" type="text" id="comment-edit-text" maxlength="600" name="comment-edit">${ CommentText }</textarea>
             </div>
         </form>
         <ul id="error-message">
