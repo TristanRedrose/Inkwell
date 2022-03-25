@@ -23,36 +23,14 @@ def sign_in_page(request):
 
     return render (request, "main/login.html")
 
+def register_page(request):
+
+    return render (request, "main/register.html")
+
 def log_out(request):
 
     logout(request)
-    return render (request, "main/login.html", {
-                "message": "Successfully logged out"
-            })
-
-def register(request):
-
-    if request.method == "POST":
-        username = request.POST.get("username")
-        password = request.POST.get("password")
-        confirm = request.POST.get("confirm")
-
-        if password != confirm:
-            return render (request, "main/register.html", {
-                "message": "Passwords must match"
-            })
-        
-        try:
-            user = User.objects.create_user(username=username,password=password)
-            user.save()
-        except IntegrityError:
-            return render(request, "main/register.html", {
-                "message": "Username already taken."
-            })
-        login(request, user)
-        return redirect("posts")
-    else:
-        return render (request, "main/register.html")
+    return render (request, "main/login.html")
 
 @login_required
 def create_blog_view(request):
@@ -335,6 +313,41 @@ def sign_in(request):
         return JsonResponse({"message": "User logged in."}, status=200)
     else:
         return JsonResponse({"error": "Invalid username or password."}, status=400)
+
+def register(request):
+
+    # Register must be via POST
+    if request.method != "POST":
+        return JsonResponse({"error": "POST request required."}, status=400)
+
+    data = json.loads(request.body)
+    username = data.get("username", "")
+
+    # See if username is already taken
+    users = User.objects.all()
+
+    for user in users:
+        name = user.username
+        if name.upper() == username.upper():
+            return JsonResponse({"error": "Username already taken."}, status=400)
+
+    password = data.get("password", "")
+    confirm = data.get("confirm", "")
+
+    # See if passwords match
+    if password != confirm:
+        return JsonResponse({"error": "Passwords must match."}, status=400)
+    
+    # If no errors occur create user and log him in
+    try:
+        user = User.objects.create_user(username=username,password=password)
+        user.save()
+    except IntegrityError:
+        return JsonResponse({"error": "Username already taken"}, status=400)
+    login(request, user)
+    
+    return JsonResponse({"message": "User succesfully registered."}, status=200)
+    
 
 @login_required
 def comment(request):

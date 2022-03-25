@@ -186,7 +186,8 @@ p {
 }
 
 #login-box {
-    height: 524px;
+    min-height: 524px;
+    height: fit-content;
     width: 460px;
     background-color: white;
     border-radius: 16px;
@@ -211,11 +212,12 @@ p {
 }
 
 #box-middle {
-    height: 396px;
+    min-height: 396px;
     width: 460px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 8px;
 }
 
 #box-bottom {

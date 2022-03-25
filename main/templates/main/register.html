@@ -5,19 +5,22 @@
     <div id="login-text">
         <h3>Register</h3>
     </div>
-    <form action="{% url 'register' %}" method="POST">
+    <form action="#" onsubmit="event.preventDefault(), register_user()">
         {% csrf_token %}
         <div>
-            <input autofocus class="login-form" type="text" name="username" placeholder="Username">
+            <input autofocus class="login-form" type="text" name="username" id="username" placeholder="Username">
         </div>
         <div>
-            <input class="login-form" type="password" name="password" placeholder="Password">
+            <input class="login-form" type="password" name="password" id="password" placeholder="Password">
         </div>
         <div>
-            <input class="login-form" type="password" name="confirm" placeholder="Confirm password">
+            <input class="login-form" type="password" name="confirm" id="confirm" placeholder="Confirm password">
         </div>
         <input class="login-button" type="submit" value="Register">
     </form>
+    <div>
+        <p class="error-text"></p>
+    </div>
     <div class="link-box">
         <p class="login-box-text">Already have an account?</p>
     </div>
@@ -26,4 +29,8 @@
             <p class="login-link-text">Sign in</p>
         </a>
     </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'main/register.js' %}"></script>
 {% endblock %}
