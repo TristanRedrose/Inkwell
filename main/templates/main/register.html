@@ -8,7 +8,13 @@
     <form action="#" onsubmit="event.preventDefault(), register_user()">
         {% csrf_token %}
         <div>
+            <p class="error-text" id="username-error"></p>
+        </div>
+        <div>
             <input autofocus class="login-form" type="text" name="username" id="username" placeholder="Username">
+        </div>
+        <div>
+            <p class="error-text" id="password-error"></p>
         </div>
         <div>
             <input class="login-form" type="password" name="password" id="password" placeholder="Password">
@@ -16,11 +22,11 @@
         <div>
             <input class="login-form" type="password" name="confirm" id="confirm" placeholder="Confirm password">
         </div>
+        <div>
+            <p class="error-text" id="no-match-error"></p>
+        </div>
         <input class="login-button" type="submit" value="Register">
     </form>
-    <div>
-        <p class="error-text"></p>
-    </div>
     <div class="link-box">
         <p class="login-box-text">Already have an account?</p>
     </div>
@@ -32,5 +38,5 @@
 {% endblock %}
 
 {% block script %}
-    <script src="{% static 'main/register.js' %}"></script>
+    <script src="{% static 'main/scripts/register.js' %}"></script>
 {% endblock %}

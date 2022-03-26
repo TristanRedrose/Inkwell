@@ -336,6 +336,10 @@ def register(request):
     data = json.loads(request.body)
     username = data.get("username", "")
 
+    if username.strip() == "":
+        return JsonResponse({"error": "Username cannot be empty."}, status=400)
+
+
     # See if username is already taken
     users = User.objects.all()
 
@@ -345,6 +349,10 @@ def register(request):
             return JsonResponse({"error": "Username already taken."}, status=400)
 
     password = data.get("password", "")
+
+    if password.strip() == "":
+        return JsonResponse({"error": "Password cannot be empty."}, status=400)
+
     confirm = data.get("confirm", "")
 
     # See if passwords match
