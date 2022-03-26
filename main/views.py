@@ -301,6 +301,13 @@ def sign_in(request):
     username = data.get("username", "")
     password = data.get("password", "")
 
+    # Make username check case insensitive
+    users = User.objects.all()
+    for user in users:
+        if (user.username).upper() == username.upper():
+            username = user.username
+
+    # Find user and if no error log him in
     try:
         user = User.objects.get(username=username)
     except:
