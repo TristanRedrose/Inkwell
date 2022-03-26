@@ -28,14 +28,65 @@ function sign_in() {
 
         // Signal error to user if it occurs
         if (result.error === "Invalid username or password.") {
-            ErrorMessage = document.querySelector('.error-text');
-            ErrorMessage.className = "error-text-active"
+            showHide_error('#invalid-combination', '.login-form')
         }
 
-        // Signal error to user if it occurs
-        if (result.message === "User logged in.") {
+        else if (result.error === "Username cannot be empty") {
+            showHide_error('#username-error', '#username')
+        }
+
+        else if (result.error === "Password cannot be empty") {
+            showHide_error('#password-error', '#password')
+        }
+
+        // If no errors occur send user to posts
+        else if (result.message === "User logged in.") {
             
             location.replace('posts')
         }
     })
+}
+
+function showHide_error(error_id, input_bar) {
+    
+    // Clear previous errors if any are left over
+    if (document.querySelector(".error-text-active") != null) {
+        document.querySelector(".error-text-active").className = "error-text";
+    }
+    
+    const ErrorMessage = document.querySelector(`${error_id}`);
+
+    // Show error message
+    ErrorMessage.className = "error-text-active";
+
+    // Add red error border to both inputs in case of invalid combination
+    if (input_bar === ".login-form") {
+        const ErrorBars = document.querySelectorAll(`${input_bar}`)
+        ErrorBars.forEach((Bar) => {
+            Bar.style.border = "1px red solid"
+
+            // Remove red border and eror message when user changes input
+            Bar.onkeypress = function(e) {
+                if (e.keyCode != 32) {
+                    ErrorBars.forEach((Bar) => {
+                        Bar.style.border = "1px #D3D3D3 solid";
+                    })
+                    ErrorMessage.className = "error-text";
+                }
+            }
+        })
+    }
+    
+    // Add red border for empty inputs
+    else {
+        const ErrorBar = document.querySelector(`${input_bar}`)
+        ErrorBar.style.border = "1px red solid";
+
+        ErrorBar.onkeypress = function(e) {
+            if (e.keyCode != 32) {
+                ErrorBar.style.border = "1px #D3D3D3 solid";
+                ErrorMessage.className = "error-text";
+            }
+        }
+    }  
 }

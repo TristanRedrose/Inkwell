@@ -299,7 +299,13 @@ def sign_in(request):
 
     data = json.loads(request.body)
     username = data.get("username", "")
+
+    if username.strip() == "":
+                return JsonResponse({"error": "Username cannot be empty"}, status=400)
+
     password = data.get("password", "")
+    if password.strip() == "":
+        return JsonResponse({"error": "Password cannot be empty"}, status=400)
 
     # Make username check case insensitive
     users = User.objects.all()
@@ -307,7 +313,7 @@ def sign_in(request):
         if (user.username).upper() == username.upper():
             username = user.username
 
-    # Find user and if no error log him in
+    # Get user and if no error log him in
     try:
         user = User.objects.get(username=username)
     except:

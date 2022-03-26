@@ -8,16 +8,22 @@
     <form action="#" onsubmit="event.preventDefault(), sign_in()">
         {% csrf_token %}
         <div>
+            <p class="error-text" id="username-error">Please enter a valid username.</p>
+        </div>
+        <div>
             <input autofocus class="login-form" type="text" name="username" id="username" placeholder="Username">
+        </div>
+        <div>
+            <p class="error-text" id="password-error">Please enter password.</p>
         </div>
         <div>
             <input class="login-form" type="password" id="password" name="password" placeholder="Password">
         </div>
+        <div>
+            <p class="error-text" id="invalid-combination">Invalid username/password.</p>
+        </div>
         <input class="login-button" type="submit" value="Sign in">
     </form>
-    <div>
-        <p class="error-text">Invalid username/password</p>
-    </div>
     <div class="link-box">
         <p class="login-box-text">Dont have an account?</p>
     </div>

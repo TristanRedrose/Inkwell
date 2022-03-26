@@ -39,7 +39,7 @@ function register_user() {
     })
 }
 
-function showClear_error(message, input) {
+function showClear_error(message) {
 
     const ErrorMessage = document.querySelector('.error-text');
     const InputBars = document.querySelectorAll('input');
