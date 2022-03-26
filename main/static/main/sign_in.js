@@ -49,12 +49,8 @@ function sign_in() {
 
 function showHide_error(error_id, input_bar) {
     
-    // Clear previous errors if any are left over
-    if (document.querySelector(".error-text-active") != null) {
-        document.querySelector(".error-text-active").className = "error-text";
-    }
-    
     const ErrorMessage = document.querySelector(`${error_id}`);
+    const InputButton = document.querySelector('.login-button');
 
     // Show error message
     ErrorMessage.className = "error-text-active";
@@ -65,7 +61,7 @@ function showHide_error(error_id, input_bar) {
         ErrorBars.forEach((Bar) => {
             Bar.style.border = "1px red solid"
 
-            // Remove red border and eror message when user changes input
+            // Remove red border and eror message when user changes input 
             Bar.onkeypress = function(e) {
                 if (e.keyCode != 32) {
                     ErrorBars.forEach((Bar) => {
@@ -75,6 +71,14 @@ function showHide_error(error_id, input_bar) {
                 }
             }
         })
+
+        // Reset erors when user resubmits form
+        InputButton.onclick = function(e) {
+            ErrorBars.forEach((Bar) => {
+                Bar.style.border = "1px #D3D3D3 solid"
+            }) 
+            ErrorMessage.className = "error-text";
+        }
     }
     
     // Add red border for empty inputs
