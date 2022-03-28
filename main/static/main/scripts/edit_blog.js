@@ -9,9 +9,9 @@ function getRequest(path) {
     return request
 }
 
-function create_blog() {
+function edit_blog(blog_id) {
 
-    request = getRequest('create_blog');
+    request = getRequest(`/blog/edit/${ blog_id }`);
 
     fetch(request, {
         method: 'POST',
@@ -52,8 +52,8 @@ function create_blog() {
             }
         }
 
-        if (result.message === 'Blog created.') {
-            location.reload();
+        if (result.message === 'Blog edited.') {
+            location.href = "/create_blog_view";
         }
     })
 }

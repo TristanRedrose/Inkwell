@@ -47,7 +47,7 @@ def create_blog_view(request):
     return redirect("view_blog", blog.name)
 
 @login_required(login_url="/sign_in")
-def edit_blog(request, blog_name):
+def edit_blog_view(request, blog_name):
 
     ctg = Category.objects.all()
     blog = Blog.objects.get(name=blog_name)
@@ -55,26 +55,11 @@ def edit_blog(request, blog_name):
     # Redirect user back to blog if user does not have permission to edit blog
     if request.user != blog.author:
         return redirect("view_blog", blog_name)
-
-    if request.method == "POST":
-        name = request.POST.get("blog-name")
-        description = request.POST.get("description")
-        category = request.POST.get("category")
-        image = request.POST.get("image")
-        blog.name = name
-        blog.description = description
-        blog.category = Category.objects.get(name=category)
-        blog.image = image
-
-        blog.save()
-
-        return redirect("view_blog", blog.name)
     
-    else:
-        return render(request,"main/edit_blog.html", {
-            "blog": blog,
-            "categories": ctg
-        })  
+    return render(request,"main/edit_blog.html", {
+        "blog": blog,
+        "categories": ctg
+    })  
 
 @login_required(login_url="/sign_in")
 def create_post(request):
@@ -379,7 +364,40 @@ def create_blog(request):
     )
     blog.save()
 
-    return JsonResponse({"message": "Blog created."}, status=201)   
+    return JsonResponse({"message": "Blog created."}, status=201)
+
+@login_required(login_url="/sign_in")
+def edit_blog(request, blog_id):
+
+    # Creating a new blog must be via POST
+    if request.method != "POST":
+        return JsonResponse({"error": "POST request required."}, status=400)
+
+    try:
+        blog = Blog.objects.get(pk=blog_id)
+    except:
+        return JsonResponse({"error": "Blog not found."}, status=400)
+
+    data = json.loads(request.body)
+    name = data.get("name", "")
+    if name.strip() == "":
+        return JsonResponse({"error": "Blog name cannot be empty."}, status=400)
+
+    description = data.get("description", "")
+    if description.strip() == "":
+        return JsonResponse({"error": "Blog description cannot be empty."}, status=400)
+
+    category = data.get("category", "")
+    image = data.get("image", "")
+
+    blog.name = name
+    blog.description = description
+    blog.category = Category.objects.get(name=category)
+    blog.image = image
+
+    blog.save()
+
+    return JsonResponse({"message": "Blog edited."}, status=201)
 
 @login_required(login_url="/sign_in")
 def comment(request):
