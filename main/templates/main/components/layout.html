@@ -24,7 +24,7 @@
                     <p class="nav-text">Blogs</p>
                 </a>
                 {% if user.is_authenticated %}
-                    <a class="nav-link" href="{% url 'create_blog' %}">
+                    <a class="nav-link" href="{% url 'create_blog_view' %}">
                         <p class="nav-text">My blog</p>
                     </a>
                     <p class="nav-text">{{ request.user }}</p>

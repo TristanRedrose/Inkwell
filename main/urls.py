@@ -7,7 +7,7 @@ urlpatterns = [
     path("sign_in", views.sign_in_page, name="sign_in_page"),
     path("register", views.register_page, name="register_page"),
     path("logout", views.log_out, name="logout"),
-    path("create_blog", views.create_blog_view, name="create_blog"),
+    path("create_blog_view", views.create_blog_view, name="create_blog_view"),
     path("edit_blog/<str:blog_name>", views.edit_blog, name="edit_blog"),
     path("create_post", views.create_post, name="create_post"),
     path("edit_post/<str:post_title>", views.edit_post, name="edit_post"),
@@ -23,6 +23,7 @@ urlpatterns = [
     #API-s
     path("sign_in_user", views.sign_in, name="sign_in"),
     path("register_user", views.register, name="register"),
+    path("create_blog", views.create_blog, name="create_blog"),
     path("comment", views.comment, name="comment"),
     path("comments/delete/<int:comment_id>", views.delete_comment, name="delete_comment"),
     path("comments/find/<int:comment_id>", views.get_comment, name="get_comment"),

@@ -31,12 +31,12 @@
                             {% if request.user == comment.author %}
                                 <div class="comment-edit-div">
                                     <a href="#" class="nav-link" onclick="event.preventDefault(); showEdit_modal({{ comment.id }})">
-                                        <div class="comment-edit-button">
+                                        <div class="comment-edit-button underpost">
                                             <p class="comment-text">Edit</p>
                                         </div>
                                     </a>
                                     <a href="#" class="nav-link" onclick="event.preventDefault(); showDelete_modal({{ comment.id }})">
-                                        <div class="comment-delete-button">  
+                                        <div class="comment-delete-button underpost">  
                                             <p class="comment-text">Delete</p>
                                         </div>
                                     </a>   

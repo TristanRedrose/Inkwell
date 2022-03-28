@@ -87,7 +87,7 @@ function showDelete_modal(comment_id) {
             <div class="comment-delete-button">  
                 <p class="comment-text" onclick="delete_comment(${comment_id})">Delete</p>
             </div>
-            <div class="comment-delete-button" onclick="clear_modal()">  
+            <div class="comment-delete-button modal" onclick="clear_modal()">  
                 <p class="comment-text">Return</p>
             </div>
         </div>
@@ -162,8 +162,8 @@ function showEdit_modal(comment_id) {
             <li>Comment cannot be empty</li>
         </ul>
         <div class="comment-confirm-div">
-            <input form="comment-edit-form" type="submit" class="comment-edit-button" id="modal-edit-button" value="Edit">
-            <div class="comment-edit-button" onclick="clear_modal()">  
+            <input form="comment-edit-form" type="submit" class="comment-edit-button" id="modal-edit-button" value="Save">
+            <div class="comment-edit-button modal" onclick="clear_modal()">  
                 <p class="comment-text">Return</p>
             </div>
         </div>

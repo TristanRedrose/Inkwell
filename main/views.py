@@ -32,39 +32,21 @@ def log_out(request):
     logout(request)
     return render (request, "main/login.html")
 
-@login_required
+@login_required(login_url="/sign_in")
 def create_blog_view(request):
     
-    if request.method == "POST":
-        author = request.user
-        name = request.POST.get("blog-name")
-        description = request.POST.get("description")
-        category = request.POST.get("category")
-        image = request.POST.get("image")
-
-        blog=Blog(
-            author=author,
-            name=name,
-            description=description,
-            category=Category.objects.get(name=category),
-            image=image
-        )
-        blog.save()
-
-        return redirect("view_blog", name)
-    else:
-        try:
-            blog = Blog.objects.get(author=request.user)
-        except:
-            ctg = Category.objects.all()   
-            return render (request, "main/create_blog.html", {
-                "categories": ctg
-            })
-        
+    try:
         blog = Blog.objects.get(author=request.user)
-        return redirect("view_blog", blog.name)
+    except:
+        ctg = Category.objects.all()   
+        return render (request, "main/create_blog.html", {
+            "categories": ctg
+        })
+    
+    blog = Blog.objects.get(author=request.user)
+    return redirect("view_blog", blog.name)
 
-@login_required
+@login_required(login_url="/sign_in")
 def edit_blog(request, blog_name):
 
     ctg = Category.objects.all()
@@ -94,7 +76,7 @@ def edit_blog(request, blog_name):
             "categories": ctg
         })  
 
-@login_required
+@login_required(login_url="/sign_in")
 def create_post(request):
 
     # See if user has any previous posts
@@ -145,7 +127,7 @@ def create_post(request):
             "categories": categories
         })
 
-@login_required
+@login_required(login_url="/sign_in")
 def edit_post(request, post_title):
 
     userposts = Posts.objects.filter(author=request.user)
@@ -192,7 +174,7 @@ def view_blogs(request):
         "blogs": blogs
     })
 
-@login_required
+@login_required(login_url="/sign_in")
 def delete_post_view(request, post_title):
 
     blog = Blog.objects.get(author=request.user)
@@ -203,7 +185,7 @@ def delete_post_view(request, post_title):
             "blog":blog
         })
 
-@login_required
+@login_required(login_url="/sign_in")
 def delete_post(request, post_title):
 
     blog = Blog.objects.get(author=request.user)
@@ -339,7 +321,6 @@ def register(request):
     if username.strip() == "":
         return JsonResponse({"error": "Username cannot be empty."}, status=400)
 
-
     # See if username is already taken
     users = User.objects.all()
 
@@ -368,9 +349,39 @@ def register(request):
     login(request, user)
     
     return JsonResponse({"message": "User succesfully registered."}, status=200)
-    
 
-@login_required
+@login_required(login_url="/sign_in")
+def create_blog(request):
+
+    # Creating a new blog must be via POST
+    if request.method != "POST":
+        return JsonResponse({"error": "POST request required."}, status=400)
+
+    data = json.loads(request.body)
+    author = request.user
+    name = data.get("name", "")
+    if name.strip() == "":
+        return JsonResponse({"error": "Blog name cannot be empty."}, status=400)
+
+    description = data.get("description", "")
+    if description.strip() == "":
+        return JsonResponse({"error": "Blog description cannot be empty."}, status=400)
+
+    category = data.get("category", "")
+    image = data.get("image", "")
+
+    blog=Blog(
+        author=author,
+        name=name,
+        description=description,
+        category=Category.objects.get(name=category),
+        image=image
+    )
+    blog.save()
+
+    return JsonResponse({"message": "Blog created."}, status=201)   
+
+@login_required(login_url="/sign_in")
 def comment(request):
 
     # Composing a new comment must be via POST
@@ -395,7 +406,7 @@ def comment(request):
 
     return JsonResponse({"message": "Comment submitted."}, status=201)
 
-@login_required
+@login_required(login_url="/sign_in")
 def delete_comment(request, comment_id):
 
     try:
@@ -410,7 +421,7 @@ def delete_comment(request, comment_id):
 
     return JsonResponse({"message": "Comment removed."}, status=201)
 
-@login_required
+@login_required(login_url="/sign_in")
 def get_comment(request, comment_id):
 
     try:
@@ -421,7 +432,7 @@ def get_comment(request, comment_id):
     text = comment.body
     return JsonResponse(text, safe=False)
 
-@login_required
+@login_required(login_url="/sign_in")
 def edit_comment(request, comment_id):
 
     # Editing a comment must be via POST

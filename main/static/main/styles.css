@@ -343,6 +343,10 @@ p {
     font-family: Montserrat, "Helvetica Neue", Helvetica, sans-serif;
 }
 
+.blog-form-input.active {
+    border: 1px red solid;
+}
+
 .blog-button, .comment-button {
     width: 160px;
     height: 32px;
@@ -826,9 +830,12 @@ p {
     padding-bottom: 8px;
 }
 
+.comment-edit-div {
+    width: 120px;
+}
+
 .comment-edit-button, .comment-delete-button {
     display: flex;
-    background-color: #666666;
     width: 64px;
     height: 32px;
     border-radius: 8px;
@@ -836,6 +843,23 @@ p {
     align-items: center;
     box-sizing: border-box;
     padding: 8px;
+}
+
+.comment-edit-button.underpost, .comment-delete-button.underpost {
+    width: 52px;
+    height: 24px;
+}
+
+.comment-edit-button.modal, .comment-delete-button.modal {
+    background-color: #4F4F4F;
+}
+
+.comment-edit-button{
+    background-color: #7490F0;
+}
+
+.comment-delete-button {
+    background-color: #e94d4d;
 }
 
 .comment-edit-button:hover, .comment-delete-button:hover {

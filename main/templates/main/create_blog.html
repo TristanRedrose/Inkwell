@@ -7,19 +7,19 @@
             <h1>Create blog</h1>
         </div>
         <div id="create-blog-div">
-            <form action="{% url 'create_blog' %}" method="POST">
+            <form action="#" onsubmit="event.preventDefault(); create_blog()">
                 {% csrf_token %}
                 <div class="input-div">
                     <h3>Name:</h3>
-                    <input autofocus class="blog-form-input" type="text" name="blog-name" placeholder="Blog name">
+                    <input autofocus class="blog-form-input" type="text" name="blog-name" id="blog-name" placeholder="Blog name">
                 </div>
                 <div class="input-div">
                     <h3>Description:</h3>
-                    <input class="blog-form-input" type="textarea" name="description" placeholder="Description">
+                    <input class="blog-form-input" type="textarea" name="description" id="description" placeholder="Description">
                 </div>
                 <div class="input-div">
                     <h3>Category:</h3>
-                    <select class="blog-form-input" name="category">
+                    <select class="blog-form-input" name="category" id="category">
                         {% for category in categories %}
                             <option value={{ category.name }}>{{ category.name }}</option>
                         {% endfor %}
@@ -27,7 +27,7 @@
                 </div>
                 <div class="input-div">
                     <h3>Image:</h3>
-                    <input class="blog-form-input" type="url" name="image" placeholder="Image-url">
+                    <input class="blog-form-input" type="url" name="image" id="image" placeholder="Image-url">
                 </div>
                 <div class="input-div">
                     <div>
@@ -37,4 +37,8 @@
             </form>    
         </div>
     </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'main/scripts/create_blog.js' %}"></script>
 {% endblock %}
