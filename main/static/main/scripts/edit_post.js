@@ -9,8 +9,8 @@ function getRequest(path) {
     return request
 }
 
-function edit_post(post_id) {
-
+function edit_post(blog_name, post_id) {
+    
     request = getRequest(`/api/edit_post/${post_id}`)
 
     fetch(request, {
@@ -39,7 +39,8 @@ function edit_post(post_id) {
         }
 
         if (result.message === 'Post edited.') {
-            location.replace('/create_blog_view')
+            const postName = document.querySelector('#title').value
+            location.replace(`/view/${blog_name}/${postName}`)
         }
     })
 }

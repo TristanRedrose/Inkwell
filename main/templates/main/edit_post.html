@@ -9,7 +9,7 @@
                     <h1>Edit post</h1>
                 </div>
                 <div id="post-form-div">
-                    <form id="post-form" action="#" onsubmit="event.preventDefault(); edit_post({{ post.id }})">
+                    <form id="post-form" action="#" onsubmit="event.preventDefault(); edit_post('{{ post.blog.name }}', {{ post.id }})">
                         {% csrf_token %}
                         <div class="post-label">
                             <label  for="Category">Category:<label>
