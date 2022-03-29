@@ -9,13 +9,13 @@
                     <h1>Edit post</h1>
                 </div>
                 <div id="post-form-div">
-                    <form id="post-form" action="{% url 'edit_post' post.title %}" method="POST">
+                    <form id="post-form" action="#" onsubmit="event.preventDefault(); edit_post({{ post.id }})">
                         {% csrf_token %}
                         <div class="post-label">
                             <label  for="Category">Category:<label>
                         </div>
                         <div class="input-div">
-                            <select class="post-form-input" name="category">
+                            <select class="post-form-input" name="category" id="category">
                                 {% for category in categories %}
                                     {% if category.name == post.category.name %}
                                         <option value={{ category.name }} selected="selected">{{ category.name }}</option>
@@ -28,15 +28,21 @@
                         <div class="post-label">
                             <label  for="title">Title:<label>
                         </div>
-                        <input class="post-input" type="text" value="{{ post.title }}" name="title">
+                        <div>
+                            <p class="error-text" id="title-error"></p>
+                        </div>
+                        <input class="post-input" type="text" value="{{ post.title }}" name="title" id="title">
                         <div class="post-label">
                             <label class="post-label" for="body">Body:<label>
                         </div>
-                        <textarea class="post-input-area" type="text" name="body">{{ post.body }}</textarea>
+                        <div>
+                            <p class="error-text" id="body-error"></p>
+                        </div>
+                        <textarea class="post-input-area" type="text" name="body" id="body">{{ post.body }}</textarea>
                         <div class="post-label">
                             <label class="post-label" for="image">Image-url:<label>
                         </div>
-                        <input class="post-input" type="url" value="{{ post.image }}" name="image">
+                        <input class="post-input" type="url" value="{{ post.image }}" name="image" id="image">
                         <div id="post-button-div">
                             <input id="post-button"  type="submit" value="Edit post">
                         </div>
@@ -45,4 +51,8 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'main/scripts/edit_post.js' %}"></script>
 {% endblock %}

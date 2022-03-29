@@ -27,7 +27,7 @@
         </div>
     </a>
     {% if request.user == post.author %}
-        <a class="nav-link" href="{% url 'edit_post' post.title %}">
+        <a class="nav-link" href="{% url 'edit_post_view' post.title %}">
             <div class="make">
                 <p>Edit post</p>
             </div>

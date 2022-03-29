@@ -73,7 +73,7 @@ def create_post_view(request):
     })
 
 @login_required(login_url="/sign_in")
-def edit_post(request, post_title):
+def edit_post_view(request, post_title):
 
     userposts = Posts.objects.filter(author=request.user)
     post = Posts.objects.get(title=post_title, author=request.user)
@@ -83,34 +83,11 @@ def edit_post(request, post_title):
     if request.user != post.author:
         return redirect("post", post.blog.name, post.title)
 
-    if request.method == "POST":
-        category = request.POST.get("category")
-        title = request.POST.get("title")
-
-        if title.strip() == "":
-            raise ValidationError("Title field cannot be empty", code="empty-title")
-
-        # See if user already has a post with the given title
-        for userpost in userposts:
-            if (userpost.title == title) & (title != post.title):
-                raise ValidationError("You already have a post with that title", code="same-title")
-
-        body = request.POST.get("body")
-        image = request.POST.get("image")
-        post.category = Category.objects.get(name=category)
-        post.title = title
-        post.body = body
-        post.image = image 
-
-        post.save()
-
-        return redirect("post", post.blog.name, post.title)
     
-    else:
-        return render(request,"main/edit_post.html", {
-            "post": post,
-            "categories": categories
-        })
+    return render(request,"main/edit_post.html", {
+        "post": post,
+        "categories": categories
+    })
 
 def view_blogs(request):
 
@@ -404,6 +381,42 @@ def create_post(request):
 
     return JsonResponse({"message": "Post created."}, status=201)
 
+@login_required(login_url="/sign_in")
+def edit_post(request,post_id):
+
+    # Composing a new comment must be via POST
+    if request.method != "POST":
+        return JsonResponse({"error": "POST request required."}, status=400)
+    
+    userposts = Posts.objects.filter(author=request.user)
+
+    data = json.loads(request.body)
+    category = data.get("category", "")
+    title = data.get("title", "")
+    if title.strip() == "":
+        return JsonResponse({"error": "Post title cannot be empty."}, status=400)
+    
+    post = Posts.objects.get(pk=post_id, author=request.user)
+
+    # See if user already has a post with the given title
+    for userpost in userposts:
+        if (userpost.title == title) & (title != post.title):
+            return JsonResponse({"error": "You already have a post with this title."}, status=400)
+
+    body = data.get("body", "")
+    if body.strip() == "":
+        return JsonResponse({"error": "Post body cannot be empty."}, status=400)
+
+    image = data.get("image", "")
+    post.category = Category.objects.get(name=category)
+    post.title = title
+    post.body = body
+    post.image = image 
+
+    post.save()
+
+    return JsonResponse({"message": "Post edited."}, status=201)
+    
 @login_required(login_url="/sign_in")
 def comment(request):
 
