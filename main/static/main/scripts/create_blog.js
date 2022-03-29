@@ -11,7 +11,7 @@ function getRequest(path) {
 
 function create_blog() {
 
-    request = getRequest('create_blog');
+    request = getRequest('api/create_blog');
 
     fetch(request, {
         method: 'POST',

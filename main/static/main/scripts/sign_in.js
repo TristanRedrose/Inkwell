@@ -12,7 +12,7 @@ function getRequest(path) {
 function sign_in() {
 
     // Insert csrf and get request
-    request = getRequest('/sign_in_user');
+    request = getRequest('/api/sign_in_user');
 
     // Sign in user
     fetch(request, {

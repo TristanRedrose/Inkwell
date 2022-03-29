@@ -11,7 +11,7 @@ function getRequest(path) {
 
 function register_user() {
 
-    request = getRequest('register_user')
+    request = getRequest('api/register_user')
 
     fetch(request, {
         method: 'POST',

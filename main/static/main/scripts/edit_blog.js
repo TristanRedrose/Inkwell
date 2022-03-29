@@ -11,7 +11,7 @@ function getRequest(path) {
 
 function edit_blog(blog_id) {
 
-    request = getRequest(`/blog/edit/${ blog_id }`);
+    request = getRequest(`/api/blog_edit/${ blog_id }`);
 
     fetch(request, {
         method: 'POST',

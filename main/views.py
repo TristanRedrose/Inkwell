@@ -62,55 +62,15 @@ def edit_blog_view(request, blog_name):
     })  
 
 @login_required(login_url="/sign_in")
-def create_post(request):
+def create_post_view(request):
 
-    # See if user has any previous posts
-    try: 
-        posts = Posts.objects.filter(author=request.user)
-    except Posts.DoesNotExist:
-        posts = None
-
-    if request.method == "POST":
-        author = request.user
-        blog = Blog.objects.get(author=request.user)
-        category = request.POST.get("category")
-        title = request.POST.get("title")
-
-        if title.strip() == "":
-            raise ValidationError("Title field cannot be empty", code="empty-title")
-
-        # If user has previous posts, see if he already has a post with the given title
-        if posts != None:
-            for post in posts:
-                if post.title == title:
-                    raise ValidationError("You already have a post with that title", code="same-title")
-
-        body = request.POST.get("body")
-        image = request.POST.get("image")
-
-        post=Posts(
-            author=author,
-            blog=blog,
-            category=Category.objects.get(name=category),
-            title=title,
-            body=body,
-            image=image
-        )
-        post.save()
-
-        posts=Posts.objects.filter(blog=blog)
-        return render (request, "main/my_blog.html", {
-            "blog": blog,
-            "posts": posts
-        })
-
-    else:
-        categories = Category.objects.all()
-        blog = Blog.objects.get(author=request.user)   
-        return render(request,"main/create_post.html", {
-            "default": blog.category.name,
-            "categories": categories
-        })
+    
+    categories = Category.objects.all()
+    blog = Blog.objects.get(author=request.user)   
+    return render(request,"main/create_post.html", {
+        "default": blog.category.name,
+        "categories": categories
+    })
 
 @login_required(login_url="/sign_in")
 def edit_post(request, post_title):
@@ -398,6 +358,51 @@ def edit_blog(request, blog_id):
     blog.save()
 
     return JsonResponse({"message": "Blog edited."}, status=201)
+
+@login_required(login_url="/sign_in")
+def create_post(request):
+
+    # See if user has any previous posts
+    try: 
+        posts = Posts.objects.filter(author=request.user)
+    except Posts.DoesNotExist:
+        posts = None
+
+    if request.method != "POST":
+        return JsonResponse({"error": "Post request required."}, status=400)
+
+    author = request.user
+    blog = Blog.objects.get(author=request.user)
+
+    data = json.loads(request.body)
+    category = data.get("category", "")
+    title = data.get("title", "")
+    if title.strip() == "":
+        return JsonResponse({"error": "Post title cannot be empty."}, status=400)
+
+    # If user has previous posts, see if he already has a post with the given title
+    if posts != None:
+        for post in posts:
+            if post.title.upper() == title.upper():
+                return JsonResponse({"error": "You already have a post with this title."}, status=400)
+
+    body = data.get("body", "")
+    if body.strip() == "":
+        return JsonResponse({"error": "Post body cannot be empty."}, status=400)
+
+    image = data.get("image", "")
+
+    post=Posts(
+        author=author,
+        blog=blog,
+        category=Category.objects.get(name=category),
+        title=title,
+        body=body,
+        image=image
+    )
+    post.save()
+
+    return JsonResponse({"message": "Post created."}, status=201)
 
 @login_required(login_url="/sign_in")
 def comment(request):

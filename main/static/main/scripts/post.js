@@ -24,7 +24,7 @@ function getRequest(path) {
 function create_comment() {
 
     // Insert csrf and get request
-    request = getRequest('/comment');
+    request = getRequest('/api/comment');
     
     // Make comment
     fetch(request, {
@@ -59,7 +59,7 @@ function create_comment() {
 
 function showDelete_modal(comment_id) {
 
-    fetch(`/comments/find/${comment_id}`)
+    fetch(`/api/comments/find/${comment_id}`)
     .then(response => response.json())
     .then(text => {
         
@@ -116,7 +116,7 @@ function clear_modal() {
 
 function delete_comment(comment_id) {
 
-    fetch(`/comments/delete/${comment_id}`)
+    fetch(`/api/comments/delete/${comment_id}`)
     .then(response => response.json())
     .then(result => {
         // Print result
@@ -132,7 +132,7 @@ function delete_comment(comment_id) {
 
 function showEdit_modal(comment_id) {
 
-    fetch(`/comments/find/${comment_id}`)
+    fetch(`/api/comments/find/${comment_id}`)
     .then(response => response.json())
     .then(text => {
         // Print text
@@ -182,7 +182,7 @@ function showEdit_modal(comment_id) {
 function edit_comment(comment_id) {
     
     // Insert csrf and get request
-    request = getRequest(`/comments/edit/${ comment_id }`)
+    request = getRequest(`/api/comments/edit/${ comment_id }`)
 
     // Make comment
     fetch( request, {
