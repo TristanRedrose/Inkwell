@@ -59,7 +59,26 @@ def edit_blog_view(request, blog_name):
     return render(request,"main/edit_blog.html", {
         "blog": blog,
         "categories": ctg
-    })  
+    }) 
+
+@login_required(login_url="/sign_in")
+def delete_blog_view(request, blog_name):
+
+    blog = Blog.objects.get(name=blog_name,author=request.user)
+
+    # Redirect user back to post if user does not have permission to edit post
+    if request.user != blog.author:
+        return redirect("blogs")
+    
+    if request.method == 'POST':
+
+        blog.delete()
+        return redirect("create_blog_view")
+
+    else:
+        return render(request,"main/delete_blog.html", {
+                "blog":blog
+            })
 
 @login_required(login_url="/sign_in")
 def create_post_view(request):

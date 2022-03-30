@@ -17,13 +17,6 @@
     </form>
 </div>
 {% if user.is_authenticated %}
-    {% if request.user == blog.author %}
-        <a class="nav-link" href="{% url 'edit_blog_view' blog.name %}">
-            <div class="make">
-                <p>Edit blog</p>
-            </div>
-        </a>
-    {% endif %}
     {% if check == True or blog.author == request.user %}
         <a class="nav-link" href="{% url 'create_post_view' %}">
             <div class="edit">
@@ -43,4 +36,17 @@
             </div>
         </a>
     {% endif %}
+    {% if request.user == blog.author %}
+        <a class="nav-link" href="{% url 'edit_blog_view' blog.name %}">
+            <div class="make">
+                <p>Edit blog</p>
+            </div>
+        </a>
+        <a class="nav-link" href="{% url 'delete_blog_view' blog.name %}">
+            <div class="edit">
+                <p>Delete blog</p>
+            </div>
+        </a>
+    {% endif %}
+    
 {% endif %} 
