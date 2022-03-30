@@ -91,9 +91,17 @@ def edit_post_view(request, post_title):
 
 def view_blogs(request):
 
+    # See if user already has a blog created
+    check = True
+    try:
+        Blog.objects.get(author=request.user)
+    except:
+        check = False
+
     blogs = Blog.objects.all()
     return render(request,"main/blogs.html", {
-        "blogs": blogs
+        "blogs": blogs,
+        "check": check
     })
 
 @login_required(login_url="/sign_in")
@@ -123,21 +131,44 @@ def delete_post(request, post_title):
 
 def view_blog(request,blog_name):
 
+    # See if user already has a blog created
+    check = True
+    try:
+        Blog.objects.get(author=request.user)
+    except:
+        check = False
+
     blog = Blog.objects.get(name=blog_name)
     posts = Posts.objects.filter(blog=blog)
     return render(request,"main/my_blog.html", {
         "blog": blog,
-        "posts": posts
+        "posts": posts,
+        "check": check
     })
 
 def view_posts(request):
 
+    # See if user already has a blog created
+    check = True
+    try:
+        Blog.objects.get(author=request.user)
+    except:
+        check = False
+
     posts = Posts.objects.all()
     return render(request,"main/posts.html", {
-        "posts": posts
+        "posts": posts,
+        "check": check
     })
 
 def view_post(request,blog_name,post_title):
+
+    # See if user already has a blog created
+    check = True
+    try:
+        Blog.objects.get(author=request.user)
+    except:
+        check = False
 
     blog = Blog.objects.get(name=blog_name)
     posts = Posts.objects.filter(blog=blog)
@@ -147,7 +178,8 @@ def view_post(request,blog_name,post_title):
     return render(request,"main/post.html", {
         "blog":blog,
         "post": post,
-        "comments": comments
+        "comments": comments,
+        "check": check
     })
 
 def view_search(request):
@@ -186,11 +218,19 @@ def view_search(request):
         
         blogs = None
 
+    # See if user already has a blog created
+    check = True
+    try:
+        Blog.objects.get(author=request.user)
+    except:
+        check = False
+
     return render(request,"main/search.html", {
         "search":q,
         "filtr": filtr,
         "blogs":blogs,
-        "posts": posts
+        "posts": posts,
+        "check": check
     })
 
 #API-s

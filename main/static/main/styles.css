@@ -1009,6 +1009,25 @@ ul, .error-message {
     color: red;
 }
 
+.button-box {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.search-button {
+    background-color: snow;
+    color: #4F4F4F;
+    width: 90px;
+    height: 28px;
+    border-radius: 8px;
+    margin-top: 8px;
+    border: none;
+    font-size: 16px;
+    font-family: Roboto, "Helvetica Neue", Helvetica, sans-serif;
+    cursor: pointer;
+}
+
 @media screen and (max-width: 1440px) {
     .post-div, .post-search-div {
         grid-template-columns: 50% 50%;

@@ -10,6 +10,9 @@
                 <input type="radio" id="Posts" name="filter" value="Posts">
                 <label class="radial-label" for="Posts">Posts</label>
             </div>
+            <div class="button-box">
+                <input class="search-button" type="submit" value="Search">
+            </div>
         </div>
     </form>
 </div>
@@ -21,11 +24,13 @@
             </div>
         </a>
     {% endif %}
-    <a class="nav-link" href="{% url 'create_post_view' %}">
-        <div class="edit">
-            <p>Make post</p>
-        </div>
-    </a>
+    {% if check == True or blog.author == request.user %}
+        <a class="nav-link" href="{% url 'create_post_view' %}">
+            <div class="edit">
+                <p>Make post</p>
+            </div>
+        </a>
+    {% endif %}
     {% if request.user == post.author %}
         <a class="nav-link" href="{% url 'edit_post_view' post.title %}">
             <div class="make">
@@ -38,4 +43,4 @@
             </div>
         </a>
     {% endif %}
-{% endif%} 
+{% endif %} 
