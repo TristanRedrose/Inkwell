@@ -502,6 +502,7 @@ p {
 #post-box-content {
     height: 260px;
     text-align: center;
+    overflow: hidden;
 }
 
 #box-title-text {
@@ -515,7 +516,9 @@ p {
 }
 
 #post-box-title-div, .blog-box-title-div {
-    height: 50px;
+    overflow: hidden;
+    min-height: 50px;
+    max-height: 146px;
     width: 360px;
     box-sizing: border-box;
     padding: 24px 0px 0px 0px;
