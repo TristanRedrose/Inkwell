@@ -8,6 +8,7 @@ from django.db import IntegrityError
 from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 
 from .models import Category, Blog, Posts, Comments
 
@@ -82,8 +83,7 @@ def delete_blog_view(request, blog_name):
 
 @login_required(login_url="/sign_in")
 def create_post_view(request):
-
-    
+   
     categories = Category.objects.all()
     blog = Blog.objects.get(author=request.user)   
     return render(request,"main/create_post.html", {
@@ -118,8 +118,14 @@ def view_blogs(request):
         check = False
 
     blogs = Blog.objects.all()
+
+    #Show only 9 objects per page
+    paginator = Paginator(blogs, 9)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     return render(request,"main/blogs.html", {
-        "blogs": blogs,
+        "page_obj": page_obj,
         "check": check
     })
 
@@ -159,9 +165,15 @@ def view_blog(request,blog_name):
 
     blog = Blog.objects.get(name=blog_name)
     posts = Posts.objects.filter(blog=blog)
+
+    #Show only 9 objects per page
+    paginator = Paginator(posts, 9)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     return render(request,"main/my_blog.html", {
         "blog": blog,
-        "posts": posts,
+        "page_obj": page_obj,
         "check": check
     })
 
@@ -175,8 +187,14 @@ def view_posts(request):
         check = False
 
     posts = Posts.objects.all()
+
+    #Show only 9 objects per page
+    paginator = Paginator(posts, 9)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
     return render(request,"main/posts.html", {
-        "posts": posts,
+        "page_obj": page_obj,
         "check": check
     })
 

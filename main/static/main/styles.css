@@ -1041,6 +1041,17 @@ ul, .error-message {
     font-weight: 600;
 }
 
+.pagination {
+    width: 85%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 32px;
+}
+
+.current {
+    font-family: Montserrat, "Helvetica Neue", Helvetica, sans-serif;
+}
+
 @media screen and (max-width: 1440px) {
     .post-div, .post-search-div {
         grid-template-columns: 50% 50%;
@@ -1095,6 +1106,10 @@ ul, .error-message {
 
     #post-view-img {
         height: 300px;
+    }
+
+    .step-links {
+        margin-right: 65px;
     }
 }
 
