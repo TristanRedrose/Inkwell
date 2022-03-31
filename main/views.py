@@ -118,6 +118,7 @@ def view_blogs(request):
         check = False
 
     blogs = Blog.objects.all()
+    blogs = blogs.order_by("name").all()
 
     #Show only 9 objects per page
     paginator = Paginator(blogs, 9)
@@ -165,6 +166,7 @@ def view_blog(request,blog_name):
 
     blog = Blog.objects.get(name=blog_name)
     posts = Posts.objects.filter(blog=blog)
+    posts = posts.order_by("-created").all()
 
     #Show only 9 objects per page
     paginator = Paginator(posts, 9)
@@ -187,6 +189,7 @@ def view_posts(request):
         check = False
 
     posts = Posts.objects.all()
+    posts = posts.order_by("-created").all()
 
     #Show only 9 objects per page
     paginator = Paginator(posts, 9)
@@ -224,20 +227,7 @@ def view_search(request):
     q = request.GET.get("q") if request.GET.get != None else ""
     filtr = request.GET.get("filter")
 
-    if filtr == "All":
-        posts = Posts.objects.filter(
-            Q(author__username__icontains=q) |
-            Q(title__icontains=q) |
-            Q(body__icontains=q)
-            )
-
-        blogs = Blog.objects.filter(
-            Q(author__username__icontains=q) |
-            Q(name__icontains=q) |
-            Q(description__icontains=q)
-            )
-
-    elif filtr == "Blogs" :
+    if filtr == "Blogs" :
         blogs = Blog.objects.filter(
             Q(author__username__icontains=q) |
             Q(name__icontains=q) |
@@ -246,7 +236,7 @@ def view_search(request):
 
         posts = None
 
-    else:
+    elif filtr == "Posts":
         posts = Posts.objects.filter(
             Q(author__username__icontains=q) |
             Q(title__icontains=q) |
