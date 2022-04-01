@@ -227,23 +227,42 @@ def view_search(request):
     q = request.GET.get("q") if request.GET.get != None else ""
     filtr = request.GET.get("filter")
 
-    if filtr == "Blogs" :
-        blogs = Blog.objects.filter(
-            Q(author__username__icontains=q) |
-            Q(name__icontains=q) |
-            Q(description__icontains=q)
-            )
+    # Return all posts or blogs if user runs search with no query
+    if q.strip() == "" and filtr == "Blogs":
+        return redirect("blogs")
 
-        posts = None
+    if q.strip() == "" and filtr == "Posts":
+        return redirect("posts")
+
+    query = q.split()
+
+    # Search for blogs or posts containing query and paginate results
+    if filtr == "Blogs" :
+        blogs = Blog.objects.all()
+        for word in query:
+            blogs = blogs.filter(
+                Q(author__username__icontains=word) |
+                Q(name__icontains=word) |
+                Q(description__icontains=word)
+                )
+
+        blogs = blogs.order_by("name").all()
+        paginator = Paginator(blogs, 9)
 
     elif filtr == "Posts":
-        posts = Posts.objects.filter(
-            Q(author__username__icontains=q) |
-            Q(title__icontains=q) |
-            Q(body__icontains=q)
-            )
-        
-        blogs = None
+        posts = Posts.objects.all()
+        for word in query:
+            posts = posts.filter(
+                Q(author__username__icontains=word) |
+                Q(title__icontains=word) |
+                Q(body__icontains=word)
+                )
+            
+        posts = posts.order_by("-created").all()
+        paginator = Paginator(posts, 9)
+    
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
 
     # See if user already has a blog created
     check = True
@@ -252,11 +271,11 @@ def view_search(request):
     except:
         check = False
 
+    # Render page with results
     return render(request,"main/search.html", {
         "search":q,
         "filtr": filtr,
-        "blogs":blogs,
-        "posts": posts,
+        "page_obj": page_obj,
         "check": check
     })
 

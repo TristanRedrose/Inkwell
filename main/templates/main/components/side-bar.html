@@ -3,10 +3,17 @@
         <div>
             <input class="search-form" type="text" name="q" placeholder="Search">
             <div class="radial">
-                <input type="radio" id="Blogs" name="filter" value="Blogs" checked>
-                <label class="radial-label" for="Blogs">Blogs</label>
-                <input type="radio" id="Posts" name="filter" value="Posts">
-                <label class="radial-label" for="Posts">Posts</label>
+                {% if request.get_full_path == "/blogs" or filtr == "Blogs" %}
+                    <input type="radio" id="Blogs" name="filter" value="Blogs" checked>
+                    <label class="radial-label" for="Blogs">Blogs</label>
+                    <input type="radio" id="Posts" name="filter" value="Posts">
+                    <label class="radial-label" for="Posts">Posts</label>
+                {% else %}
+                    <input type="radio" id="Blogs" name="filter" value="Blogs">
+                    <label class="radial-label" for="Blogs">Blogs</label>
+                    <input type="radio" id="Posts" name="filter" value="Posts" checked>
+                    <label class="radial-label" for="Posts">Posts</label>
+                {% endif %}
             </div>
             <div class="button-box">
                 <input class="search-button" type="submit" value="Search">
