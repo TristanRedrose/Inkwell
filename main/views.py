@@ -110,6 +110,8 @@ def edit_post_view(request, post_title):
 
 def view_blogs(request):
 
+    page = "blogs"
+    categories = Category.objects.all()
     # See if user already has a blog created
     check = True
     try:
@@ -127,7 +129,9 @@ def view_blogs(request):
 
     return render(request,"main/blogs.html", {
         "page_obj": page_obj,
-        "check": check
+        "check": check,
+        "categories": categories,
+        "page": page
     })
 
 @login_required(login_url="/sign_in")
@@ -590,16 +594,16 @@ def category_filter(request,set,category):
             )
         objectset = objectset.order_by("-created").all()
     
-    elif set == "userposts":
-        objectset = Posts.objects.filter(
-            author=request.user, category=Category.objects.get(name=category)
-            )
-        objectset = objectset.order_by("-created").all()
-    
     elif set == "blogs":
         objectset = Blog.objects.filter(
             category=Category.objects.get(name=category)
             )
         objectset = objectset.order_by("name").all()
+    
+    else:
+        objectset = Posts.objects.filter(
+            author=User.objects.get(username=set), category=Category.objects.get(name=category)
+            )
+        objectset = objectset.order_by("-created").all()
 
     return JsonResponse([content.serialize() for content in objectset], safe=False)

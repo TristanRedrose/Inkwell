@@ -6,6 +6,7 @@
         <div class="title-div">
             <h2>Blogs</h2>
         </div>
+        {% include "main/components/category-bar.html" %}
         <div class="content-div">
             <div class="post-div">
                 {% for blog in page_obj %}
@@ -75,4 +76,8 @@
             </div>
         {% endif %}    
     </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'main/scripts/category_filter.js' %}"></script>
 {% endblock %}
