@@ -18,6 +18,18 @@ class Blog(models.Model):
     image = models.URLField(max_length=200)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="category")
     created = models.DateTimeField(auto_now_add=True)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "author": self.author.username,
+            "name": self.name,
+            "description": self.description,
+            "image": self.image,
+            "category": self.category.name,
+            "color": self.category.color,
+            "created": self.created.strftime("%Y-%m-%d"),
+        }
    
 
 class Posts(models.Model):
@@ -29,6 +41,20 @@ class Posts(models.Model):
     image = models.URLField(max_length=200)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "author": self.author.username,
+            "blog":self.blog.name,
+            "category": self.category.name,
+            "color": self.category.color,
+            "title": self.title,
+            "body": self.body,
+            "image": self.image,
+            "created": self.created.strftime("%Y-%m-%d"),
+            "updated": self.updated.strftime("%Y-%m-%d")
+        }
 
     class Meta:
             verbose_name= "Post"

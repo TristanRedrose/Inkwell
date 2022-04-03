@@ -7,43 +7,13 @@
         <div class="title-div">
             <h2>Recent posts</h2>
         </div>
+        {% include "main/components/category-bar.html" %}
         <div class="content-div">
             <div class="post-div">
                 {% for post in page_obj %}
-                <div class="wrapper">
-                    <div class="blog-box">
-                        <div id="post-box-image">
-                            <img id="post-img" src={{ post.image }} alt="post-img">
-                            <div class="info-wrapper">
-                                <div class="blog-info-2">
-                                    <div class="blog-info-box">
-                                        <img id="info-img1" src="..\static\main\images\calendar.png" alt="ad-img1">
-                                        <p id="blog-time">{{ post.created|date:"Y-m-d" }}</p>
-                                    </div>
-                                </div>
-                                <div class="blog-info-3" style="background-color:{{ post.category.color }}">
-                                    <img id="info-img1" src="..\static\main\images\categories.png" alt="ad-img1">
-                                    <p id="blog-time">{{ post.category.name }}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="post-box-content">
-                            <div class="blog-box-title-div">
-                                <h3 id="box-title-text">{{ post.title }}</h3>
-                            </div>
-                            <div class="blog-box-desc-div">
-                                <p id="box-body-text">{{ post.body }}</p>
-                            </div>
-                        </div>
-                        <div class="blog-box-bottom">
-                            <a class="nav-link" href="{% url 'post' post.blog.name post.title %}">
-                                <div id="post-box-button">
-                                    <p>Read more</p>
-                                </div>
-                            </a>
-                        </div>
+                    <div class="wrapper">
+                        {% include "main/components/post-box.html" %}
                     </div>
-                </div>
                 {% endfor %}
             </div>
             <div class="side-div">
@@ -72,4 +42,8 @@
             </div>
         {% endif %}        
     </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'main/scripts/category_filter.js' %}"></script>
 {% endblock %}

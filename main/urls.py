@@ -32,5 +32,5 @@ urlpatterns = [
     path("api/comments/delete/<int:comment_id>", views.delete_comment, name="delete_comment"),
     path("api/comments/find/<int:comment_id>", views.get_comment, name="get_comment"),
     path("api/comments/edit/<int:comment_id>", views.edit_comment, name="edit_comment"),
-
+    path("api/filter/<str:set>/<str:category>",views.category_filter, name="category_filter")
 ]

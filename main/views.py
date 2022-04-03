@@ -157,6 +157,8 @@ def delete_post(request, post_title):
 
 def view_blog(request,blog_name):
 
+    categories = Category.objects.all()
+
     # See if user already has a blog created
     check = True
     try:
@@ -176,11 +178,13 @@ def view_blog(request,blog_name):
     return render(request,"main/my_blog.html", {
         "blog": blog,
         "page_obj": page_obj,
-        "check": check
+        "check": check,
+        "categories": categories
     })
 
 def view_posts(request):
 
+    categories = Category.objects.all()
     # See if user already has a blog created
     check = True
     try:
@@ -197,6 +201,7 @@ def view_posts(request):
     page_obj = paginator.get_page(page_number)
     
     return render(request,"main/posts.html", {
+        "categories": categories,
         "page_obj": page_obj,
         "check": check
     })
@@ -576,3 +581,25 @@ def edit_comment(request, comment_id):
     comment.save()
 
     return JsonResponse({"message": "Comment edited."}, status=201)
+
+def category_filter(request,set,category):
+
+    if set == "posts":
+        objectset = Posts.objects.filter(
+            category=Category.objects.get(name=category)
+            )
+        objectset = objectset.order_by("-created").all()
+    
+    elif set == "userposts":
+        objectset = Posts.objects.filter(
+            author=request.user, category=Category.objects.get(name=category)
+            )
+        objectset = objectset.order_by("-created").all()
+    
+    elif set == "blogs":
+        objectset = Blog.objects.filter(
+            category=Category.objects.get(name=category)
+            )
+        objectset = objectset.order_by("name").all()
+
+    return JsonResponse([content.serialize() for content in objectset], safe=False)
