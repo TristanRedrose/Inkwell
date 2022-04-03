@@ -1,7 +1,13 @@
 <div class="category-box">
     {% for category in categories %}
-        <div class="category-button" style="background-color: {{ category.color }};" onclick="category_filter('posts','{{ category.name }}')">
-            <p>{{ category.name }}</p>
-        </div>
+        {% if blog != none %}
+            <div class="category-button" style="background-color: {{ category.color }};" onclick="category_filter('userposts','{{ category.name }}')">
+                <p>{{ category.name }}</p>
+            </div>
+        {% else %}
+            <div class="category-button" style="background-color: {{ category.color }};" onclick="category_filter('posts','{{ category.name }}')">
+                <p>{{ category.name }}</p>
+            </div>
+        {% endif %}
     {% endfor %}
 </div>

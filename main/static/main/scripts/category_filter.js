@@ -60,7 +60,46 @@ function category_filter(set,category) {
                         </div>
                     </div>
                     <div class="blog-box-bottom">
-                        <a class="nav-link" href="view/${object.blog}/${object.title}">
+                        <a class="nav-link" href="/view/${object.blog}/${object.title}">
+                            <div id="post-box-button">
+                                <p>Read more</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                `;
+
+                container.append(mainDiv);
+            }
+
+            if (set === "userposts") {
+                mainDiv.innerHTML =`
+                <div class="blog-box">
+                    <div id="post-box-image">
+                        <img id="post-img" src=${object.image} alt="post-img">
+                        <div class="info-wrapper">
+                            <div class="blog-info-2">
+                                <div class="blog-info-box">
+                                    <img id="info-img1" src="/static/main/images/calendar.png" alt="ad-img1">
+                                    <p id="blog-time">${object.created}</p>
+                                </div>
+                            </div>
+                            <div class="blog-info-3" style="background-color:${object.color}">
+                                <img id="info-img1" src="/static/main/images/categories.png" alt="ad-img1">
+                                <p id="blog-time">${object.category}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="post-box-content">
+                        <div class="blog-box-title-div">
+                            <h3 id="box-title-text">${object.title}</h3>
+                        </div>
+                        <div class="blog-box-desc-div">
+                            <p id="box-body-text">${object.body}</p>
+                        </div>
+                    </div>
+                    <div class="blog-box-bottom">
+                        <a class="nav-link" href="/view/${object.blog}/${object.title}">
                             <div id="post-box-button">
                                 <p>Read more</p>
                             </div>
