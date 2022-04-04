@@ -7,6 +7,7 @@ urlpatterns = [
     path("sign_in", views.sign_in_page, name="sign_in_page"),
     path("register", views.register_page, name="register_page"),
     path("logout", views.log_out, name="logout"),
+    path("profile/<str:profile>", views.profile_page, name="profile_page"),
     path("create_blog_view", views.create_blog_view, name="create_blog_view"),
     path("edit_blog_view/<str:blog_name>", views.edit_blog_view, name="edit_blog_view"),
     path("delete_blog_view/<str:blog_name>", views.delete_blog_view, name="delete_blog_view"),

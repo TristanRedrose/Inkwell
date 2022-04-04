@@ -11,7 +11,8 @@
             {% if filtr == "Blogs" %}
                 <div class="post-search-div">
                     {% if page_obj|length == 0 %}
-                        <h3>No results<h3>
+                        <h3>No results found</h3>
+                        <img id="ad-img1" src="\static\main\images\undraw_not_found_-60-pq.svg" alt="not found">
                     {% endif %}
                     {% for blog in page_obj %}
                         <div class="wrapper">
@@ -58,7 +59,10 @@
             {% if filtr == "Posts" %}
                 <div class="post-search-div">
                     {% if page_obj|length == 0 %}
-                        <h3>No results<h3>
+                    <div class="ctg-wrapper active">
+                        <h3>No results found</h3>
+                        <img id="ad-img1" src="\static\main\images\undraw_not_found_-60-pq.svg" alt="not found">
+                    </div>
                     {% endif %}
                     {% for post in page_obj %}
                         <div class="wrapper">

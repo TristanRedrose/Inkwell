@@ -1,5 +1,11 @@
 function category_filter(set,category) {
 
+    const activeButton = document.querySelector('.category-button.active');
+    activeButton.className = "category-button";
+    
+    const button = document.getElementById(`${category}`);
+    button.className = "category-button active";
+
     // Create container for filtered objects, hide base django pagination
     const container = document.querySelector('.post-div');
     container.innerHTML="";
@@ -21,6 +27,20 @@ function category_filter(set,category) {
         // Get all objects and see how many pages are needed to show them all
         const objectset = objects
         let maxPages = Math.ceil(objects.length / 9)
+        console.log(maxPages)
+
+        if (maxPages == 0) {
+            const mainDiv = document.createElement('div');
+            mainDiv.setAttribute('class', 'ctg-wrapper active');
+            mainDiv.setAttribute('id', 'select-ctg')
+
+            mainDiv.innerHTML=`
+            <h3>No results found</h3>
+            <img id="ad-img1" src="/static/main/images/undraw_not_found_-60-pq.svg" alt="not found">
+            `;
+            console.log("working")
+            container.append(mainDiv);
+        }
 
         // Create a box for each object and fill it with the objects content
         objectset.forEach(object => {

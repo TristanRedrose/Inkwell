@@ -27,7 +27,9 @@
                     <a class="nav-link" href="{% url 'create_blog_view' %}">
                         <p class="nav-text">My blog</p>
                     </a>
-                    <p class="nav-text">{{ request.user }}</p>
+                    <a class="nav-link" href="{% url 'profile_page' request.user %}">
+                        <p class="nav-text">{{ request.user }}</p>
+                    </a>
                     <a class="nav-link" href="{% url 'logout' %}">
                         <p class="nav-text">Log out</p>
                     </a>

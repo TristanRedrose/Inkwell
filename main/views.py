@@ -33,6 +33,10 @@ def log_out(request):
     logout(request)
     return render (request, "main/login.html")
 
+def profile_page(request,profile):
+    
+    return render (request, "main/profile_page.html")
+
 @login_required(login_url="/sign_in")
 def create_blog_view(request):
     
@@ -389,7 +393,7 @@ def create_blog(request):
 
     blog=Blog(
         author=author,
-        name=name,
+        name=name.strip(),
         description=description,
         category=Category.objects.get(name=category),
         image=image
@@ -468,7 +472,7 @@ def create_post(request):
         author=author,
         blog=blog,
         category=Category.objects.get(name=category),
-        title=title,
+        title=title.strip(),
         body=body,
         image=image
     )
