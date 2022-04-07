@@ -25,8 +25,9 @@
 {% if user.is_authenticated %}
     {% if check == True or blog.author == request.user %}
         <a class="nav-link" href="{% url 'create_post_view' %}">
-            <div class="edit">
-                <p>Make post</p>
+            <div class="new-post">
+                <img id="info-img1" src="\static\main\images\write.png" alt="ad-img1">
+                <p>New post</p>
             </div>
         </a>
     {% endif %}
@@ -42,7 +43,7 @@
             </div>
         </a>
     {% endif %}
-    {% if request.user == blog.author %}
+    {% if request.user == blog.author and myblog == True %}
         <a class="nav-link" href="{% url 'edit_blog_view' blog.name %}">
             <div class="make">
                 <p>Edit blog</p>

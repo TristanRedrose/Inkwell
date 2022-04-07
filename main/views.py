@@ -205,11 +205,15 @@ def view_blog(request,blog_name):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
+    # Mark that user is currently on myblog
+    myblog = True
+
     return render(request,"main/my_blog.html", {
         "blog": blog,
         "page_obj": page_obj,
         "check": check,
-        "categories": categories
+        "categories": categories,
+        "myblog": myblog
     })
 
 def view_posts(request):

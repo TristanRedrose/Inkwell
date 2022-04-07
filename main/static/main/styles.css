@@ -599,6 +599,7 @@ p {
 
 .make:hover {
     background-color: lightgreen;
+    box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.25);
 }
 
 .edit {
@@ -607,6 +608,7 @@ p {
 
 .edit:hover {
     background-color: lightgreen;
+    box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.25);
 }
 
 .make > p, .edit > p  {
@@ -1274,6 +1276,59 @@ ul, .error-message {
     justify-content: center;
 }
 
+.new-post {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: gray;
+    border-radius: 16px;
+    width: 156px;
+    height: 48px;
+    box-sizing: border-box;
+    margin-left: 32px;
+    margin-top: 40px;
+    border: 1px transparent solid;
+}
+
+.new-post:hover {
+    background-color: lightgreen;
+    border: 1px #7490F0 solid;
+    box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.25);
+}
+
+.new-post > p {
+    color: white;
+    font-weight: 700;
+    font-family: Roboto, "Helvetica Neue", Helvetica, sans-serif;
+    margin-right: 30px;
+}
+
+.back-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 92px;
+    height: 24px;
+    background-color: lightblue;
+    margin-bottom: 8px;
+    border-radius: 24px 8px 8px 24px;
+}
+
+.back-button > p {
+    font-family: Roboto, "Helvetica Neue", Helvetica, sans-serif;
+    font-weight: 400;
+}
+
+.back-button:hover {
+    background-color: navy;
+    cursor: pointer;
+    box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.25);
+}
+
+.back-button:hover > p {
+    color: white;
+}
+
 @media screen and (max-width: 1440px) {
     .post-div, .post-search-div {
         grid-template-columns: 50% 50%;
@@ -1415,9 +1470,13 @@ ul, .error-message {
         font-size: 10px;
     }
 
-    .make, .edit {
+    .make, .edit, .new-post {
         margin-left: 16px;
         width: 120px;
+    }
+
+    .new-post > p {
+        margin-right: 6px;
     }
 
     .post-view-div, .comment-view-div {
