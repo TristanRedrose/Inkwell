@@ -142,7 +142,14 @@ p {
 
 #adspan2 {
     color: #e94d4d;
+}
 
+.name-span {
+    color: #4f4f4f;
+}
+
+.name-span:hover {
+    color: navy;
 }
 
 #image-box1 {
@@ -414,17 +421,12 @@ p {
 }
 
 #blog-time {
-    margin: 4px 16px 0px 0px;
-    align-self:flex-end;
-    color: black;
-    font-size: 12px;
-}
-#blog-time {
     margin: 0px 8px 0px 0px;
     color: #4F4F4F;
     font-family: Roboto, "Helvetica Neue", Helvetica, sans-serif;
     font-weight: 700;
     align-self: center;
+    font-size: 12px;
 }
 
 #blog-info, .blog-info-2 {
@@ -657,7 +659,7 @@ p {
     margin: 16px 0px;
 }
 
-.post-input, .post-input-area, .comment-input-area, .comment-input-area-error {
+.post-input, .post-input-area, .comment-input-area, .comment-input-area-error, .profile-bio-input {
     width: 100%;
     height: 32px;
     border-radius: 8px;
@@ -925,7 +927,7 @@ p {
     flex-direction: column;
     align-content:space-between;
     width: 500px;
-    min-height: 150;
+    min-height: 150px;
     max-height: 300px;
     left: 50%;
     top: 55%;
@@ -1127,49 +1129,149 @@ ul, .error-message {
 }
 
 .profile-box {
-    margin-top: 64px;
-    width: 90%;
+    margin: 64px 16px;
+    padding: 32px 16px;
+    width: 60%;
     background-color: white;
     min-height: 240px;
-    max-height: 300px;
     align-self: center;
     border-radius: 16px;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.25);
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
+    background-image:
+    linear-gradient(
+      navy 25%,
+      lightgray 25%   
+    );
 }
 
 .profile-image-box {
-    width: 20%;
+    width: 30%;
     display: flex;
     justify-content: center;
-    background-color: #7490F0;
-    border-radius: 16px 0px 0px 16px;
 }
 
 .profile-image {
     width: 80%;
     border-radius: 50%;
     align-self: center;
+    background-color: lightgray;
+    border: 3px white solid;
 }
 
-.profile-info-box {
-    width: 30%;
-    border: 1px black solid;
+.profile-blog {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.profile-blog > h3 {
+    margin-bottom: 0px;
+}
+
+.spacing {
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
+.name-text {
+    margin-bottom: 0px;
+    color: #7490F0;
+}
+
+.color-text {
+    color: #e94d4d;
+}
+
+.edit-profile {
+    margin-top: 32px;
+    display: flex;
+    width: 120px;
+    height: 32px;
+    border-radius: 8px;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 8px;
+    background-color: #7490F0;
+}
+
+.edit-profile > p {
+    font-weight: 700;
+}
+
+.edit-profile:hover {
+    background-color: lightgreen;
+}
+
+#profile-box {
+    z-index: 10;
+    position: fixed;
     display: flex;
     flex-direction: column;
-    margin: 16px 8px;
+    align-content:space-between;
+    width: 700px;
+    min-height: 300px;
+    left: 50%;
+    top: 55%;
+    transform: translate(-50%, -55%);
+    border-radius: 16px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.25);
+    background-color: white;
+    display:none;
 }
 
-.section-box {
-    height: 33%;
+#profile-middle {
+    margin: 16px;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    
 }
 
-.usertext {
-    margin: 0px;
+#profile-content-div {
+    width: 100%;
+}
+
+.profile-image-input {
+    padding: 0px 16px;
+    width: 84%;
+    margin-left: 8px;
+    margin-bottom: 16px;
+    height: 32px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    border: 1px #D3D3D3 solid;
+    font-size: 16px;
+    font-family: Montserrat, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.label-div {
+    margin-bottom: 8px;
+}
+
+.profile-bio-input {
+    height: 200px;
+    resize:none;
+}
+
+#profile-box-title {
+    text-align: center;
+}
+
+.profile-bio-input.active {
+    border: 1px red solid;
+}
+
+.bio-error.active {
+    display: block;
+}
+
+.profile-confirm-div {
+    margin: 16px 0px 0px;
+    display: flex;
+    justify-content: center;
 }
 
 @media screen and (max-width: 1440px) {
@@ -1284,6 +1386,14 @@ ul, .error-message {
         width: 75px;
         font-size: 12px;
         margin-left: 4px;
+    }
+
+    #profile-box {
+        width: 550px;
+    }
+
+    .profile-image-input {
+        width: 79%;
     }
 }
 

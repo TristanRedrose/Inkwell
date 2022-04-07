@@ -4,7 +4,7 @@
         <p id="blog-tag">{{ blog.description }}</p>
         <div id="blog-info">
             <img id="info-img1" src="\static\main\images\user.png" alt="ad-img1">
-            <p id="blog-time"><span>{{ blog.author }}</span></p>
+            <p id="blog-time"><a href="{% url 'profile_page' blog.author %}" class="nav-link"><span class="name-span">{{ blog.author }}</span></a></p>
             <img id="info-img1" src="\static\main\images\calendar.png" alt="ad-img1">
             <p id="blog-time">{{ blog.created|date:"Y-m-d" }}</p>
         </div>

@@ -28,7 +28,7 @@ class Blog(models.Model):
             "image": self.image,
             "category": self.category.name,
             "color": self.category.color,
-            "created": self.created.strftime("%Y-%m-%d"),
+            "created": self.created.strftime("%d-%m-%Y"),
         }
    
 
@@ -52,8 +52,8 @@ class Posts(models.Model):
             "title": self.title,
             "body": self.body,
             "image": self.image,
-            "created": self.created.strftime("%Y-%m-%d"),
-            "updated": self.updated.strftime("%Y-%m-%d")
+            "created": self.created.strftime("%d-%m-%Y"),
+            "updated": self.updated.strftime("%d-%m-%Y")
         }
 
     class Meta:
@@ -66,3 +66,9 @@ class Comments(models.Model):
     body = models.TextField(blank=False)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+class Profile(models.Model):
+    name = models.ForeignKey(User, on_delete=models.CASCADE, related_name="profile_name")
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name="profile_blog")
+    biography = models.CharField(max_length=1000)
+    image = models.URLField(max_length=200)

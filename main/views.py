@@ -10,7 +10,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 
-from .models import Category, Blog, Posts, Comments
+from .models import Category, Blog, Posts, Comments, Profile
 
 
 
@@ -33,9 +33,31 @@ def log_out(request):
     logout(request)
     return render (request, "main/login.html")
 
-def profile_page(request,profile):
+def profile_page(request,username):
+
+    user = User.objects.get(username=username)
+    try: 
+        profile = Profile.objects.get(name=user)
+    except:
+        profile = None
+        
+
+    try:
+        blog = Blog.objects.get(author=user)
+    except:
+        blog = None
+        postnum = 0
+
+    if blog != None:
+        posts = Posts.objects.filter(blog=blog)
+        postnum = posts.count()
     
-    return render (request, "main/profile_page.html")
+    return render (request, "main/profile_page.html", {
+        "profile": profile,
+        "postnum": postnum,
+        "blog": blog.name,
+        "username": username
+    })
 
 @login_required(login_url="/sign_in")
 def create_blog_view(request):
@@ -611,3 +633,46 @@ def category_filter(request,set,category):
         objectset = objectset.order_by("-created").all()
 
     return JsonResponse([content.serialize() for content in objectset], safe=False)
+
+def edit_profile(request, username):
+
+    # Editing a profile must be via POST
+    if request.method != "POST":
+        return JsonResponse({"error": "POST request required."}, status=400)
+    
+    print(request.user, username)
+    
+    if request.user.username != username:
+        return JsonResponse({"error": "Access denied."}, status=400)
+
+    user=User.objects.get(username=username)
+    
+    data = json.loads(request.body)
+    biography = data.get("biography", "")
+    if biography.strip() == "":
+        return JsonResponse({"error": "Biography cannot be empty."}, status=400)
+    
+    image = data.get("image", "")
+
+    try:
+        blog = Blog.objects.get(author=user)
+    except:
+        blog = None
+
+    try:
+        profile = Profile.objects.get(name=user)
+    except:
+        profile = Profile(
+            name=user,
+            blog=blog,
+            biography=biography.strip(),
+            image=image
+        )
+        profile.save()
+
+        return JsonResponse({"message": "Profile created."}, status=201)
+
+    profile.biography = biography
+    profile.image = image
+    profile.save()
+    return JsonResponse({"message": "Profile edited."}, status=201)

@@ -7,7 +7,7 @@ urlpatterns = [
     path("sign_in", views.sign_in_page, name="sign_in_page"),
     path("register", views.register_page, name="register_page"),
     path("logout", views.log_out, name="logout"),
-    path("profile/<str:profile>", views.profile_page, name="profile_page"),
+    path("profile/<str:username>", views.profile_page, name="profile_page"),
     path("create_blog_view", views.create_blog_view, name="create_blog_view"),
     path("edit_blog_view/<str:blog_name>", views.edit_blog_view, name="edit_blog_view"),
     path("delete_blog_view/<str:blog_name>", views.delete_blog_view, name="delete_blog_view"),
@@ -33,5 +33,6 @@ urlpatterns = [
     path("api/comments/delete/<int:comment_id>", views.delete_comment, name="delete_comment"),
     path("api/comments/find/<int:comment_id>", views.get_comment, name="get_comment"),
     path("api/comments/edit/<int:comment_id>", views.edit_comment, name="edit_comment"),
-    path("api/filter/<str:set>/<str:category>",views.category_filter, name="category_filter")
+    path("api/filter/<str:set>/<str:category>", views.category_filter, name="category_filter"),
+    path("api/edit_profile/<str:username>", views.edit_profile, name="edit_profile")
 ]
