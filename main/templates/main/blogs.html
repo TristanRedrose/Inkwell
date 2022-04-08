@@ -13,7 +13,11 @@
                     <div class="wrapper">
                         <div class="blog-box">
                             <div id="post-box-image">
-                                <img id="post-img" src={{ blog.image }} alt="post-img">
+                                {% if blog.image == none or blog.image == "" %}
+                                    <img id="post-img" src="\static\main\images\no-image.jpg" alt="no-img">
+                                {% else %}
+                                    <img id="post-img" src={{ blog.image }} alt="post-img">
+                                {% endif %}
                                 <div class="info-wrapper">
                                     <div class="blog-info-2">
                                         <div class="blog-info-box">

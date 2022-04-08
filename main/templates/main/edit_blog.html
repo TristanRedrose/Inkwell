@@ -11,7 +11,7 @@
                 {% csrf_token %}
                 <div class="input-div">
                     <h3>Name:</h3>
-                    <input autofocus class="blog-form-input" type="text" name="blog-name" value="{{ blog.name }}" id="blog-name" placeholder="Blog name">
+                    <input autofocus class="blog-form-input" type="text" name="blog-name" value="{{ blog.name }}" id="blog-name" placeholder="Blog name" maxlength="40">
                 </div>
                 <div class="input-div">
                     <h3>Description:</h3>
@@ -36,7 +36,7 @@
                 <div class="input-div">
                     <div>
                     </div>
-                    <input class="blog-button" type="submit" value="Edit blog">
+                    <input class="blog-button" type="submit" value="Save changes">
                 </div>
             </form>    
         </div>

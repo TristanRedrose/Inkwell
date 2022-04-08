@@ -1,6 +1,10 @@
 <div class="blog-box">
     <div id="post-box-image">
-        <img id="post-img" src={{ post.image }} alt="post-img">
+        {% if post.image == none or post.image == "" %}
+            <img id="post-img" src="\static\main\images\no-image.jpg" alt="no-img">
+        {% else %}
+            <img id="post-img" src={{ post.image }} alt="post-img">
+        {% endif %}
         <div class="info-wrapper">
             {% if blog != none %}
                 <div class="blog-info-2">

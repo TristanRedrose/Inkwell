@@ -1388,6 +1388,10 @@ ul, .error-message {
     .step-links {
         margin-right: 65px;
     }
+
+    .blog-banner-name {
+        font-size: 34px;
+    }
 }
 
 @media screen and (max-width: 800px) {
@@ -1450,11 +1454,16 @@ ul, .error-message {
     .profile-image-input {
         width: 79%;
     }
+    
+    .blog-banner-name {
+        font-size: 28px;
+    }
 }
 
 @media screen and (max-width: 600px) {
     .content-div {
         padding: 48px 8px;
+        margin-left: 16px;
     }
 
     .search-div {
