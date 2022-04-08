@@ -410,6 +410,12 @@ def create_blog(request):
     if name.strip() == "":
         return JsonResponse({"error": "Blog name cannot be empty."}, status=400)
 
+    # See if blog name is already taken
+    blogs = Blog.objects.all()
+    for blogname in blogs:
+        if name.upper().strip() == blogname.name.upper().strip():
+            return JsonResponse({"error": "Blog name already exists."}, status=400) 
+
     description = data.get("description", "")
     if description.strip() == "":
         return JsonResponse({"error": "Blog description cannot be empty."}, status=400)

@@ -39,6 +39,20 @@ function create_blog() {
             }
         }
 
+        if (result.error === 'Blog name already exists.') {
+            const NameBar = document.querySelector('#blog-name');
+            NameBar.value= "";
+            NameBar.setAttribute('placeholder', 'Blog name taken.');
+            NameBar.className = "blog-form-input active";
+
+            NameBar.onkeypress = function(e) {
+                if (e.keyCode != 32) {
+                    NameBar.setAttribute('placeholder', 'Blog name');
+                    NameBar.className = "blog-form-input";
+                }
+            }
+        }
+
         if (result.error === 'Blog description cannot be empty.') {
             const DescBar = document.querySelector('#description');
             DescBar.setAttribute('placeholder', 'Blog description cannot be empty.');
