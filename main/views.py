@@ -149,7 +149,7 @@ def view_blogs(request):
     blogs = blogs.order_by("name").all()
 
     #Show only 9 objects per page
-    paginator = Paginator(blogs, 9)
+    paginator = Paginator(blogs, 12)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
@@ -201,7 +201,7 @@ def view_blog(request,blog_name):
     posts = posts.order_by("-created").all()
 
     #Show only 9 objects per page
-    paginator = Paginator(posts, 9)
+    paginator = Paginator(posts, 12)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
@@ -230,7 +230,7 @@ def view_posts(request):
     posts = posts.order_by("-created").all()
 
     #Show only 9 objects per page
-    paginator = Paginator(posts, 9)
+    paginator = Paginator(posts, 12)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     
@@ -286,7 +286,7 @@ def view_search(request):
                 )
 
         blogs = blogs.order_by("name").all()
-        paginator = Paginator(blogs, 9)
+        paginator = Paginator(blogs, 12)
 
     elif filtr == "Posts":
         posts = Posts.objects.all()
@@ -298,7 +298,7 @@ def view_search(request):
                 )
             
         posts = posts.order_by("-created").all()
-        paginator = Paginator(posts, 9)
+        paginator = Paginator(posts, 12)
     
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)

@@ -26,7 +26,7 @@ function category_filter(set,category) {
 
         // Get all objects and see how many pages are needed to show them all
         const objectset = objects
-        let maxPages = Math.ceil(objects.length / 9)
+        let maxPages = Math.ceil(objects.length / 12)
         console.log(maxPages)
 
         if (maxPages == 0) {
@@ -201,8 +201,8 @@ function paginate_results(page, maxPages) {
     const lastPage = maxPages - 1;
 
     // Select which objects should show up on the current page 
-    var objectend = ((page + 1) * 8 + page);
-    var objectstart = (page * 8) + page;
+    var objectend = ((page + 1) * 11 + page);
+    var objectstart = (page * 11) + page;
 
     // Hide objects that fall outside permited variables, show objects within
     var i = 0;
