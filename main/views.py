@@ -450,6 +450,12 @@ def edit_blog(request, blog_id):
     name = data.get("name", "")
     if name.strip() == "":
         return JsonResponse({"error": "Blog name cannot be empty."}, status=400)
+    
+     # See if blog name is already taken
+    blogs = Blog.objects.all()
+    for blogname in blogs:
+        if name.upper().strip() == blogname.name.upper().strip() and blogname.author != request.user:
+            return JsonResponse({"error": "Blog name already exists."}, status=400)
 
     description = data.get("description", "")
     if description.strip() == "":

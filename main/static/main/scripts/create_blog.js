@@ -40,15 +40,21 @@ function create_blog() {
         }
 
         if (result.error === 'Blog name already exists.') {
+            const errorText = document.createElement('p');
+            errorText.className = "error-text-active";
+            errorText.innerText= "Blog name taken.";
+
+            const container = document.querySelector('#create-blog-div');
+            container.insertBefore(errorText, container.firstChild)
+
             const NameBar = document.querySelector('#blog-name');
-            NameBar.value= "";
-            NameBar.setAttribute('placeholder', 'Blog name taken.');
             NameBar.className = "blog-form-input active";
 
             NameBar.onkeypress = function(e) {
                 if (e.keyCode != 32) {
                     NameBar.setAttribute('placeholder', 'Blog name');
                     NameBar.className = "blog-form-input";
+                    errorText.remove();
                 }
             }
         }
