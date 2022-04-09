@@ -540,13 +540,12 @@ p {
 }
 
 #post-box-body-div, .blog-box-desc-div {
-    height: 164px;
+    max-height: 164px;
     width: 360px;
     overflow: hidden;
 }
 
 #post-box-button {
-    margin-top: 8px;
     height: 38px;
     border-radius: 0px 0px 8px 8px;
     background-color: #e94d4d;

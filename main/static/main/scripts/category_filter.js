@@ -49,6 +49,11 @@ function category_filter(set,category) {
             mainDiv.setAttribute('class', 'ctg-wrapper active');
             mainDiv.setAttribute('id', 'select-ctg')
 
+            // Set default no image picture if user left image blank
+            if (object.image === "" || object.image === null) {
+                object.image = "/static/main/images/no-image.jpg";
+            } 
+
             if (set === "posts") {
                 mainDiv.innerHTML =`
                 <div class="blog-box">
