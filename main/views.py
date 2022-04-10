@@ -51,11 +51,12 @@ def profile_page(request,username):
     if blog != None:
         posts = Posts.objects.filter(blog=blog)
         postnum = posts.count()
+        blog = blog.name
     
     return render (request, "main/profile_page.html", {
         "profile": profile,
         "postnum": postnum,
-        "blog": blog.name,
+        "blog": blog,
         "username": username
     })
 
