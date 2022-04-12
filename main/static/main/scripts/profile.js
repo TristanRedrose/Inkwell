@@ -1,3 +1,13 @@
+document.addEventListener('DOMContentLoaded', function() {
+
+    // Clear error from comment bar when user starts to enter input
+    const Image = document.querySelector('.profile-image');
+    Image.onerror = function(e) {
+        Image.src = "/static/main/images/user.png";
+        Image.onerror = null;
+    }
+})
+
 // Insert csrf token and get request
 function getRequest(path) {
     const csrf_token = document.querySelector('[name=csrfmiddlewaretoken]').value
@@ -32,7 +42,7 @@ function show_modal(username) {
     }
 
     let image = document.querySelector('.profile-image').src;
-    if (image === "/static/main/images/user.png") {
+    if (image === "http://127.0.0.1:8000/static/main/images/user.png") {
         image = "";
     }
 

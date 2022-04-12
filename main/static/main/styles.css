@@ -1155,7 +1155,8 @@ ul, .error-message {
 }
 
 .profile-image {
-    width: 80%;
+    width: 173px;
+    height: 173px;
     border-radius: 50%;
     align-self: center;
     background-color: lightgray;
@@ -1165,11 +1166,11 @@ ul, .error-message {
 .profile-blog {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
 }
 
 .profile-blog > h3 {
     margin-bottom: 0px;
+    font-size: 20px;
 }
 
 .spacing {
@@ -1391,6 +1392,23 @@ ul, .error-message {
     .blog-banner-name {
         font-size: 34px;
     }
+
+    .name-text {
+        font-size: 32px;
+    }
+
+    .profile-image {
+        width: 146px;
+        height: 146px;
+    }
+
+    .profile-blog > h3 {
+        font-size: 16px;
+    }
+
+    #biography-text {
+        font-size: 14px;
+    }
 }
 
 @media screen and (max-width: 800px) {
@@ -1446,8 +1464,8 @@ ul, .error-message {
         margin-left: 4px;
     }
 
-    #profile-box {
-        width: 550px;
+    .profile-box {
+        width: 475px;
     }
 
     .profile-image-input {
