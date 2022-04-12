@@ -69,6 +69,6 @@ class Comments(models.Model):
 
 class Profile(models.Model):
     name = models.ForeignKey(User, on_delete=models.CASCADE, related_name="profile_name")
-    blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name="profile_blog")
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name="profile_blog", null=True)
     biography = models.CharField(max_length=1000)
     image = models.URLField(max_length=200)

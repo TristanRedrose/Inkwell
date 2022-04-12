@@ -205,11 +205,13 @@ def view_blog(request,blog_name):
     paginator = Paginator(posts, 12)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
+    postcount = len(page_obj)
 
     # Mark that user is currently on myblog
     myblog = True
 
     return render(request,"main/my_blog.html", {
+        "postcount": postcount,
         "blog": blog,
         "page_obj": page_obj,
         "check": check,

@@ -4,18 +4,32 @@
 {% block body %}
     <div class="main-body">
         {% include "main/components/banner.html" %}
-        <div class="title-div">
-            <h2>Recent posts</h2>
-        </div>
-        {% include "main/components/category-bar.html" %}
-        <div class="content-div">
-            <div class="post-div">
-                {% for post in page_obj %}
-                    <div class="wrapper">
-                        {% include "main/components/post-box.html" %}
-                    </div>
-                {% endfor %}
+        {% if postcount == 0 %}
+            <div class="title-div">
+                <h2>No posts found</h2>
             </div>
+        {% else %}
+            <div class="title-div">
+                {% if request.user == blog.author %}
+                    <h2>My posts</h2>
+                {% else %}
+                    <h2>Recent posts</h2>
+                {% endif %}
+            </div>
+            {% include "main/components/category-bar.html" %}
+        {% endif %}
+        <div class="content-div">
+            {%if postcount == 0 %}
+                <img id="ad-img1" src="/static/main/images/undraw_not_found_-60-pq.svg" alt="not found">
+            {% else %}
+                <div class="post-div">
+                    {% for post in page_obj %}
+                        <div class="wrapper">
+                            {% include "main/components/post-box.html" %}
+                        </div>
+                    {% endfor %} 
+                </div>
+            {% endif %}
             <div class="side-div">
                 <div class="side-wrapper">
                     {% include "main/components/side-bar.html" %}
@@ -40,7 +54,7 @@
                     {% endif %}
                 </span>
             </div>
-        {% endif %}        
+        {% endif %}      
     </div>
 {% endblock %}
 

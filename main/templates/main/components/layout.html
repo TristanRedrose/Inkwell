@@ -10,7 +10,7 @@
     </head>
     <body>
         <div id="navbar">
-            <a class="nav-link" href="{% url 'index' %}">
+            <a class="nav-link" {% if user.is_authenticated %} href="{% url 'posts' %}" {% else %} href="{% url 'index' %}" {% endif %}>
                 <div id="logo">
                     <img src="\static\main\images\Main-logo.png" alt="Logo">
                     <h3 id="logo-text">Inkwell</h3>
