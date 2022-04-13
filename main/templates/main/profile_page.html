@@ -2,56 +2,58 @@
 {% load static %}
 
 {% block body %}
-    <div class="main-body">
-        <div class="profile-box">
-            {% if profile == none or profile.image == none %}
-                <div class="profile-image-box">
-                    <img class="profile-image" src="/static/main/images/user.png" alt="ad-img1">
-                </div>
-            {% else %}
-                <div class="profile-image-box">
-                    <img class="profile-image" src={{ profile.image }} alt="profile-img">
-                </div>
-            {% endif %}
-            <div>
-                <h1 class="name-text">{{ username }}</h1>
-            </div>
-            <div class="profile-blog">
-                {% if blog != none %}
-                    <h3>Blog: <a href="{% url 'view_blog' blog %}" class="nav-link"><span class="color-text">{{ blog }}</span></a></h3>
-                    <h3 class="spacing">-</h3>
-                    <h3>Posts: <span class="color-text">{{ postnum }}</span></h3>
-                {% else %}
-                    <h3>User has no blog.</h3>
-                {% endif %}
-            </div>
-            <div class="profile-blog">
-                <h3>About me:</h3>
-            </div>
-            <div>
-                {% if profile == none %}
-                    <p id="biography-text">No user biography.</p>
-                {% else %}
-                    <p id="biography-text">{{ profile.biography }}</p>
-                {% endif %}
-            </div>
-            {% if request.user.username == username %}
-                <a href="#" class="nav-link" onclick="event.preventDefault(); show_modal('{{ username }}')">
-                    <div class="edit-profile">  
-                        <p class="comment-text">Edit profile</p>
+    <div class="widescreen-body">
+        <div class="main-body">
+            <div class="profile-box">
+                {% if profile == none or profile.image == none %}
+                    <div class="profile-image-box">
+                        <img class="profile-image" src="/static/main/images/user.png" alt="ad-img1">
                     </div>
-                </a>
-            {% endif %}
-        </div>
-        <div id="modal">
-        </div>
-        <div id="profile-box">
-            <div id="modal-top">
-                {% csrf_token %}
+                {% else %}
+                    <div class="profile-image-box">
+                        <img class="profile-image" src={{ profile.image }} alt="profile-img">
+                    </div>
+                {% endif %}
+                <div>
+                    <h1 class="name-text">{{ username }}</h1>
+                </div>
+                <div class="profile-blog">
+                    {% if blog != none %}
+                        <h3>Blog: <a href="{% url 'view_blog' blog %}" class="nav-link"><span class="color-text">{{ blog }}</span></a></h3>
+                        <h3 class="spacing">-</h3>
+                        <h3>Posts: <span class="color-text">{{ postnum }}</span></h3>
+                    {% else %}
+                        <h3>User has no blog.</h3>
+                    {% endif %}
+                </div>
+                <div class="profile-blog">
+                    <h3>About me:</h3>
+                </div>
+                <div>
+                    {% if profile == none %}
+                        <p id="biography-text">No user biography.</p>
+                    {% else %}
+                        <p id="biography-text">{{ profile.biography }}</p>
+                    {% endif %}
+                </div>
+                {% if request.user.username == username %}
+                    <a href="#" class="nav-link" onclick="event.preventDefault(); show_modal('{{ username }}')">
+                        <div class="edit-profile">  
+                            <p class="comment-text">Edit profile</p>
+                        </div>
+                    </a>
+                {% endif %}
             </div>
-            <div id="profile-middle">
+            <div id="modal">
             </div>
-            <div id="modal-bottom">
+            <div id="profile-box">
+                <div id="modal-top">
+                    {% csrf_token %}
+                </div>
+                <div id="profile-middle">
+                </div>
+                <div id="modal-bottom">
+                </div>
             </div>
         </div>
     </div>

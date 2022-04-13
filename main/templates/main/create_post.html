@@ -2,52 +2,54 @@
 {% load static %}
 
 {% block body %}
-    <div class="main-body-2">
-        <div id="post-wrapper">
-            <div id="create-post-div">
-                <div class="title-div">
-                    <h1>Create post</h1>
+    <div class="widescreen-body">
+        <div class="main-body">
+            <div id="post-wrapper">
+                <div id="create-post-div">
+                    <div class="title-div">
+                        <h1>Create post</h1>
+                    </div>
+                    <div id="post-form-div">
+                        <form id="post-form" action="#" onsubmit="event.preventDefault(); create_post()">
+                            {% csrf_token %}
+                            <div class="post-label">
+                                <label  for="Category">Category:<label>
+                            </div>
+                            <div class="input-div">
+                                <select class="post-form-input" name="category" id="category">
+                                    {% for category in categories %}
+                                        {% if category.name == default %}
+                                            <option value={{ category.name }} selected="selected">{{ category.name }}</option>
+                                        {% else %}
+                                            <option value={{ category.name }}>{{ category.name }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="post-label">
+                                <label for="title">Title:<label>
+                            </div>
+                            <div>
+                                <p class="error-text" id="title-error"></p>
+                            </div>
+                            <input class="post-input" type="text" name="title" id="title">
+                            <div class="post-label">
+                                <label class="post-label" for="body">Body:<label>
+                            </div>
+                            <div>
+                                <p class="error-text" id="body-error"></p>
+                            </div>
+                            <textarea class="post-input-area" type="text" name="body" id="body"></textarea>
+                            <div class="post-label">
+                                <label class="post-label" for="image">Image-url:<label>
+                            </div>
+                            <input class="post-input" type="url" name="image" id="image">
+                            <div id="post-button-div">
+                                <input id="post-button"  type="submit" value="Create post">
+                            </div>
+                        </form>
+                    </div>        
                 </div>
-                <div id="post-form-div">
-                    <form id="post-form" action="#" onsubmit="event.preventDefault(); create_post()">
-                        {% csrf_token %}
-                        <div class="post-label">
-                            <label  for="Category">Category:<label>
-                        </div>
-                        <div class="input-div">
-                            <select class="post-form-input" name="category" id="category">
-                                {% for category in categories %}
-                                    {% if category.name == default %}
-                                        <option value={{ category.name }} selected="selected">{{ category.name }}</option>
-                                    {% else %}
-                                        <option value={{ category.name }}>{{ category.name }}</option>
-                                    {% endif %}
-                                {% endfor %}
-                            </select>
-                        </div>
-                        <div class="post-label">
-                            <label for="title">Title:<label>
-                        </div>
-                        <div>
-                            <p class="error-text" id="title-error"></p>
-                        </div>
-                        <input class="post-input" type="text" name="title" id="title">
-                        <div class="post-label">
-                            <label class="post-label" for="body">Body:<label>
-                        </div>
-                        <div>
-                            <p class="error-text" id="body-error"></p>
-                        </div>
-                        <textarea class="post-input-area" type="text" name="body" id="body"></textarea>
-                        <div class="post-label">
-                            <label class="post-label" for="image">Image-url:<label>
-                        </div>
-                        <input class="post-input" type="url" name="image" id="image">
-                        <div id="post-button-div">
-                            <input id="post-button"  type="submit" value="Create post">
-                        </div>
-                    </form>
-                </div>        
             </div>
         </div>
     </div>

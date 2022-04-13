@@ -302,11 +302,35 @@ p {
     color: white;
 }
 
+.widescreen-body {
+    position:relative;
+    display: flex;
+    justify-content: center;
+    background-color: navy;
+    background-image: url("https://wallpaperaccess.com/full/6251533.jpg");
+    background-size: cover;
+    z-index: 0;
+}
+
+.widescreen-body::before {
+    content: "";
+    height: 100%;
+    width: 100%;
+    opacity: 0.3;
+    position: absolute;
+    background-color: black;
+    background-size: cover;
+}
+
 .main-body, .main-body-2 {
+    align-self: center;
     min-height: 100vh; 
     background-color: #f0f0f0;
     display: flex;
     flex-direction: column;
+    width: 100%;
+    max-width: 1920px;
+    z-index: 1;
 }
 
 .main-body-2 {
@@ -752,7 +776,7 @@ p {
 }
 
 .post-view-div, .comment-view-div {
-    max-width: 900px;
+    max-width: 100%;
     border-radius: 8px;
     background-color: white;
     margin-right: 16px;
@@ -1329,7 +1353,15 @@ ul, .error-message {
     color: white;
 }
 
+.post-div-2 {
+    width: 1400px;
+}
+
 @media screen and (max-width: 1440px) {
+    .post-div-2 {
+        max-width: 950px;
+    }
+
     .post-div, .post-search-div {
         grid-template-columns: 50% 50%;
     }

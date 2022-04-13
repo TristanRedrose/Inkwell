@@ -2,39 +2,41 @@
 {% load static %}
 
 {% block body %}
-    <div class="main-body">
-        <div class="title-div">
-            <h1>Create blog</h1>
-        </div>
-        <div id="create-blog-div">
-            <form action="#" onsubmit="event.preventDefault(); create_blog()">
-                {% csrf_token %}
-                <div class="input-div">
-                    <h3>Name:</h3>
-                    <input autofocus class="blog-form-input" type="text" name="blog-name" id="blog-name" placeholder="Blog name" maxlength="40">
-                </div>
-                <div class="input-div">
-                    <h3>Description:</h3>
-                    <input class="blog-form-input" type="textarea" name="description" id="description" placeholder="Description">
-                </div>
-                <div class="input-div">
-                    <h3>Category:</h3>
-                    <select class="blog-form-input" name="category" id="category">
-                        {% for category in categories %}
-                            <option value={{ category.name }}>{{ category.name }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div class="input-div">
-                    <h3>Image:</h3>
-                    <input class="blog-form-input" type="url" name="image" id="image" placeholder="Image-url">
-                </div>
-                <div class="input-div">
-                    <div>
+    <div class="widescreen-body">
+        <div class="main-body">
+            <div class="title-div">
+                <h1>Create blog</h1>
+            </div>
+            <div id="create-blog-div">
+                <form action="#" onsubmit="event.preventDefault(); create_blog()">
+                    {% csrf_token %}
+                    <div class="input-div">
+                        <h3>Name:</h3>
+                        <input autofocus class="blog-form-input" type="text" name="blog-name" id="blog-name" placeholder="Blog name" maxlength="40">
                     </div>
-                    <input class="blog-button" type="submit" value="Create blog">
-                </div>
-            </form>    
+                    <div class="input-div">
+                        <h3>Description:</h3>
+                        <input class="blog-form-input" type="textarea" name="description" id="description" placeholder="Description">
+                    </div>
+                    <div class="input-div">
+                        <h3>Category:</h3>
+                        <select class="blog-form-input" name="category" id="category">
+                            {% for category in categories %}
+                                <option value={{ category.name }}>{{ category.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="input-div">
+                        <h3>Image:</h3>
+                        <input class="blog-form-input" type="url" name="image" id="image" placeholder="Image-url">
+                    </div>
+                    <div class="input-div">
+                        <div>
+                        </div>
+                        <input class="blog-button" type="submit" value="Create blog">
+                    </div>
+                </form>    
+            </div>
         </div>
     </div>
 {% endblock %}
