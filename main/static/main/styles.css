@@ -132,7 +132,7 @@ p {
     margin-left: 120px;
 }
 
-.ad-head {
+.head {
     color: white;
 }
 
@@ -1369,11 +1369,11 @@ ul, .error-message {
 
 @media screen and (max-width: 1100px) {
 
-    .ad-head {
+    .head {
         font-size: 32px;
     }
 
-    .ad-head-2 {
+    .head-2 {
         font-size: 24px;
     }
 
@@ -1444,7 +1444,7 @@ ul, .error-message {
 }
 
 @media screen and (max-width: 800px) {
-    .ad-head {
+    .head {
         font-size: 24px;
     }
 
@@ -1456,7 +1456,7 @@ ul, .error-message {
         height: 150px;
     }
 
-    .ad-head-2 {
+    .head-2 {
         font-size: 16px;
     }
 
