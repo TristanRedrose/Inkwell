@@ -83,7 +83,7 @@ p {
 
 .info-div {
     width: 100%;
-    height: 600px;
+    height: 500px;
 }
 
 .info-div2 {
@@ -1361,8 +1361,9 @@ ul, .error-message {
 }
 
 .mobile-back-button {
-    margin-top: 24px;
+    margin-top: 32px;
     margin-left: 8px;
+    margin-bottom: 0px;
     display: none;
 }
 
@@ -1377,6 +1378,10 @@ ul, .error-message {
 }
 
 @media screen and (max-width: 1100px) {
+
+    .info-div {
+        height: 350px;
+    }
 
     .head {
         font-size: 32px;
@@ -1470,12 +1475,8 @@ ul, .error-message {
         font-size: 24px;
     }
 
-    .info-div {
-        height: 400px;
-    }
-
     .info-div2 {
-        height: 150px;
+        height: 125px;
     }
 
     .head-2 {
@@ -1488,7 +1489,7 @@ ul, .error-message {
     }
 
     .middle-text > h1 {
-        font-size: 24px;
+        font-size: 20px;
     }
 
     #footer-bar > p {
@@ -1520,6 +1521,10 @@ ul, .error-message {
     
     .blog-banner-name {
         font-size: 28px;
+    }
+
+    .info-div {
+        height: 300px;
     }
 }
 
@@ -1663,6 +1668,31 @@ ul, .error-message {
     #create-post-div > .title-div {
         margin-left: 48px;
     }
+
+    .info-div {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    #text-box2 {
+        margin-right: 0px;
+        width: fit-content;
+    }
+
+    #image-box2 {
+        margin: 0px;
+    }
+
+    #text-box1 {
+        margin-left: 0px;
+        width: fit-content;
+    }
+
+    #image-box1 {
+        margin: 0px;
+    }
+
+    
 }
 
 @media screen and (max-width: 440px) {
@@ -1698,7 +1728,7 @@ ul, .error-message {
     }
 
     .blog-banner {
-        height: 90px;
+        height: 100px;
     }
 
     .blog-banner-name {
