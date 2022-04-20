@@ -359,6 +359,10 @@ p {
     justify-content: space-between;
 }
 
+.post-input-div {
+    width: 100%;
+}
+
 .input-div > h3 {
     margin: 0px;
 }
@@ -482,7 +486,7 @@ p {
     margin: 24px 0px 0px 0px;
 }
 
-.content-div {
+.content-div, .post-content-div {
     padding: 48px 32px;
     display: flex;
     justify-content: space-between;
@@ -616,7 +620,7 @@ p {
     width: 156px;
     height: 32px;
     box-sizing: border-box;
-    margin-left: 32px;
+    justify-self: center;
     margin-top: 16px;
 }
 
@@ -653,7 +657,7 @@ p {
     margin: 32px 16px;
     max-width: 800px;
     width: 100%;
-    min-height: 934px;
+    min-height: fit-content;
     background-color: white;
     align-self: center;
     border-radius: 8px;
@@ -693,6 +697,7 @@ p {
     font-size: 16px;
     box-sizing: border-box;
     padding: 8px 16px;
+    resize: none;
 }
 
 .post-input.active, .post-input-area.active {
@@ -776,7 +781,7 @@ p {
 }
 
 .post-view-div, .comment-view-div {
-    max-width: 100%;
+    max-width: 85%;
     border-radius: 8px;
     background-color: white;
     margin-right: 16px;
@@ -797,6 +802,8 @@ p {
 .side-wrapper{
     position: sticky;
     top: 80px;
+    display: flex;
+    flex-direction: column;
 }
 
 .radial {
@@ -816,7 +823,7 @@ p {
     width: 200px;
     padding: 8px;
     border-radius: 16px;
-    margin-left: 24px;
+    justify-self: center;
     width: max-content;
 }
 
@@ -1303,13 +1310,13 @@ ul, .error-message {
 .new-post {
     display: flex;
     justify-content: space-around;
+    justify-self: center;
     align-items: center;
     background-color: gray;
     border-radius: 16px;
     width: 156px;
     height: 48px;
     box-sizing: border-box;
-    margin-left: 32px;
     margin-top: 40px;
     border: 1px transparent solid;
 }
@@ -1327,7 +1334,7 @@ ul, .error-message {
     margin-right: 30px;
 }
 
-.back-button {
+.back-button, .mobile-back-button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1338,30 +1345,32 @@ ul, .error-message {
     border-radius: 24px 8px 8px 24px;
 }
 
-.back-button > p {
+.back-button > p, .mobile-back-button > p {
     font-family: Roboto, "Helvetica Neue", Helvetica, sans-serif;
     font-weight: 400;
 }
 
-.back-button:hover {
+.back-button:hover, .mobile-back-button:hover {
     background-color: navy;
     cursor: pointer;
     box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.25);
 }
 
-.back-button:hover > p {
+.back-button:hover > p, .mobile-back-button:hover > p {
     color: white;
 }
 
+.mobile-back-button {
+    margin-top: 24px;
+    margin-left: 8px;
+    display: none;
+}
+
 .post-div-2 {
-    width: 1400px;
+    width: 85%;
 }
 
 @media screen and (max-width: 1440px) {
-    .post-div-2 {
-        max-width: 950px;
-    }
-
     .post-div, .post-search-div {
         grid-template-columns: 50% 50%;
     }
@@ -1409,10 +1418,6 @@ ul, .error-message {
         align-self: center;
     }
 
-    .post-view-div, .comment-view-div {
-        max-width: 700px;
-    }
-
     #post-view-img {
         height: 300px;
     }
@@ -1444,6 +1449,23 @@ ul, .error-message {
 }
 
 @media screen and (max-width: 800px) {
+
+    h1 {
+        font-size: 32px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+
+    .input-div {
+        width: 430px
+    }
+
     .head {
         font-size: 24px;
     }
@@ -1471,14 +1493,6 @@ ul, .error-message {
 
     #footer-bar > p {
         font-size: 12px;
-    }
-
-    .post-body-view-text {
-        font-size: 12px;
-    }
-
-    .post-view-div, .comment-view-div {
-        max-width: 480px;
     }
 
     .search-wrapper {
@@ -1510,18 +1524,65 @@ ul, .error-message {
 }
 
 @media screen and (max-width: 600px) {
-    .content-div {
-        padding: 48px 8px;
+
+    .back-button {
+        display: none;
+    }
+
+    .mobile-back-button {
+        display: flex;
+    }
+
+    .post-body-view-text {
+        font-size: 12px;
+    }
+
+    #logo {
         margin-left: 16px;
     }
 
-    .search-div {
-        margin-left: 8px;
-        width: 125px;
+    #logo-text {
+        font-size: 20px;
     }
 
-    .search-form{
-        width: 125px;
+    #nav-1 {
+        margin-right: 16px;
+    }
+
+    .post-content-div {
+        padding: 24px 16px;
+        flex-direction: column-reverse;
+    }
+
+    .post-div-2 {
+        width: 100%;
+    }
+
+    .post-view-div {
+        max-width: 100%;
+        margin-right: 0px;
+    }
+
+    .comment-view-div {
+        max-width: 100%;
+        margin-right: 0px;
+    }
+
+    .comment-form-input {
+        width: 210px;
+    }
+    
+    .side-wrapper {
+        align-items: center;
+        margin-bottom: 16px;
+    }
+
+    #modal-box {
+        width: 85%;
+    }
+
+    #modal-box-title {
+        font-size: 18px;
     }
 
     .radial-label {
@@ -1529,7 +1590,6 @@ ul, .error-message {
     }
 
     .make, .edit, .new-post {
-        margin-left: 16px;
         width: 120px;
     }
 
@@ -1537,16 +1597,37 @@ ul, .error-message {
         margin-right: 6px;
     }
 
-    .post-view-div, .comment-view-div {
-        width: 360px;
-    }
-
     #post-view-img {
         height: 200px;
     }
 
-    .title-div > h1 {
-        font-size: 32px;
+    h1 {
+        font-size: 24px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    h3 {
+        font-size: 16px;
+    }
+
+    #create-blog-div, .title-div {
+        margin-left: 32px;
+    }
+
+    .input-div {
+        width: 360px;
+    }
+
+    .blog-form-input {
+        width: 250px;
+        font-size: 12px;
+    }
+
+    .post-form-input {
+        font-size: 12px;
     }
 
     label {
@@ -1554,6 +1635,119 @@ ul, .error-message {
     }
 
     .post-input, .post-input-area {
+        font-size: 12px;
+    }
+
+    .post-input-area {
+        height: 200px;
+    }
+
+    .nav-text {
+        margin-left: 15px;
+        font-size: 14px;
+    }
+
+    .new-post, .make, .edit {
+        margin: 0px;
+    }
+
+    .buttons-div {
+        margin-top: 24px;
+        margin-bottom: 16px;
+        display: flex;
+        justify-content: space-around;
+        align-content: center;
+        width: 100%;
+    }
+
+    #create-post-div > .title-div {
+        margin-left: 48px;
+    }
+}
+
+@media screen and (max-width: 440px) {
+
+    #nav-1 {
+        margin-right: 8px;
+    }
+
+    .make, .edit, #post-button {
+        width: 90px;
+    }
+
+    .make > p, .edit > p, #post-button > p {
+        font-size: 12px;
+    }
+
+    #logo {
+        margin-left: 8px;
+    }
+
+    #logo > img {
+        width:36px;
+        height: 36px;
+    }
+
+    #logo-text {
+        font-size: 16px;
+    }
+
+    .nav-text {
+        font-size: 14px;
+        margin-left: 10px;
+    }
+
+    .blog-banner {
+        height: 90px;
+    }
+
+    .blog-banner-name {
+        font-size: 18px;
+    }
+
+    #blog-tag {
+        font-size: 12px;
+    }
+
+    #comment-title {
+        font-size: 18px;
+    }
+
+    .search-div {
+        transform: scale(0.75);
+    }
+
+    .new-post {
+        width: 90px;
+        height: 36px;
+        margin: 0px;
+    }
+
+    .new-post > #info-img1 {
+        width: 18px;
+        height: 18px;
+        margin: 0px 4px
+    }
+
+    .new-post > p {
+        font-size: 12px;
+    }
+
+    #create-blog-div, .title-div {
+        margin-left: 16px;
+    }
+
+    .input-div {
+        width: 330px;
+    }
+
+    .blog-button {
+        width: 90px;
+        font-size: 12px;
+    }
+
+    .blog-form-input {
+        width: 225px;
         font-size: 12px;
     }
 }

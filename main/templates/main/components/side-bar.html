@@ -22,38 +22,40 @@
         </div>
     </form>
 </div>
-{% if user.is_authenticated %}
-    {% if check == True or blog.author == request.user %}
-        <a class="nav-link" href="{% url 'create_post_view' %}">
-            <div class="new-post">
-                <img id="info-img1" src="\static\main\images\write.png" alt="ad-img1">
-                <p>New post</p>
-            </div>
-        </a>
-    {% endif %}
-    {% if request.user == post.author %}
-        <a class="nav-link" href="{% url 'edit_post_view' post.title %}">
-            <div class="make">
-                <p>Edit post</p>
-            </div>
-        </a>
-        <a class="nav-link" href="{% url 'delete_post_view' post.title %}">
-            <div class="edit">
-                <p>Delete post</p>
-            </div>
-        </a>
-    {% endif %}
-    {% if request.user == blog.author and myblog == True %}
-        <a class="nav-link" href="{% url 'edit_blog_view' blog.name %}">
-            <div class="make">
-                <p>Edit blog</p>
-            </div>
-        </a>
-        <a class="nav-link" href="{% url 'delete_blog_view' blog.name %}">
-            <div class="edit">
-                <p>Delete blog</p>
-            </div>
-        </a>
-    {% endif %}
+<div class="buttons-div">
+    {% if user.is_authenticated %}
+        {% if check == True or blog.author == request.user %}
+            <a class="nav-link" id="new-post-link" href="{% url 'create_post_view' %}">
+                <div class="new-post">
+                    <img id="info-img1" src="\static\main\images\write.png" alt="ad-img1">
+                    <p>New post</p>
+                </div>
+            </a>
+        {% endif %}
+        {% if request.user == post.author %}
+            <a class="nav-link" href="{% url 'edit_post_view' post.title %}">
+                <div class="make">
+                    <p>Edit post</p>
+                </div>
+            </a>
+            <a class="nav-link" href="{% url 'delete_post_view' post.title %}">
+                <div class="edit">
+                    <p>Delete post</p>
+                </div>
+            </a>
+        {% endif %}
+        {% if request.user == blog.author and myblog == True %}
+            <a class="nav-link" href="{% url 'edit_blog_view' blog.name %}">
+                <div class="make">
+                    <p>Edit blog</p>
+                </div>
+            </a>
+            <a class="nav-link" href="{% url 'delete_blog_view' blog.name %}">
+                <div class="edit">
+                    <p>Delete blog</p>
+                </div>
+            </a>
+        {% endif %}
+</div>
     
 {% endif %} 
