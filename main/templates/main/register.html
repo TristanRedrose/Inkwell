@@ -5,7 +5,7 @@
     <div id="login-text">
         <h3>Register</h3>
     </div>
-    <form action="#" onsubmit="event.preventDefault(), register_user()">
+    <form id="login-form-box" action="#" onsubmit="event.preventDefault(), register_user()">
         {% csrf_token %}
         <div>
             <p class="error-text" id="username-error"></p>

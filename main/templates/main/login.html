@@ -5,7 +5,7 @@
     <div id="login-text">
         <h3>Sign in</h3>
     </div>
-    <form action="#" onsubmit="event.preventDefault(), sign_in()">
+    <form id="login-form-box" action="#" onsubmit="event.preventDefault(), sign_in()">
         {% csrf_token %}
         <div>
             <p class="error-text" id="username-error">Please enter a valid username.</p>
