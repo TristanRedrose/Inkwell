@@ -1,10 +1,46 @@
+document.addEventListener('DOMContentLoaded', function() {
+
+    window.addEventListener("resize", function() {
+        if (window.matchMedia("(min-width: 600.10px)").matches) {
+            
+            const create = document.querySelector('.create-selector');
+            const buttonsDiv = document.querySelector('.buttons-div');
+    
+            if (buttonsDiv.className === "buttons-div active") {
+                buttonsDiv.className = "buttons-div";
+                create.className = "create-selector";
+            }
+    
+            const select = document.querySelector('.category-selector');
+            const categoryBox = document.querySelector('.category-select');
+    
+            if (categoryBox.className === "category-select active") {
+                categoryBox.className = "category-select";
+                select.className = "category-selector";
+            }
+    
+            const search = document.querySelector('.search-selector');
+            const searchDiv = document.querySelector('.search-div');
+    
+            if (searchDiv.className === "search-div active") {
+                searchDiv.className = "search-div";
+                search.className = "search-selector";
+            }
+        }
+    })
+})
+
 function category_filter(set,category) {
 
-    const activeButton = document.querySelector('.category-button.active');
-    activeButton.className = "category-button";
-    
+    const activeButton = document.querySelectorAll('.category-button.active');
+    activeButton.forEach(button => {
+        button.className = "category-button";
+    })
     const button = document.getElementById(`${category}`);
     button.className = "category-button active";
+
+    const button2 = document.getElementById(`${category}-mobile`);
+    button2.className = "category-button active";
 
     // Create container for filtered objects, hide base django pagination
     const container = document.querySelector('.post-div');
@@ -266,4 +302,129 @@ function paginate_results(page, maxPages) {
         // Append pagination to body
         container.append(pagination);
     }
+}
+
+function showHide_categories() {
+    
+    const create = document.querySelector('.create-selector');
+    const buttonsDiv = document.querySelector('.buttons-div');
+
+    if (buttonsDiv.className === "buttons-div active") {
+        buttonsDiv.className = "buttons-div";
+        create.className = "create-selector";
+    }
+
+    const search = document.querySelector('.search-selector');
+    const searchDiv = document.querySelector('.search-div');
+
+    if (searchDiv.className === "search-div active") {
+        searchDiv.className = "search-div";
+        search.className = "search-selector";
+    }
+
+    const select = document.querySelector('.category-selector');
+    const categoryBox = document.querySelector('.category-select');
+
+    if (categoryBox.className === "category-select active") {
+        categoryBox.className = "category-select";
+        select.className = "category-selector";
+    }
+
+    else {
+        categoryBox.className = "category-select active";
+        select.className = "category-selector active";
+    }
+
+    rotate_arrow(select)
+}
+
+function showHide_create() {
+
+    const select = document.querySelector('.category-selector');
+    const categoryBox = document.querySelector('.category-select');
+
+    if (categoryBox.className === "category-select active") {
+        categoryBox.className = "category-select";
+        select.className = "category-selector";
+    }
+
+    const search = document.querySelector('.search-selector');
+    const searchDiv = document.querySelector('.search-div');
+
+    if (searchDiv.className === "search-div active") {
+        searchDiv.className = "search-div";
+        search.className = "search-selector";
+    }
+
+    const create = document.querySelector('.create-selector');
+    const buttonsDiv = document.querySelector('.buttons-div');
+
+    if (buttonsDiv.className === "buttons-div active") {
+        buttonsDiv.className = "buttons-div";
+        create.className = "create-selector";
+    }
+
+    else {
+        buttonsDiv.className = "buttons-div active";
+        create.className = "create-selector active";
+    }
+
+    rotate_arrow(create)
+}
+
+function showHide_search() {
+
+    const select = document.querySelector('.category-selector');
+    const categoryBox = document.querySelector('.category-select');
+
+    if (categoryBox.className === "category-select active") {
+        categoryBox.className = "category-select";
+        select.className = "category-selector";
+    }
+
+    const create = document.querySelector('.create-selector');
+    const buttonsDiv = document.querySelector('.buttons-div');
+
+    if (buttonsDiv.className === "buttons-div active") {
+        buttonsDiv.className = "buttons-div";
+        create.className = "create-selector";
+    }
+
+    const search = document.querySelector('.search-selector');
+    const searchDiv = document.querySelector('.search-div');
+
+    if (searchDiv.className === "search-div active") {
+        searchDiv.className = "search-div";
+        search.className = "search-selector"
+    }
+
+    else {
+        searchDiv.className = "search-div active";
+        search.className = "search-selector active";
+    }
+
+    rotate_arrow(search)
+}
+
+function rotate_arrow(element) {
+    
+    const mainArrow = element.querySelector('.rotate-span')
+    const arrows = document.querySelectorAll('.rotate-span')
+    arrows.forEach(arrow => {
+
+        if (arrow != mainArrow) {
+            if (arrow.className === "rotate-span active") {
+            arrow.className = "rotate-span";
+            }
+        }
+    })
+
+    if (mainArrow.className === "rotate-span active") {
+        mainArrow.className = "rotate-span";
+    }
+
+    else {
+        mainArrow.className = "rotate-span active";
+    }
+    
 }

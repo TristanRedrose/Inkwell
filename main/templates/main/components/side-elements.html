@@ -1,0 +1,11 @@
+<div class="side-wrapper">
+    <div class="dropdown-select-div">
+        <h3 class="category-selector" onclick="showHide_categories()">Categories <span class="rotate-span">^</span></h3>
+        {% if user.is_authenticated %}
+            <h3 class="create-selector" onclick="showHide_create()">Create <span class="rotate-span">^</span></h3>
+        {% endif %}
+        <h3 class="search-selector" onclick="showHide_search()">Search <span class="rotate-span">^</span></h3>
+    </div>
+    {% include "main/components/side-bar.html" %}
+    {% include "main/components/category-select.html" %}
+</div>

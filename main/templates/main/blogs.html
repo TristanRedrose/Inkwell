@@ -56,9 +56,7 @@
                     {% endfor %}
                 </div>
                 <div class="side-div">
-                    <div class="side-wrapper">
-                        {% include "main/components/side-bar.html" %} 
-                    </div>
+                    {% include "main/components/side-elements.html" %}
                 </div>
             </div>
             {% if page_obj.paginator.num_pages != 1 %}
