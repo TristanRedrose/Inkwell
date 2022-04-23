@@ -67,13 +67,17 @@ p {
     display: flex;
 }
 
-.nav-text {
+.nav-text, .menu-text {
     font-size: 16px;
     margin: 0px;
     color: white;
     align-self: center;
     font-family: Roboto, "Helvetica Neue", Helvetica, sans-serif;
     margin-left: 24px;
+}
+
+.menu-text {
+    margin: 5px 10px;
 }
 
 .index-body {
@@ -172,12 +176,12 @@ p {
     margin-right: 120px;
 }
 
-.nav-link, .login-link {
+.nav-link, .login-link, .nav-link-2, .menu-link {
     align-self: center;
     text-decoration: none;
 }
 
-.nav-text:hover {
+.nav-text:hover, .menu-text:hover {
     color:#7490F0;
 }
 
@@ -953,6 +957,15 @@ p {
     display: none;
 }
 
+.menu-icon {
+    cursor: pointer;
+    margin-left: 10px;
+    height: 24px;
+    width: 24px;
+    align-self: center;
+    display: none;
+}
+
 #modal-box {
     z-index: 10;
     position: fixed;
@@ -1035,6 +1048,22 @@ ul, .error-message {
     padding: 0px;
     font-family: Roboto, "Helvetica Neue", Helvetica, sans-serif;
     color: red;
+}
+
+.menu {
+    display: none;
+    background-color: #666666;
+    border-radius: 8px;
+    border: 1px gray solid;
+    justify-content: center;
+    position: absolute;
+    top: 50px;
+    right: 5px;
+}
+
+.menu.active {
+    display: flex;
+    flex-direction: column;
 }
 
 .error-message {
@@ -1216,6 +1245,7 @@ ul, .error-message {
 .name-text {
     margin-bottom: 0px;
     color: #7490F0;
+    text-align: center;
 }
 
 .color-text {
@@ -1539,6 +1569,14 @@ ul, .error-message {
 
 @media screen and (max-width: 600px) {
 
+    .menu-icon {
+        display: block;
+    }
+
+    .nav-link-2 {
+        display: none;
+    }
+
     .search-div {
         display: none; 
     }
@@ -1737,6 +1775,10 @@ ul, .error-message {
 
     .nav-text {
         margin-left: 15px;
+        font-size: 14px;
+    }
+
+    .menu-text {
         font-size: 14px;
     }
 
