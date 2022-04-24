@@ -3,7 +3,7 @@
         <p>All</p>
     </div>
     {% for category in categories %}
-        {%if page == "blogs" %}
+        {% if page == "blogs" %}
             <div class="category-button" id="{{category.name}}" style="background-color: {{ category.color }};" onclick="category_filter('blogs','{{ category.name }}')">
                 <p>{{ category.name }}</p>
             </div>

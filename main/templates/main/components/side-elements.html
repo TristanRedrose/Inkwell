@@ -1,7 +1,9 @@
 <div class="side-wrapper">
     <div class="dropdown-select-div">
-        <h3 class="category-selector" onclick="showHide_categories()">Categories <span class="rotate-span">^</span></h3>
-        {% if check == True or blog.author == request.user %}
+        {% if page != "post" %}
+            <h3 class="category-selector" onclick="showHide_categories()">Categories <span class="rotate-span">^</span></h3>
+        {% endif %}
+        {% if user_has_blog == True or blog.author == request.user %}
             <h3 class="create-selector" onclick="showHide_create()">Create <span class="rotate-span">^</span></h3>
         {% endif %}
         <h3 class="search-selector" onclick="showHide_search()">Search <span class="rotate-span">^</span></h3>

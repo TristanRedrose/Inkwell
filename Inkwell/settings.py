@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['192.168.0.15','127.0.0.1']
 
+CSRF_TRUSTED_ORIGINS = ['http://*.duckdns.org']
+
 
 # Application definition
 

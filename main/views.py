@@ -140,11 +140,11 @@ def view_blogs(request):
     page = "blogs"
     categories = Category.objects.all()
     # See if user already has a blog created
-    check = True
+    user_has_blog = True
     try:
         Blog.objects.get(author=request.user)
     except:
-        check = False
+        user_has_blog = False
 
     blogs = Blog.objects.all()
     blogs = blogs.order_by("name").all()
@@ -156,7 +156,7 @@ def view_blogs(request):
 
     return render(request,"main/blogs.html", {
         "page_obj": page_obj,
-        "check": check,
+        "user_has_blog": user_has_blog,
         "categories": categories,
         "page": page
     })
@@ -191,11 +191,11 @@ def view_blog(request,blog_name):
     categories = Category.objects.all()
 
     # See if user already has a blog created
-    check = True
+    user_has_blog = True
     try:
         Blog.objects.get(author=request.user)
     except:
-        check = False
+        user_has_blog = False
 
     blog = Blog.objects.get(name=blog_name)
     posts = Posts.objects.filter(blog=blog)
@@ -214,7 +214,7 @@ def view_blog(request,blog_name):
         "postcount": postcount,
         "blog": blog,
         "page_obj": page_obj,
-        "check": check,
+        "user_has_blog": user_has_blog,
         "categories": categories,
         "myblog": myblog
     })
@@ -223,11 +223,11 @@ def view_posts(request):
 
     categories = Category.objects.all()
     # See if user already has a blog created
-    check = True
+    user_has_blog = True
     try:
         Blog.objects.get(author=request.user)
     except:
-        check = False
+        user_has_blog = False
 
     posts = Posts.objects.all()
     posts = posts.order_by("-created").all()
@@ -240,17 +240,17 @@ def view_posts(request):
     return render(request,"main/posts.html", {
         "categories": categories,
         "page_obj": page_obj,
-        "check": check
+        "user_has_blog": user_has_blog
     })
 
 def view_post(request,blog_name,post_title):
 
     # See if user already has a blog created
-    check = True
+    user_has_blog = True
     try:
         Blog.objects.get(author=request.user)
     except:
-        check = False
+        user_has_blog = False
 
     blog = Blog.objects.get(name=blog_name)
     posts = Posts.objects.filter(blog=blog)
@@ -261,7 +261,8 @@ def view_post(request,blog_name,post_title):
         "blog":blog,
         "post": post,
         "comments": comments,
-        "check": check
+        "user_has_blog": user_has_blog,
+        "page": "post"
     })
 
 def view_search(request):
@@ -307,18 +308,18 @@ def view_search(request):
     page_obj = paginator.get_page(page_number)
 
     # See if user already has a blog created
-    check = True
+    user_has_blog = True
     try:
         Blog.objects.get(author=request.user)
     except:
-        check = False
+        user_has_blog = False
 
     # Render page with results
     return render(request,"main/search.html", {
         "search":q,
         "filtr": filtr,
         "page_obj": page_obj,
-        "check": check
+        "user_has_blog": user_has_blog
     })
 
 #API-s

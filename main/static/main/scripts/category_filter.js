@@ -102,7 +102,7 @@ function category_filter(set,category) {
                                     <p id="blog-time"><span>${object.author}</span></p>
                                 </div>
                                 <div class="blog-info-box">
-                                    <img id="info-img1" src="/static/main/images/calendar.png" alt="ad-img1">
+                                    <img id="info-img1" src="/static/main/images/Calendar.png" alt="ad-img1">
                                     <p id="blog-time">${object.created}</p>
                                 </div>
                             </div>
@@ -145,7 +145,7 @@ function category_filter(set,category) {
                                     <p id="blog-time"><span>${object.author}</span></p>
                                 </div>
                                 <div class="blog-info-box">
-                                    <img id="info-img1" src="/static/main/images/calendar.png" alt="ad-img1">
+                                    <img id="info-img1" src="/static/main/images/Calendar.png" alt="ad-img1">
                                     <p id="blog-time">${object.created}</p>
                                 </div>
                             </div>
@@ -183,7 +183,7 @@ function category_filter(set,category) {
                         <div class="info-wrapper">
                             <div class="blog-info-2">
                                 <div class="blog-info-box">
-                                    <img id="info-img1" src="/static/main/images/calendar.png" alt="ad-img1">
+                                    <img id="info-img1" src="/static/main/images/Calendar.png" alt="ad-img1">
                                     <p id="blog-time">${object.created}</p>
                                 </div>
                             </div>
@@ -302,129 +302,4 @@ function paginate_results(page, maxPages) {
         // Append pagination to body
         container.append(pagination);
     }
-}
-
-function showHide_categories() {
-    
-    const create = document.querySelector('.create-selector');
-    const buttonsDiv = document.querySelector('.buttons-div');
-
-    if (buttonsDiv.className === "buttons-div active") {
-        buttonsDiv.className = "buttons-div";
-        create.className = "create-selector";
-    }
-
-    const search = document.querySelector('.search-selector');
-    const searchDiv = document.querySelector('.search-div');
-
-    if (searchDiv.className === "search-div active") {
-        searchDiv.className = "search-div";
-        search.className = "search-selector";
-    }
-
-    const select = document.querySelector('.category-selector');
-    const categoryBox = document.querySelector('.category-select');
-
-    if (categoryBox.className === "category-select active") {
-        categoryBox.className = "category-select";
-        select.className = "category-selector";
-    }
-
-    else {
-        categoryBox.className = "category-select active";
-        select.className = "category-selector active";
-    }
-
-    rotate_arrow(select)
-}
-
-function showHide_create() {
-
-    const select = document.querySelector('.category-selector');
-    const categoryBox = document.querySelector('.category-select');
-
-    if (categoryBox.className === "category-select active") {
-        categoryBox.className = "category-select";
-        select.className = "category-selector";
-    }
-
-    const search = document.querySelector('.search-selector');
-    const searchDiv = document.querySelector('.search-div');
-
-    if (searchDiv.className === "search-div active") {
-        searchDiv.className = "search-div";
-        search.className = "search-selector";
-    }
-
-    const create = document.querySelector('.create-selector');
-    const buttonsDiv = document.querySelector('.buttons-div');
-
-    if (buttonsDiv.className === "buttons-div active") {
-        buttonsDiv.className = "buttons-div";
-        create.className = "create-selector";
-    }
-
-    else {
-        buttonsDiv.className = "buttons-div active";
-        create.className = "create-selector active";
-    }
-
-    rotate_arrow(create)
-}
-
-function showHide_search() {
-
-    const select = document.querySelector('.category-selector');
-    const categoryBox = document.querySelector('.category-select');
-
-    if (categoryBox.className === "category-select active") {
-        categoryBox.className = "category-select";
-        select.className = "category-selector";
-    }
-
-    const create = document.querySelector('.create-selector');
-    const buttonsDiv = document.querySelector('.buttons-div');
-
-    if (buttonsDiv.className === "buttons-div active") {
-        buttonsDiv.className = "buttons-div";
-        create.className = "create-selector";
-    }
-
-    const search = document.querySelector('.search-selector');
-    const searchDiv = document.querySelector('.search-div');
-
-    if (searchDiv.className === "search-div active") {
-        searchDiv.className = "search-div";
-        search.className = "search-selector"
-    }
-
-    else {
-        searchDiv.className = "search-div active";
-        search.className = "search-selector active";
-    }
-
-    rotate_arrow(search)
-}
-
-function rotate_arrow(element) {
-    
-    const mainArrow = element.querySelector('.rotate-span')
-    const arrows = document.querySelectorAll('.rotate-span')
-    arrows.forEach(arrow => {
-
-        if (arrow != mainArrow) {
-            if (arrow.className === "rotate-span active") {
-            arrow.className = "rotate-span";
-            }
-        }
-    })
-
-    if (mainArrow.className === "rotate-span active") {
-        mainArrow.className = "rotate-span";
-    }
-
-    else {
-        mainArrow.className = "rotate-span active";
-    }
-    
 }

@@ -23,7 +23,7 @@
 </div>
 <div class="buttons-div">
     {% if user.is_authenticated %}
-        {% if check == True or blog.author == request.user %}
+        {% if user_has_blog == True or blog.author == request.user %}
             <a class="nav-link" id="new-post-link" href="{% url 'create_post_view' %}">
                 <div class="new-post">
                     <img id="info-img1" src="\static\main\images\write.png" alt="ad-img1">

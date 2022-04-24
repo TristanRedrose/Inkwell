@@ -197,12 +197,12 @@ p {
 }
 
 #login-box {
-    min-height: 524px;
+    max-height: 524px;
     height: fit-content;
     width: 460px;
     background-color: white;
     border-radius: 16px;
-    margin-top: 128px;
+    align-self: center;
     display: flex;
     flex-direction: column;
     box-shadow: 4px 8px 15px rgba(0, 0, 0, 0.25);
@@ -223,7 +223,7 @@ p {
 }
 
 #box-middle {
-    min-height: 396px;
+    max-height: 396px;
     width: 460px;
     display: flex;
     flex-direction: column;
@@ -411,7 +411,7 @@ p {
 }
 
 .blog-banner {
-    height: 120px;
+    max-height: 160px;
     width: 100%;
     background: linear-gradient(89.93deg, rgba(255, 121, 121, 1.0) 19.93%, rgba(116, 144, 240, 1.0) 70.71%);
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.25);
@@ -447,7 +447,8 @@ p {
 
 #blog-tag {
     margin: 0px;
-    align-self: center;
+    margin-bottom: 32px;
+    text-align: center;
     color: white;
     z-index: 1;
 }
@@ -475,8 +476,8 @@ p {
 }
 
 #blog-info {
-    position: relative;
-    top: 25px;
+    position: absolute;
+    bottom: -10px;
 }
 
 #info-img1 {
@@ -560,7 +561,9 @@ p {
 }
 
 .ctg-wrapper.active {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
 }
 
 #post-box-title-div, .blog-box-title-div {
@@ -681,7 +684,7 @@ p {
 #post-wrapper {
     display: flex;
     flex-direction: column;
-    padding: 0px 16px; 
+    padding: 0px 12px;
 }
 
 #post-form {
@@ -1471,6 +1474,7 @@ ul, .error-message {
 
     .blog-banner-name {
         font-size: 34px;
+        text-align: center;
     }
 
     .profile-image {
@@ -1527,7 +1531,7 @@ ul, .error-message {
     }
 
     .search-wrapper {
-        width: 85%;
+        justify-self: center;
     }
 
     .comment-form-input {
@@ -1706,6 +1710,7 @@ ul, .error-message {
     .side-wrapper {
         align-items: center;
         margin-bottom: 16px;
+        margin-left: 20px;
     }
 
     #modal-box {
@@ -1836,6 +1841,16 @@ ul, .error-message {
 
     #login-box {
         width: 85%;
+        max-height: 436px;
+        align-self: center;
+    }
+
+    #box-top {
+        height:48px;
+    }
+
+    #box-bottom {
+        height:48px;
     }
 
     #box-middle {
@@ -1848,10 +1863,14 @@ ul, .error-message {
 
     .login-button {
         width: 100%;
+        margin-top: 12px;
+        height: 36px;
     }
 
     .login-form {
         width: 100%;
+        height: 36px;
+        margin-top: 12px;
     }
 
     .profile-box {
@@ -1887,7 +1906,6 @@ ul, .error-message {
         grid-template-columns: 33% 33% 33%;
         grid-row-gap: 16px;
         justify-items: center;
-        margin-left: 24px;
         padding: 8px 2px 8px 8px;
         border-radius: 8px;
         border: 1px gray solid;
@@ -1900,6 +1918,10 @@ ul, .error-message {
 }
 
 @media screen and (max-width: 440px) {
+
+    #blog-tag {
+        margin-bottom: 24px;
+    }
 
     .category-select {
         width: 75%;
@@ -1952,7 +1974,7 @@ ul, .error-message {
     }
 
     .blog-banner {
-        height: 100px;
+        max-height: 120px;
     }
 
     .blog-banner-name {
@@ -1961,6 +1983,7 @@ ul, .error-message {
 
     #blog-tag {
         font-size: 12px;
+        text-align: center;
     }
 
     #comment-title {
