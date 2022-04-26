@@ -147,7 +147,7 @@ def view_blogs(request):
         user_has_blog = False
 
     blogs = Blog.objects.all()
-    blogs = blogs.order_by("name").all()
+    blogs = blogs.order_by("-created").all()
 
     #Show only 9 objects per page
     paginator = Paginator(blogs, 12)
@@ -303,7 +303,7 @@ def view_search(request):
                 Q(body__icontains=word)
                 )
             
-        posts = posts.order_by("-created").all()
+        posts = posts.order_by("title").all()
         paginator = Paginator(posts, 12)
     
     page_number = request.GET.get('page')
@@ -653,7 +653,7 @@ def category_filter(request,set,category):
             objectset = Blog.objects.filter(
                 category=Category.objects.get(name=category)
                 )
-        objectset = objectset.order_by("name").all()
+        objectset = objectset.order_by("-created").all()
     
     else:
         if category == "all":

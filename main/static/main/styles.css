@@ -512,6 +512,7 @@ p {
 }
 
 .post-box, .blog-box {
+    position: relative;
     width: 360px;
     height: 400px;
     border-radius: 8px;
@@ -523,7 +524,6 @@ p {
 }
 
 #post-box-image {
-    position: relative;
     height: 140px;
     border-radius: 8px 8px 0px 0px;
     background-color: #4F4F4F;
@@ -537,7 +537,7 @@ p {
 }
 
 #post-box-content {
-    height: 260px;
+    height: 220px;
     text-align: center;
     overflow: hidden;
     border-top: 3px #7490F0 solid;
@@ -757,10 +757,10 @@ p {
 }
 
 .blog-info-2 {
+    position: absolute;
     min-width: 30%;
     max-width: 75%;
-    position: relative;
-    bottom: 28px;
+    top: 120px;
     display: flex;
     align-content:space-between;
 }
@@ -777,8 +777,8 @@ p {
     display: flex;
     align-self: center;
     justify-content: center;
-    position: relative;
-    bottom: 194px;
+    position: absolute;
+    top: -15px;
 }
 
 .space-div {
