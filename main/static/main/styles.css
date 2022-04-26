@@ -523,6 +523,7 @@ p {
 }
 
 #post-box-image {
+    position: relative;
     height: 140px;
     border-radius: 8px 8px 0px 0px;
     background-color: #4F4F4F;
@@ -1918,6 +1919,10 @@ ul, .error-message {
 }
 
 @media screen and (max-width: 440px) {
+
+    .category-button > p {
+        font-size: 9px;
+    }
 
     #blog-tag {
         margin-bottom: 24px;

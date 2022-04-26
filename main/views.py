@@ -267,6 +267,8 @@ def view_post(request,blog_name,post_title):
 
 def view_search(request):
 
+    categories = Category.objects.all()
+
     q = request.GET.get("q") if request.GET.get != None else ""
     filtr = request.GET.get("filter")
 
@@ -319,7 +321,8 @@ def view_search(request):
         "search":q,
         "filtr": filtr,
         "page_obj": page_obj,
-        "user_has_blog": user_has_blog
+        "user_has_blog": user_has_blog,
+        "categories": categories,
     })
 
 #API-s
@@ -635,21 +638,32 @@ def edit_comment(request, comment_id):
 def category_filter(request,set,category):
 
     if set == "posts":
-        objectset = Posts.objects.filter(
-            category=Category.objects.get(name=category)
-            )
+        if category == "all":
+            objectset = Posts.objects.all()
+        else:
+            objectset = Posts.objects.filter(
+                category=Category.objects.get(name=category)
+                )
         objectset = objectset.order_by("-created").all()
     
     elif set == "blogs":
-        objectset = Blog.objects.filter(
-            category=Category.objects.get(name=category)
-            )
+        if category == "all":
+            objectset = Blog.objects.all()
+        else: 
+            objectset = Blog.objects.filter(
+                category=Category.objects.get(name=category)
+                )
         objectset = objectset.order_by("name").all()
     
     else:
-        objectset = Posts.objects.filter(
-            author=User.objects.get(username=set), category=Category.objects.get(name=category)
+        if category == "all":
+            objectset = Posts.objects.filter(
+            author=User.objects.get(username=set)
             )
+        else:
+            objectset = Posts.objects.filter(
+                author=User.objects.get(username=set), category=Category.objects.get(name=category)
+                )
         objectset = objectset.order_by("-created").all()
 
     return JsonResponse([content.serialize() for content in objectset], safe=False)

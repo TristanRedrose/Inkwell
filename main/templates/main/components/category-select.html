@@ -1,7 +1,17 @@
 <div class="category-select">
-    <div class="category-button active" style="background-color: snow;" onclick="location.reload()">
-        <p>All</p>
-    </div>
+    {% if page == "blogs" %}
+        <div class="category-button active" id="all-mobile" style="background-color: snow;" onclick="category_filter('blogs','all')">
+            <p>All</p>
+        </div>
+    {% elif blog != none %}
+        <div class="category-button active" id="all-mobile" style="background-color: snow;" onclick="category_filter('{{blog.author}}','all')">
+            <p>All</p>
+        </div>
+    {% else %}
+        <div class="category-button active" id="all-mobile" style="background-color: snow;" onclick="category_filter('posts','all')">
+            <p>All</p>
+        </div>
+    {% endif %}
     {% for category in categories %}
         {%if page == "blogs" %}
             <div class="category-button" id="{{category.name}}-mobile" style="background-color: {{ category.color }};" onclick="category_filter('blogs','{{ category.name }}')">
