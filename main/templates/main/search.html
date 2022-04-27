@@ -7,50 +7,51 @@
             <div class="title-div">
                 <h2>Results for {{ search }} in {{ filtr }}</h2>
             </div>
+            {% include "main/components/category-bar.html" %}
             <div class="content-div">
                 <div class="search-wrapper">
                 {% if filtr == "Blogs" %}
                     <div class="post-search-div">
-                        {% if page_obj|length == 0 %}
+                        {% if results|length == 0 %}
                             <h3>No results found</h3>
                             <img id="ad-img1" src="\static\main\images\undraw_not_found_-60-pq.svg" alt="not found">
                         {% endif %}
-                        {% for blog in page_obj %}
-                            <div class="wrapper">
+                        {% for result in results %}
+                            <div class="wrapper" id="select-ctg">
                                 <div class="blog-box">
                                     <div id="post-box-image">
-                                        {% if blog.image == none or blog.image == "" %}
+                                        {% if result.image == none or result.image == "" %}
                                             <img id="post-img" src="\static\main\images\no-image.jpg" alt="no-img">
                                         {% else %}
-                                            <img id="post-img" src={{ blog.image }} alt="post-img">
+                                            <img id="post-img" src={{ result.image }} alt="post-img">
                                         {% endif %}
                                         <div class="info-wrapper">
                                             <div class="blog-info-2">
                                                 <div class="blog-info-box">
                                                     <img id="info-img1" src="..\static\main\images\user.png" alt="ad-img1">
-                                                    <p id="blog-time"><span>{{ blog.author}}</span></p>
+                                                    <p id="blog-time"><span>{{ result.author }}</span></p>
                                                 </div>
                                                 <div class="blog-info-box">
                                                     <img id="info-img1" src="..\static\main\images\Calendar.png" alt="ad-img1">
-                                                    <p id="blog-time">{{ blog.created|date:"Y-m-d" }}</p>
+                                                    <p id="blog-time">{{ result.created|date:"Y-m-d" }}</p>
                                                 </div>
                                             </div>
-                                            <div class="blog-info-3" style="background-color:{{ blog.category.color }}">
+                                            <div class="blog-info-3" style="background-color:{{ result.category.color }}">
                                                 <img id="info-img1" src="..\static\main\images\categories.png" alt="ad-img1">
-                                                <p id="blog-time">{{ blog.category.name }}</p>
+                                                <p class="blog-category">{{ result.category.name }}</p>
                                             </div>
                                         </div>
                                     </div>
                                     <div id="post-box-content">
                                         <div class="blog-box-title-div">
-                                            <h3 id="box-title-text">{{ blog.name }}</h3>
+                                            <h3 id="box-title-text">{{ result.name }}</h3>
                                         </div>
                                         <div class="blog-box-desc-div">
-                                            <p id="box-body-text">{{ blog.description }}</p>
+                                            <p id="box-body-text">{{ result.description }}</p>
                                         </div>
                                     </div>
                                     <div class="blog-box-bottom">
-                                        <a class="nav-link" href="{% url 'view_blog' blog.name %}">
+                                        <a class="nav-link" href="{% url 'view_blog' result.name %}">
                                             <div id="post-box-button">
                                                 <p>Visit blog</p>
                                             </div>
@@ -63,14 +64,14 @@
                 {% endif %}
                 {% if filtr == "Posts" %}
                     <div class="post-search-div">
-                        {% if page_obj|length == 0 %}
+                        {% if results|length == 0 %}
                         <div class="ctg-wrapper active">
                             <h3>No results found</h3>
                             <img id="ad-img1" src="\static\main\images\undraw_not_found_-60-pq.svg" alt="not found">
                         </div>
                         {% endif %}
-                        {% for post in page_obj %}
-                            <div class="wrapper">
+                        {% for post in results %}
+                            <div class="wrapper" id="select-ctg">
                                 {% include "main/components/post-box.html" %}
                             </div>
                         {% endfor %}
@@ -80,30 +81,11 @@
                 <div class="side-div">
                     {% include "main/components/side-elements.html" %}
                 </div>
-            </div>
-            {% if page_obj.paginator.num_pages != 1 %}
-                <div class="pagination">
-                    <span class="step-links">
-                        {% if page_obj.has_previous %}
-                            <a class="current" href="?page=1{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}{% if request.GET.filter %}&filter={{ request.GET.filter }}{% endif %}">&laquo; first</a>
-                            <a class="current" href="?page={{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}{% if request.GET.filter %}&filter={{ request.GET.filter }}{% endif %}">previous</a>
-                        {% endif %}
-                
-                        <span class="current">
-                            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-                        </span>
-                
-                        {% if page_obj.has_next %}
-                            <a class="current" href="?page={{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}{% if request.GET.filter %}&filter={{ request.GET.filter }}{% endif %}">next</a>
-                            <a class="current" href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}{% if request.GET.filter %}&filter={{ request.GET.filter }}{% endif %}">last &raquo;</a>
-                        {% endif %}
-                    </span>
-                </div>
-            {% endif %}       
+            </div> 
         </div>
     </div>
 {% endblock %}
 
 {% block script %}
-    <script src="{% static 'main/scripts/category_filter.js' %}"></script>
+    <script src="{% static 'main/scripts/search_filter.js' %}"></script>
 {% endblock %}

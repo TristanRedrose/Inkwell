@@ -453,7 +453,7 @@ p {
     z-index: 1;
 }
 
-#blog-time {
+#blog-time, .blog-category {
     margin: 0px 8px 0px 0px;
     color: #4F4F4F;
     font-family: Roboto, "Helvetica Neue", Helvetica, sans-serif;
@@ -521,6 +521,10 @@ p {
     display: flex;
     flex-direction: column;
     align-content: space-around;
+}
+
+.wrapper.hidden {
+    display: none;
 }
 
 #post-box-image {

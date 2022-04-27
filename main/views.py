@@ -292,7 +292,7 @@ def view_search(request):
                 )
 
         blogs = blogs.order_by("name").all()
-        paginator = Paginator(blogs, 12)
+        results = blogs
 
     elif filtr == "Posts":
         posts = Posts.objects.all()
@@ -304,10 +304,7 @@ def view_search(request):
                 )
             
         posts = posts.order_by("title").all()
-        paginator = Paginator(posts, 12)
-    
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
+        results = posts
 
     # See if user already has a blog created
     user_has_blog = True
@@ -320,9 +317,10 @@ def view_search(request):
     return render(request,"main/search.html", {
         "search":q,
         "filtr": filtr,
-        "page_obj": page_obj,
+        "results": results,
         "user_has_blog": user_has_blog,
         "categories": categories,
+        "page": "search"
     })
 
 #API-s

@@ -3,6 +3,10 @@
         <div class="category-button active" id="all" style="background-color: snow;" onclick="category_filter('blogs','all')">
             <p>All</p>
         </div>
+    {% elif page == "search" %}
+        <div class="category-button active" id="all" style="background-color: snow;" onclick="search_filter('all')">
+            <p>All</p>
+        </div>
     {% elif blog != none %}
         <div class="category-button active" id="all" style="background-color: snow;" onclick="category_filter('{{blog.author}}','all')">
             <p>All</p>
@@ -15,6 +19,10 @@
     {% for category in categories %}
         {% if page == "blogs" %}
             <div class="category-button" id="{{category.name}}" style="background-color: {{ category.color }};" onclick="category_filter('blogs','{{ category.name }}')">
+                <p>{{ category.name }}</p>
+            </div>
+        {% elif page == "search" %}
+            <div class="category-button" id="{{category.name}}" style="background-color: {{ category.color }};" onclick="search_filter('{{ category.name }}')">
                 <p>{{ category.name }}</p>
             </div>
         {% elif blog != none %}

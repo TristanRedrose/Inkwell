@@ -1,35 +1,3 @@
-document.addEventListener('DOMContentLoaded', function() {
-
-    window.addEventListener("resize", function() {
-        if (window.matchMedia("(min-width: 600.10px)").matches) {
-            
-            const create = document.querySelector('.create-selector');
-            const buttonsDiv = document.querySelector('.buttons-div');
-    
-            if (buttonsDiv.className === "buttons-div active") {
-                buttonsDiv.className = "buttons-div";
-                create.className = "create-selector";
-            }
-    
-            const select = document.querySelector('.category-selector');
-            const categoryBox = document.querySelector('.category-select');
-    
-            if (categoryBox.className === "category-select active") {
-                categoryBox.className = "category-select";
-                select.className = "category-selector";
-            }
-    
-            const search = document.querySelector('.search-selector');
-            const searchDiv = document.querySelector('.search-div');
-    
-            if (searchDiv.className === "search-div active") {
-                searchDiv.className = "search-div";
-                search.className = "search-selector";
-            }
-        }
-    })
-})
-
 function category_filter(set,category) {
 
     const activeButton = document.querySelectorAll('.category-button.active');
@@ -74,7 +42,6 @@ function category_filter(set,category) {
             <h3>No results found</h3>
             <img id="ad-img1" src="/static/main/images/undraw_not_found_-60-pq.svg" alt="not found">
             `;
-            console.log("working")
             container.append(mainDiv);
         }
 
