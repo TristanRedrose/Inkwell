@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-
     const menuIcon = document.querySelector('.menu-icon');
     if (menuIcon) {
     const menu = document.querySelector('.menu');
@@ -180,5 +179,4 @@ function rotate_arrow(element) {
     else {
         mainArrow.className = "rotate-span active";
     }
-    
 }

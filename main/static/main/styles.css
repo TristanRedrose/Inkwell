@@ -181,6 +181,10 @@ p {
     text-decoration: none;
 }
 
+.menu-link {
+    display: none;
+}
+
 .nav-text:hover, .menu-text:hover {
     color:#7490F0;
 }
@@ -1120,6 +1124,10 @@ ul, .error-message {
     opacity: 100%;
 }
 
+.menu.active .menu-link {
+    display: block;
+}
+
 .error-message {
     display: block;
 }
@@ -1891,7 +1899,7 @@ ul, .error-message {
     }
 
     #login-box {
-        width: 360px;
+        width: 352px;
         max-height: 436px;
         align-self: center;
     }
