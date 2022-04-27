@@ -12,10 +12,6 @@
                 <div class="search-wrapper">
                 {% if filtr == "Blogs" %}
                     <div class="post-search-div">
-                        {% if results|length == 0 %}
-                            <h3>No results found</h3>
-                            <img id="ad-img1" src="\static\main\images\undraw_not_found_-60-pq.svg" alt="not found">
-                        {% endif %}
                         {% for result in results %}
                             <div class="wrapper" id="select-ctg">
                                 <div class="blog-box">
@@ -64,12 +60,6 @@
                 {% endif %}
                 {% if filtr == "Posts" %}
                     <div class="post-search-div">
-                        {% if results|length == 0 %}
-                        <div class="ctg-wrapper active">
-                            <h3>No results found</h3>
-                            <img id="ad-img1" src="\static\main\images\undraw_not_found_-60-pq.svg" alt="not found">
-                        </div>
-                        {% endif %}
                         {% for post in results %}
                             <div class="wrapper" id="select-ctg">
                                 {% include "main/components/post-box.html" %}

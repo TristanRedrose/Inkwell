@@ -1,7 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const results = document.querySelectorAll('#select-ctg')
-    let maxPages = Math.ceil(results.length / 12)
-    paginate_results(0,maxPages)
+    search_filter("all");
 })
 
 function search_filter(category) {
@@ -47,6 +45,11 @@ function search_filter(category) {
     console.log(maxPages)
 
     if (maxPages == 0) {
+        
+        if (document.querySelector('.ctg-wrapper.active')) {
+            document.querySelector('.ctg-wrapper.active').remove();
+        }
+
         const container = document.querySelector('.post-search-div')
         const mainDiv = document.createElement('div');
         mainDiv.setAttribute('class', 'ctg-wrapper active');
@@ -56,10 +59,6 @@ function search_filter(category) {
         <img id="ad-img1" src="/static/main/images/undraw_not_found_-60-pq.svg" alt="not found">
         `;
         container.append(mainDiv);
-    }
-
-    if (document.querySelector('.category-page')) {
-        document.querySelector('.category-page').remove();
     }
 
     paginate_results(0, maxPages)
