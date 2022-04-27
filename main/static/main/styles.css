@@ -966,12 +966,56 @@ p {
 }
 
 .menu-icon {
+    position: relative;
+    border: 1px white solid;
+    border-radius: 4px;
+    box-sizing: border-box;
     cursor: pointer;
     margin-left: 10px;
     height: 24px;
     width: 24px;
     align-self: center;
+    justify-content: center;
+    align-items: center;
+    transition: all .5s ease-in-out;
     display: none;
+}
+.menu-burger {
+    width: 14px;
+    height: 2px;
+    background-color: white;
+    border-radius: 4px;
+    transition: all .5s ease-in-out;
+}
+
+.menu-burger::before, .menu-burger:after {
+    content: '';
+    position: absolute;
+    width: 14px;
+    height: 2px;
+    background-color: white;
+    border-radius: 4px;
+    transition: all .5s ease-in-out;
+}
+
+.menu-burger::before {
+    transform: translateY(-5px);
+}
+
+.menu-burger::after {
+    transform: translateY(5px);
+}
+
+.menu-icon.active .menu-burger {
+    background:transparent;
+}
+
+.menu-icon.active .menu-burger::before {
+    transform: rotate(-45deg);
+}
+
+.menu-icon.active .menu-burger::after {
+    transform: rotate(45deg);
 }
 
 #modal-box {
@@ -1059,7 +1103,8 @@ ul, .error-message {
 }
 
 .menu {
-    display: none;
+    display: flex;
+    flex-direction: column;
     background-color: #666666;
     border-radius: 8px;
     border: 1px gray solid;
@@ -1067,11 +1112,12 @@ ul, .error-message {
     position: absolute;
     top: 50px;
     right: 5px;
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
 }
 
 .menu.active {
-    display: flex;
-    flex-direction: column;
+    opacity: 100%;
 }
 
 .error-message {
@@ -1579,7 +1625,7 @@ ul, .error-message {
 @media screen and (max-width: 600px) {
 
     .menu-icon {
-        display: block;
+        display: flex;
     }
 
     .nav-link-2 {
@@ -1845,7 +1891,7 @@ ul, .error-message {
     }
 
     #login-box {
-        width: 85%;
+        width: 360px;
         max-height: 436px;
         align-self: center;
     }

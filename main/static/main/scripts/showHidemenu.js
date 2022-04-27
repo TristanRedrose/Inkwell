@@ -9,10 +9,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (menu.className === "menu") {
                 menu.className = "menu active";
+                menuIcon.className = "menu-icon active";
             }
 
             else {
                 menu.className = "menu";
+                menuIcon.className = "menu-icon";
             }
         })
 

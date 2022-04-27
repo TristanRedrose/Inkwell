@@ -1,6 +1,6 @@
 <div class="side-wrapper">
     <div class="dropdown-select-div">
-        {% if page != "post" %}
+        {% if page != "post" and postcount != 0 %}
             <h3 class="category-selector" onclick="showHide_categories()">Categories <span class="rotate-span">^</span></h3>
         {% endif %}
         {% if user_has_blog == True or blog.author == request.user %}

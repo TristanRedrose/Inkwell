@@ -1,11 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     // Clear error from comment bar when user starts to enter input
+    if (document.querySelector('#comment')) {
     const FormBar = document.querySelector('#comment');
-    FormBar.onkeypress = function(e) {
-        if (FormBar.value != "" && e.keyCode != 32) {
-            e.target.style.border = "1px #D3D3D3 solid"
-            e.target.setAttribute('placeholder', 'Comment');  
+        FormBar.onkeypress = function(e) {
+            if (FormBar.value != "" && e.keyCode != 32) {
+                e.target.style.border = "1px #D3D3D3 solid"
+                e.target.setAttribute('placeholder', 'Comment');  
+            }
         }
     }
 })
