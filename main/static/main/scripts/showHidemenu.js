@@ -25,35 +25,37 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         })
     }
-
-    window.addEventListener("resize", function() {
-        if (window.matchMedia("(min-width: 600.10px)").matches) {
-            
-            const create = document.querySelector('.create-selector');
-            const buttonsDiv = document.querySelector('.buttons-div');
     
-            if (buttonsDiv.className === "buttons-div active") {
-                buttonsDiv.className = "buttons-div";
-                create.className = "create-selector";
+    if (document.querySelector('.dropdown-select-div')) {
+        window.addEventListener("resize", function() {
+            if (window.matchMedia("(min-width: 600.10px)").matches) {
+                
+                const create = document.querySelector('.create-selector');
+                const buttonsDiv = document.querySelector('.buttons-div');
+        
+                if (buttonsDiv.className === "buttons-div active") {
+                    buttonsDiv.className = "buttons-div";
+                    create.className = "create-selector";
+                }
+        
+                const select = document.querySelector('.category-selector');
+                const categoryBox = document.querySelector('.category-select');
+        
+                if (categoryBox.className === "category-select active") {
+                    categoryBox.className = "category-select";
+                    select.className = "category-selector";
+                }
+        
+                const search = document.querySelector('.search-selector');
+                const searchDiv = document.querySelector('.search-div');
+        
+                if (searchDiv.className === "search-div active") {
+                    searchDiv.className = "search-div";
+                    search.className = "search-selector";
+                }
             }
-    
-            const select = document.querySelector('.category-selector');
-            const categoryBox = document.querySelector('.category-select');
-    
-            if (categoryBox.className === "category-select active") {
-                categoryBox.className = "category-select";
-                select.className = "category-selector";
-            }
-    
-            const search = document.querySelector('.search-selector');
-            const searchDiv = document.querySelector('.search-div');
-    
-            if (searchDiv.className === "search-div active") {
-                searchDiv.className = "search-div";
-                search.className = "search-selector";
-            }
-        }
-    })
+        })
+    }
 })
 
 function showHide_categories() {
