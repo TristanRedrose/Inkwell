@@ -269,4 +269,6 @@ function paginate_results(page, maxPages) {
         // Append pagination to body
         container.append(pagination);
     }
+
+    window.scrollTo(0,0);
 }

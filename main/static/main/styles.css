@@ -77,7 +77,8 @@ p {
 }
 
 .menu-text {
-    margin: 5px 10px;
+    margin: 8px 10px;
+    border-bottom: 2px white solid;
 }
 
 .index-body {
@@ -176,12 +177,13 @@ p {
     margin-right: 120px;
 }
 
-.nav-link, .login-link, .nav-link-2, .menu-link {
+.nav-link, .login-link, .nav-link-2 {
     align-self: center;
     text-decoration: none;
 }
 
 .menu-link {
+    text-decoration: none;
     display: none;
 }
 
@@ -1109,10 +1111,11 @@ ul, .error-message {
 .menu {
     display: flex;
     flex-direction: column;
+    min-width: 100px;
     background-color: #666666;
     border-radius: 8px;
     border: 1px gray solid;
-    justify-content: center;
+    
     position: absolute;
     top: 50px;
     right: 5px;

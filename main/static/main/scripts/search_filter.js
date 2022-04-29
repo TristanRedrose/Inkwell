@@ -16,6 +16,10 @@ function search_filter(category) {
 
     const results = document.querySelectorAll('.wrapper');
 
+    if (document.querySelector('.category-page')) {
+        document.querySelector('.category-page').remove();
+    }
+
     if (category === "all") {
         results.forEach(result => {  
             result.className = "wrapper";
@@ -140,4 +144,6 @@ function paginate_results(page, maxPages) {
         // Append pagination to body
         container.append(pagination);
     }
+
+    window.scrollTo(0,0);
 }

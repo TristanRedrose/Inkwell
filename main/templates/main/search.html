@@ -16,11 +16,13 @@
                             <div class="wrapper" id="select-ctg">
                                 <div class="blog-box">
                                     <div id="post-box-image">
-                                        {% if result.image == none or result.image == "" %}
-                                            <img id="post-img" src="\static\main\images\no-image.jpg" alt="no-img">
-                                        {% else %}
-                                            <img id="post-img" src={{ result.image }} alt="post-img">
-                                        {% endif %}
+                                        <a class="nav-link" href="{% url 'view_blog' result.name %}">
+                                            {% if result.image == none or result.image == "" %}
+                                                <img id="post-img" src="\static\main\images\no-image.jpg" alt="no-img">
+                                            {% else %}
+                                                <img id="post-img" src={{ result.image }} alt="post-img">
+                                            {% endif %}
+                                        </a>
                                         <div class="info-wrapper">
                                             <div class="blog-info-2">
                                                 <div class="blog-info-box">
@@ -40,7 +42,9 @@
                                     </div>
                                     <div id="post-box-content">
                                         <div class="blog-box-title-div">
-                                            <h3 id="box-title-text">{{ result.name }}</h3>
+                                            <a class="nav-link" href="{% url 'view_blog' result.name %}">
+                                                <h3 id="box-title-text">{{ result.name }}</h3>
+                                            </a>
                                         </div>
                                         <div class="blog-box-desc-div">
                                             <p id="box-body-text">{{ result.description }}</p>
