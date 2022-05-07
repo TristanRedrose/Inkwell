@@ -40,7 +40,6 @@ def profile_page(request,username):
         profile = Profile.objects.get(name=user)
     except:
         profile = None
-        
 
     try:
         blog = Blog.objects.get(author=user)
@@ -121,14 +120,12 @@ def create_post_view(request):
 @login_required(login_url="/sign_in")
 def edit_post_view(request, post_title):
 
-    userposts = Posts.objects.filter(author=request.user)
     post = Posts.objects.get(title=post_title, author=request.user)
     categories = Category.objects.all()
 
     # Redirect user back to post if user does not have permission to edit post
     if request.user != post.author:
         return redirect("post", post.blog.name, post.title)
-
     
     return render(request,"main/edit_post.html", {
         "post": post,
@@ -139,6 +136,7 @@ def view_blogs(request):
 
     page = "blogs"
     categories = Category.objects.all()
+    
     # See if user already has a blog created
     user_has_blog = True
     try:
