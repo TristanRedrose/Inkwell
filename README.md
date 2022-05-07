@@ -34,15 +34,15 @@ Contains fields for comment author, corresponding post, body text and a timestam
 *Profile:*
 Contains fields for username, users blog, biography and profile image.
 
-**main\templates\**
+**main\templates\ **
 
 "main\" contains HTML files for different page views while "main\components\" contains HTML files for page layouts and for elements which show up on multiple different pages such as the category bar or category selector on mobile views.
 
-**main\static\**
+**main\static\ **
 
 "main\style.css" contains all the css code for page styling while "main\images\" contains the base pictures and icons used by the site.
 
-**main\static\main\scripts\**
+**main\static\main\scripts\ **
 
 Contains all of the websites javascript files:
 
