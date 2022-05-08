@@ -14,10 +14,10 @@ The site is responsive both on ultrawide monitors and mobile devices.
 
 ## What’s contained in each file
 
-**main\models.py**
+### main\models.py
 
 *User:*
-Django default user model for storing basic user information.
+Default Django user model for storing basic user information.
 
 *Category:*
 Contains category names and their corresponding color.
@@ -34,15 +34,19 @@ Contains fields for comment author, corresponding post, body text and a timestam
 *Profile:*
 Contains fields for username, users blog, biography and profile image.
 
-**main\templates\ **
+### main\views.py
+
+Contains base page views, and all of the API-s the site uses.
+
+### main\templates\
 
 "main\" contains HTML files for different page views while "main\components\" contains HTML files for page layouts and for elements which show up on multiple different pages such as the category bar or category selector on mobile views.
 
-**main\static\ **
+### main\static\
 
 "main\style.css" contains all the css code for page styling while "main\images\" contains the base pictures and icons used by the site.
 
-**main\static\main\scripts\ **
+### main\static\main\scripts\
 
 Contains all of the websites javascript files:
 
@@ -90,8 +94,21 @@ The **category_filter** function clears base pagination and empties the post con
 ## How to run
 
 ### Dependencies
-[Python 3.9](https://www.python.org/downloads/release/python-390/),[Django](https://www.djangoproject.com/download/), [Pillow](https://pillow.readthedocs.io/en/stable/)
+[Python 3.9](https://www.python.org/downloads/release/python-390/), [Django 3.2](https://www.djangoproject.com/download/), [Pillow](https://pillow.readthedocs.io/en/stable/)
 
+After installing all the prerequisites, migrate:
 
+-python manage.py makemigrations
+-python manage.py migrate
+
+then create a superuser for the admin page:
+
+-python manage.py createsuperuser
+
+and run server:
+
+-python manage.py runserver
+
+Upon first launch, login with the superuser account and create the categories you would like your users to have access to.
 
 
