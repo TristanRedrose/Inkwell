@@ -99,6 +99,7 @@ The **category_filter** function clears base pagination and empties the post con
 After installing all the prerequisites, migrate:
 
 -python manage.py makemigrations
+
 -python manage.py migrate
 
 then create a superuser for the admin page:
