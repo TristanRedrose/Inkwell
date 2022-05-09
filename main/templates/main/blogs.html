@@ -10,54 +10,61 @@
             {% include "main/components/category-bar.html" %}
             <div class="content-div">
                 <div class="post-div">
-                    {% for blog in page_obj %}
-                        <div class="wrapper">
-                            <div class="blog-box">
-                                <div id="post-box-image">
-                                    <a class="nav-link" href="{% url 'view_blog' blog.name %}">
-                                        {% if blog.image == none or blog.image == "" %}
-                                            <img id="post-img" src="\static\main\images\no-image.jpg" alt="no-img">
-                                        {% else %}
-                                            <img id="post-img" src={{ blog.image }} alt="post-img">
-                                        {% endif %}
-                                    </a>
-                                    <div class="info-wrapper">
-                                        <div class="blog-info-2">
-                                            <div class="blog-info-box">
-                                                <img id="info-img1" src="..\static\main\images\user.png" alt="ad-img1">
-                                                <p id="blog-time"><a href="{% url 'profile_page' blog.author %}" class="nav-link"><span class="name-span">{{ blog.author}}</span></a></p>
+                    {% if page_obj|length < 1 %}
+                        <div class="ctg-wrapper active" id="select-ctg">
+                            <h3>No posts found </h3>
+                            <img id="ad-img1" src="static/main/images/undraw_not_found_-60-pq.svg" alt="not found">
+                        </div>
+                    {% else %}
+                        {% for blog in page_obj %}
+                            <div class="wrapper">
+                                <div class="blog-box">
+                                    <div id="post-box-image">
+                                        <a class="nav-link" href="{% url 'view_blog' blog.name %}">
+                                            {% if blog.image == none or blog.image == "" %}
+                                                <img id="post-img" src="\static\main\images\no-image.jpg" alt="no-img">
+                                            {% else %}
+                                                <img id="post-img" src={{ blog.image }} alt="post-img">
+                                            {% endif %}
+                                        </a>
+                                        <div class="info-wrapper">
+                                            <div class="blog-info-2">
+                                                <div class="blog-info-box">
+                                                    <img id="info-img1" src="..\static\main\images\user.png" alt="ad-img1">
+                                                    <p id="blog-time"><a href="{% url 'profile_page' blog.author %}" class="nav-link"><span class="name-span">{{ blog.author}}</span></a></p>
+                                                </div>
+                                                <div class="blog-info-box">
+                                                    <img id="info-img1" src="..\static\main\images\Calendar.png" alt="ad-img1">
+                                                    <p id="blog-time">{{ blog.created|date:"d-m-Y" }}</p>
+                                                </div>
                                             </div>
-                                            <div class="blog-info-box">
-                                                <img id="info-img1" src="..\static\main\images\Calendar.png" alt="ad-img1">
-                                                <p id="blog-time">{{ blog.created|date:"d-m-Y" }}</p>
+                                            <div class="blog-info-3" style="background-color:{{ blog.category.color }}">
+                                                <img id="info-img1" src="..\static\main\images\categories.png" alt="ad-img1">
+                                                <p class="blog-category">{{ blog.category.name }}</p>
                                             </div>
-                                        </div>
-                                        <div class="blog-info-3" style="background-color:{{ blog.category.color }}">
-                                            <img id="info-img1" src="..\static\main\images\categories.png" alt="ad-img1">
-                                            <p class="blog-category">{{ blog.category.name }}</p>
                                         </div>
                                     </div>
-                                </div>
-                                <div id="post-box-content">
-                                    <div class="blog-box-title-div">
+                                    <div id="post-box-content">
+                                        <div class="blog-box-title-div">
+                                            <a class="nav-link" href="{% url 'view_blog' blog.name %}">
+                                                <h3 id="box-title-text">{{ blog.name }}</h3>
+                                            </a>
+                                        </div>
+                                        <div class="blog-box-desc-div">
+                                            <p id="box-body-text">{{ blog.description }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="blog-box-bottom">
                                         <a class="nav-link" href="{% url 'view_blog' blog.name %}">
-                                            <h3 id="box-title-text">{{ blog.name }}</h3>
+                                            <div id="post-box-button">
+                                                <p>Visit blog</p>
+                                            </div>
                                         </a>
                                     </div>
-                                    <div class="blog-box-desc-div">
-                                        <p id="box-body-text">{{ blog.description }}</p>
-                                    </div>
-                                </div>
-                                <div class="blog-box-bottom">
-                                    <a class="nav-link" href="{% url 'view_blog' blog.name %}">
-                                        <div id="post-box-button">
-                                            <p>Visit blog</p>
-                                        </div>
-                                    </a>
                                 </div>
                             </div>
-                        </div>
-                    {% endfor %}
+                        {% endfor %}
+                    {% endif %}
                 </div>
                 <div class="side-div">
                     {% include "main/components/side-elements.html" %}

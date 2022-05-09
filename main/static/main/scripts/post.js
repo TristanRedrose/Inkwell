@@ -86,8 +86,8 @@ function showDelete_modal(comment_id) {
             <p class="comment-text-2">${ CommentText }</p>
         </div>
         <div class="comment-confirm-div">
-            <div class="comment-delete-button">  
-                <p class="comment-text" onclick="delete_comment(${comment_id})">Delete</p>
+            <div class="comment-delete-button" onclick="delete_comment(${comment_id})">  
+                <p class="comment-text">Delete</p>
             </div>
             <div class="comment-delete-button modal" onclick="clear_modal()">  
                 <p class="comment-text">Return</p>

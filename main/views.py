@@ -255,10 +255,16 @@ def view_post(request,blog_name,post_title):
     post = posts.get(title=post_title)
     comments = Comments.objects.filter(post=post)
     comments = comments.order_by("-created").all()
+
+    #Show only 8 comments per page
+    paginator = Paginator(comments, 8)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     return render(request,"main/post.html", {
         "blog":blog,
         "post": post,
-        "comments": comments,
+        "page_obj": page_obj,
         "user_has_blog": user_has_blog,
         "page": "post"
     })

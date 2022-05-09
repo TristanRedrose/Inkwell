@@ -10,11 +10,18 @@
             {% include "main/components/category-bar.html" %}
             <div class="content-div">
                 <div class="post-div">
-                    {% for post in page_obj %}
-                    <div class="wrapper">
-                        {% include "main/components/post-box.html" %}
-                    </div>
-                    {% endfor %}
+                    {% if page_obj|length < 1 %}
+                        <div class="ctg-wrapper active" id="select-ctg">
+                            <h3>No posts found </h3>
+                            <img id="ad-img1" src="static/main/images/undraw_not_found_-60-pq.svg" alt="not found">
+                        </div>
+                    {% else %}
+                        {% for post in page_obj %}
+                            <div class="wrapper">
+                                {% include "main/components/post-box.html" %}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
                 </div>
                 <div class="side-div">
                     {% include "main/components/side-elements.html" %}

@@ -950,6 +950,7 @@ p {
 .bottom-bar {
     width: 100%;
     border-bottom: 1px black solid;
+    margin-bottom: 16px;
 }
 
 .post-body-view-text {
@@ -1084,6 +1085,10 @@ p {
 
 .comment-text-2 {
     margin: 0px;
+}
+
+#modal-comment-box > .comment-text-2 {
+    text-align: center;
 }
 
 .comment-input-area, .comment-input-area-error {
