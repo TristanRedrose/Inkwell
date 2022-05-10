@@ -551,6 +551,8 @@ p {
     text-align: center;
     overflow: hidden;
     border-top: 3px #7490F0 solid;
+    display: flex;
+    flex-direction: column;
 }
 
 #box-title-text {
@@ -580,16 +582,21 @@ p {
 #post-box-title-div, .blog-box-title-div {
     overflow: hidden;
     min-height: 50px;
-    max-height: 146px;
+    max-height: 108px;
     width: 360px;
     box-sizing: border-box;
     padding: 24px 0px 0px 0px;
+    flex: 0 0 auto;
 }
 
 #post-box-body-div, .blog-box-desc-div {
-    max-height: 164px;
+    max-height: 154px;
     width: 360px;
     overflow: hidden;
+    flex: 0 1 auto;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    box-sizing: border-box;
 }
 
 #post-box-button {
@@ -605,6 +612,10 @@ p {
     color: white;
     font-weight: 700;
     font-family: Roboto, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.blog-box:hover {
+    transform: scale(1.05);
 }
 
 #post-box-button:hover {
@@ -797,6 +808,7 @@ p {
 
 .blog-box {
     height: 400px;
+    transition: ease 0.4s;
 }
 
 .post-view-div, .comment-view-div {
